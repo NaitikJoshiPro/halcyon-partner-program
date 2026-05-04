@@ -815,44 +815,101 @@
 
   /* ── Founders Section ────────────────────────────── */
   #founders { background: #fff; padding: 112px 0; }
-  .founders-grid {
+  .founder-hero {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 0;
     margin-top: 56px;
+    border: 1px solid var(--gold-500);
   }
-  @media(min-width:640px) { .founders-grid { grid-template-columns: repeat(3, 1fr); } }
-  .founder-card {
-    border: 1px solid #e5e7eb;
-    padding: 32px;
-    position: relative;
-    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-  }
-  .founder-card:hover {
-    border-color: rgba(184,149,58,0.3);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-  }
-  .founder-initials {
-    width: 48px; height: 48px;
+  @media(min-width:1024px) { .founder-hero { grid-template-columns: 1fr 1fr; } }
+  .founder-hero-left {
     background: var(--navy-900);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; font-weight: 900;
-    color: var(--gold-400);
-    margin-bottom: 20px;
-    letter-spacing: 1px;
+    padding: 48px;
+    display: flex; flex-direction: column; justify-content: space-between;
   }
-  .founder-name {
-    font-size: 14px; font-weight: 900;
-    color: var(--navy-900); margin-bottom: 2px;
+  .founder-hero-right {
+    background: var(--cream);
+    padding: 48px;
+    border-top: 1px solid var(--gold-500);
   }
-  .founder-title {
+  @media(min-width:1024px) { .founder-hero-right { border-top: none; border-left: 1px solid var(--gold-500); } }
+  .founder-hero-name {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 900; color: #fff; line-height: 1.05;
+    margin-bottom: 6px;
+  }
+  .founder-hero-title {
+    font-size: 10px; font-weight: 800;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold-500); margin-bottom: 28px;
+  }
+  .founder-hero-bio {
+    font-size: 15px; color: var(--text-muted-dark);
+    line-height: 1.8; flex: 1;
+  }
+  .founder-hero-contact {
+    margin-top: 32px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .founder-hero-email {
+    font-size: 12px; font-weight: 700;
+    color: var(--gold-400); letter-spacing: 0.5px;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(184,149,58,0.3);
+    padding-bottom: 2px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .founder-hero-email:hover { color: var(--gold-300); border-color: var(--gold-400); }
+  .founder-hero-stat {
     font-size: 10px; font-weight: 700;
     letter-spacing: 1.5px; text-transform: uppercase;
-    color: var(--gold-600); margin-bottom: 16px;
+    color: var(--navy-500);
   }
-  .founder-bio {
-    font-size: 13px; color: #6b7280; line-height: 1.7;
+  .founder-hero-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    border: 1px solid rgba(184,149,58,0.25);
+    padding: 5px 12px;
+    font-size: 9.5px; font-weight: 800;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold-500); margin-bottom: 24px;
+  }
+  .founder-support-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2px;
+    margin-top: 2px;
+    background: #e5e7eb;
+  }
+  @media(min-width:640px) { .founder-support-grid { grid-template-columns: repeat(2, 1fr); } }
+  .founder-support-card {
+    background: #fff;
+    padding: 28px 32px;
+    position: relative;
+    transition: background 0.2s;
+    display: flex; gap: 20px; align-items: flex-start;
+  }
+  .founder-support-card:hover { background: var(--cream); }
+  .founder-support-initials {
+    width: 40px; height: 40px; flex-shrink: 0;
+    background: var(--navy-900);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 900;
+    color: var(--text-muted-dark);
+    letter-spacing: 1px;
+  }
+  .founder-support-info {}
+  .founder-support-name {
+    font-size: 13px; font-weight: 900;
+    color: var(--navy-900); margin-bottom: 2px;
+  }
+  .founder-support-title {
+    font-size: 9.5px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: #9ca3af; margin-bottom: 10px;
+  }
+  .founder-support-bio {
+    font-size: 12px; color: #6b7280; line-height: 1.65;
   }
 
   /* ── Footer ──────────────────────────────────────── */
@@ -1655,43 +1712,86 @@
 <!-- ═══════════════════════════════════════════════════ -->
 <section id="founders">
   <div class="container">
-    <p class="section-label section-label-light reveal">Who We Are</p>
+    <p class="section-label section-label-light reveal">Who You're Working With</p>
     <div class="gold-divider reveal"></div>
-    <h2 class="section-h2 reveal">Meet the team you're backing.</h2>
+    <h2 class="section-h2 reveal">Built and led by<br>Naitik Joshi.</h2>
     <p class="section-body reveal reveal-delay-1">
-      Halcyon was founded by three people who build and operate real companies —
-      not a side hustle, not a course, not a "new idea." A real firm with real clients.
+      Halcyon is not a faceless company. When you bring someone in, you're connecting
+      them directly with the person who built the platform and runs the business.
     </p>
-    <div class="founders-grid">
-      <div class="founder-card reveal">
-        <div class="founder-initials">NJ</div>
-        <div class="founder-name">Naitik Joshi</div>
-        <div class="founder-title">CEO & CTO</div>
-        <div class="founder-bio">
-          Leads technology and product at Halcyon. Built the entire billing platform
-          infrastructure — the HIPAA-compliant portal, client dashboard, and RCM workflow
-          system that every client runs on. Responsible for all technical operations
-          and platform security.
+
+    <div class="founder-hero reveal reveal-delay-2">
+      <div class="founder-hero-left">
+        <div>
+          <div class="founder-hero-tag">
+            <span class="pulse-dot"></span>
+            CEO &amp; CTO — Halcyon Medical Billing LLP
+          </div>
+          <div class="founder-hero-name">Naitik Joshi</div>
+          <div class="founder-hero-title">Founder · Chief Executive &amp; Technology Officer</div>
+          <p class="founder-hero-bio">
+            Naitik founded Halcyon and built the entire platform from the ground up —
+            the HIPAA-compliant billing portal, client dashboard, PHI encryption layer,
+            and the full 12-step RCM workflow system every practice runs on.
+            He leads all sales conversations, demos, and client relationships personally.
+            When you make an introduction, <strong style="color:#fff">you're connecting directly with him.</strong>
+          </p>
+        </div>
+        <div class="founder-hero-contact">
+          <a href="mailto:naitik@halcyonmedbilling.com" class="founder-hero-email">naitik@halcyonmedbilling.com</a>
+          <span class="founder-hero-stat">· Direct line</span>
         </div>
       </div>
-      <div class="founder-card reveal reveal-delay-1">
-        <div class="founder-initials">AJ</div>
-        <div class="founder-name">Ankit Joshi</div>
-        <div class="founder-title">COO — Operations</div>
-        <div class="founder-bio">
-          Runs day-to-day operations and client success at Halcyon. Leads all client
-          demos and practice onboarding. Manages the billing specialist team and
-          ensures every client's claims are processed correctly and on time.
+      <div class="founder-hero-right">
+        <p style="font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--gold-600);margin-bottom:20px;">What Naitik brings to every client</p>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:24px;height:24px;background:var(--navy-900);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;font-weight:900;color:var(--gold-500);">1</div>
+            <div>
+              <div style="font-size:11px;font-weight:900;letter-spacing:0.5px;text-transform:uppercase;color:var(--navy-900);margin-bottom:3px;">Platform you can actually see</div>
+              <div style="font-size:13px;color:#6b7280;line-height:1.6;">Real-time client portal — every claim, every payment, every denial — visible to the practice 24/7.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:24px;height:24px;background:var(--navy-900);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;font-weight:900;color:var(--gold-500);">2</div>
+            <div>
+              <div style="font-size:11px;font-weight:900;letter-spacing:0.5px;text-transform:uppercase;color:var(--navy-900);margin-bottom:3px;">Direct access, always</div>
+              <div style="font-size:13px;color:#6b7280;line-height:1.6;">No call center. Clients have Naitik's direct email. Questions get answered same day.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:24px;height:24px;background:var(--navy-900);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;font-weight:900;color:var(--gold-500);">3</div>
+            <div>
+              <div style="font-size:11px;font-weight:900;letter-spacing:0.5px;text-transform:uppercase;color:var(--navy-900);margin-bottom:3px;">Results within 60 days</div>
+              <div style="font-size:13px;color:#6b7280;line-height:1.6;">Typical clients see AR days drop and denial rates fall within the first two billing cycles.</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <div style="width:24px;height:24px;background:var(--navy-900);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;font-weight:900;color:var(--gold-500);">4</div>
+            <div>
+              <div style="font-size:11px;font-weight:900;letter-spacing:0.5px;text-transform:uppercase;color:var(--navy-900);margin-bottom:3px;">Your reputation is safe</div>
+              <div style="font-size:13px;color:#6b7280;line-height:1.6;">Every referral is handled professionally. You're attaching your name to a company that delivers.</div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="founder-card reveal reveal-delay-2">
-        <div class="founder-initials">RK</div>
-        <div class="founder-name">Rushan Khan</div>
-        <div class="founder-title">CFO — Finance</div>
-        <div class="founder-bio">
-          Manages all financial operations including partner commission payments,
-          client invoicing, and company finances. Your point of contact for
-          anything related to commission payments and the referral agreement.
+    </div>
+
+    <div class="founder-support-grid reveal reveal-delay-3">
+      <div class="founder-support-card">
+        <div class="founder-support-initials">AJ</div>
+        <div class="founder-support-info">
+          <div class="founder-support-name">Ankit Joshi</div>
+          <div class="founder-support-title">COO — Operations</div>
+          <div class="founder-support-bio">Runs day-to-day billing operations and client onboarding. Manages the specialist team ensuring every client's claims are worked correctly and on schedule.</div>
+        </div>
+      </div>
+      <div class="founder-support-card">
+        <div class="founder-support-initials">RK</div>
+        <div class="founder-support-info">
+          <div class="founder-support-name">Rushan Khan</div>
+          <div class="founder-support-title">CFO — Finance</div>
+          <div class="founder-support-bio">Manages all financials including partner commission disbursements and client invoicing. Handles the referral agreement and commission payment logistics.</div>
         </div>
       </div>
     </div>
@@ -1740,7 +1840,7 @@
         </button>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            Commissions are paid <strong>monthly, net-30</strong> after the practice's invoice to Halcyon is collected. So if a client's first invoice is due on June 1 and they pay on June 5, you receive your 25% first-month commission by July 5. Ongoing 10% commissions are paid on the same schedule every month. Payments are made via ACH, Zelle, or wire — your choice. Rushan (CFO) handles all commission payments and will send you a payment receipt every month.
+            Commissions are paid <strong>monthly, net-30</strong> after the practice's invoice to Halcyon is collected. So if a client's first invoice is due on June 1 and they pay on June 5, you receive your 25% first-month commission by July 5. Ongoing 10% commissions are paid on the same schedule every month. Payments are made via ACH, Zelle, or wire — your choice. Naitik confirms every payment and you'll receive a receipt each cycle.
           </div>
         </div>
       </div>
@@ -1776,7 +1876,7 @@
         </button>
         <div class="faq-answer">
           <div class="faq-answer-inner">
-            Yes — before your first commission payment, you'll sign a simple <strong>Referral Partner Agreement</strong>. It's 1–2 pages and covers: commission rates, payment schedule, confidentiality (you may learn business information about Halcyon during this process), and termination terms. Nothing complicated. Rushan will send it to you via DocuSign. This agreement also protects you — it legally guarantees you'll receive your commissions on every client you referred as long as they remain active.
+            Yes — before your first commission payment, you'll sign a simple <strong>Referral Partner Agreement</strong>. It's 1–2 pages and covers: commission rates, payment schedule, confidentiality (you may learn business information about Halcyon during this process), and termination terms. Nothing complicated. Naitik will send it over via DocuSign after your onboarding call. This agreement also protects you — it legally guarantees you'll receive your commissions on every client you referred as long as they remain active.
           </div>
         </div>
       </div>
@@ -1825,7 +1925,7 @@
       </p>
       <div class="cta-buttons reveal reveal-delay-2">
         <a href="mailto:naitik@halcyonmedbilling.com?subject=Partner%20Program%20Interest&body=Hi%20Naitik%2C%0A%0AI'm%20interested%20in%20the%20Halcyon%20partner%20program.%20Can%20we%20set%20up%20a%20quick%20call%3F%0A%0AThanks" class="btn-primary-lg">Email Naitik to Start</a>
-        <a href="mailto:rushan@halcyonmedbilling.com?subject=Partner%20Commission%20Question" class="btn-outline">Commission Questions → Rushan</a>
+        <a href="mailto:naitik@halcyonmedbilling.com?subject=Partner%20Program%20Question" class="btn-outline">Have a Question First?</a>
       </div>
       <div class="cta-trust reveal reveal-delay-3">
         <div class="trust-item"><span class="trust-dot"></span>No upfront investment</div>
@@ -1846,7 +1946,6 @@
       </div>
       <div class="footer-links">
         <a href="mailto:naitik@halcyonmedbilling.com">naitik@halcyonmedbilling.com</a>
-        <a href="mailto:rushan@halcyonmedbilling.com">rushan@halcyonmedbilling.com</a>
         <a href="https://halcyonmedbilling.com" target="_blank">halcyonmedbilling.com</a>
       </div>
     </div>
