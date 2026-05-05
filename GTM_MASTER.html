@@ -1,0 +1,2603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Halcyon Medical Billing — GTM Master War Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy-950: #060F18;
+  --navy-900: #0C1D2B;
+  --navy-800: #112436;
+  --navy-700: #1A3A4F;
+  --navy-600: #22506A;
+  --navy-500: #2A6080;
+  --navy-400: #4A7A9F;
+  --gold-500: #B8953A;
+  --gold-400: #D4AF60;
+  --gold-300: #E8CC80;
+  --gold-200: #F0E4B8;
+  --gold-100: #FBF8F2;
+  --cream: #FAFAF8;
+  --parchment: #F2EFE9;
+  --muted: #7A95A5;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--cream);
+  color: #374151;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── LAYOUT ── */
+.container {
+  max-width: 1520px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+section { width: 100%; }
+
+.section-pad { padding: 128px 0; }
+.section-pad-lg { padding: 160px 0; }
+
+/* ── NAV ── */
+#main-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(12,29,43,0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--navy-700);
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+#main-nav .container {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 0 40px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.nav-logo-box {
+  width: 32px; height: 32px;
+  background: var(--gold-500);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 900; color: white;
+  letter-spacing: -0.5px;
+}
+
+.nav-logo-text {
+  font-size: 12px; font-weight: 800;
+  color: white; letter-spacing: 1.5px; text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.nav-links a {
+  display: block;
+  padding: 0 14px;
+  font-size: 10px; font-weight: 700;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: color 0.15s;
+  line-height: 60px;
+}
+
+.nav-links a:hover { color: var(--gold-400); }
+
+/* ── SECTION LABELS ── */
+.section-label {
+  font-size: 9.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--gold-500);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.gold-divider {
+  width: 48px; height: 2px;
+  background: var(--gold-500);
+  margin-bottom: 24px;
+}
+
+/* ── HERO ── */
+#hero {
+  background-color: var(--navy-900);
+  background-image:
+    linear-gradient(rgba(184,149,58,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184,149,58,0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+  padding: 160px 0 120px;
+  margin-top: 60px;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(184,149,58,0.1);
+  border: 1px solid rgba(184,149,58,0.25);
+  padding: 6px 14px;
+  margin-bottom: 32px;
+}
+
+.hero-eyebrow span {
+  font-size: 9.5px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 4px;
+  color: var(--gold-400);
+}
+
+.hero-dot {
+  width: 6px; height: 6px;
+  background: var(--gold-500);
+  border-radius: 50%;
+  animation: pulse-dot 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.hero-h1 {
+  font-size: clamp(2.8rem, 5.5vw, 5.2rem);
+  font-weight: 900;
+  color: white;
+  line-height: 1.03;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+  max-width: 900px;
+}
+
+.hero-h1 em {
+  font-style: normal;
+  color: var(--gold-400);
+}
+
+.hero-sub {
+  font-size: 1.125rem;
+  color: var(--muted);
+  max-width: 640px;
+  line-height: 1.7;
+  margin-bottom: 56px;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  max-width: 960px;
+  margin-bottom: 48px;
+}
+
+.hero-stat {
+  background: var(--navy-800);
+  border: 1px solid var(--navy-700);
+  padding: 24px 28px;
+}
+
+.hero-stat-num {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: white;
+  letter-spacing: -1px;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.hero-stat-num.gold { color: var(--gold-400); }
+
+.hero-stat-label {
+  font-size: 9.5px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: var(--muted);
+}
+
+.hero-status-banner {
+  border: 1px solid var(--navy-700);
+  background: var(--navy-800);
+  padding: 28px 36px;
+  max-width: 960px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.status-col-label {
+  font-size: 9.5px; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 3px;
+  margin-bottom: 14px;
+}
+
+.status-col-label.green { color: #4ade80; }
+.status-col-label.red { color: #f87171; }
+
+.status-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.status-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+.status-dot.green { background: #4ade80; }
+.status-dot.red { background: #f87171; }
+
+/* ── LIGHT SECTIONS ── */
+.section-light { background: var(--cream); }
+.section-parchment { background: var(--parchment); }
+
+.section-dark {
+  background: var(--navy-900);
+  background-image: radial-gradient(ellipse at 50% 0%, rgba(42,96,128,0.12) 0%, transparent 70%);
+}
+
+.section-deepdark {
+  background: var(--navy-950);
+  background-image:
+    linear-gradient(rgba(184,149,58,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(184,149,58,0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* ── HEADINGS ── */
+.h2-light {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 900;
+  color: var(--navy-900);
+  line-height: 1.05;
+  letter-spacing: -1.5px;
+}
+
+.h2-dark {
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 900;
+  color: white;
+  line-height: 1.05;
+  letter-spacing: -1.5px;
+}
+
+.h3-light {
+  font-size: 1.125rem;
+  font-weight: 900;
+  color: var(--navy-900);
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+
+.h3-dark {
+  font-size: 1.125rem;
+  font-weight: 900;
+  color: white;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+
+.body-light {
+  font-size: 0.9375rem;
+  color: #4b5563;
+  line-height: 1.75;
+}
+
+.body-dark {
+  font-size: 0.9375rem;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+/* ── TABLES ── */
+.tbl-wrap { overflow-x: auto; margin: 24px 0; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+thead tr {
+  background: var(--navy-900);
+}
+
+thead th {
+  font-size: 9.5px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: white;
+  padding: 12px 16px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.tbl-light tbody tr:nth-child(odd) { background: white; }
+.tbl-light tbody tr:nth-child(even) { background: #f9fafb; }
+.tbl-light tbody td {
+  padding: 11px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #374151;
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+.tbl-dark tbody tr:nth-child(odd) { background: var(--navy-800); }
+.tbl-dark tbody tr:nth-child(even) { background: var(--navy-900); }
+.tbl-dark tbody td {
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--navy-700);
+  color: var(--muted);
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+.tbl-dark thead th, .tbl-light thead th {
+  border-right: 1px solid var(--navy-700);
+}
+
+td strong { color: inherit; font-weight: 700; }
+.tbl-light td strong { color: var(--navy-900); }
+.tbl-dark td strong { color: white; }
+
+.tbl-light td.gold-cell { color: var(--gold-500); font-weight: 700; }
+.tbl-dark td.gold-cell { color: var(--gold-400); font-weight: 700; }
+
+td.green-cell { color: #22c55e; font-weight: 700; }
+td.red-cell { color: #f87171; font-weight: 700; }
+
+/* ── CALLOUT BOXES ── */
+.callout-light {
+  border-left: 3px solid var(--gold-500);
+  background: var(--gold-100);
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+
+.callout-light p {
+  font-size: 0.9rem;
+  color: #374151;
+  line-height: 1.7;
+}
+
+.callout-dark {
+  border-left: 3px solid var(--gold-500);
+  background: rgba(184,149,58,0.07);
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+
+.callout-dark p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.callout-red {
+  border: 1px solid #dc2626;
+  border-left: 4px solid #dc2626;
+  background: rgba(220,38,38,0.06);
+  padding: 24px 28px;
+  margin: 32px 0;
+}
+
+.callout-red h3 {
+  color: #f87171;
+  font-size: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+}
+
+.callout-red p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
+.callout-red p strong { color: white; }
+
+/* ── CARDS ── */
+.card-light {
+  background: white;
+  border: 1px solid #e5e7eb;
+  padding: 28px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.card-light:hover {
+  border-color: rgba(184,149,58,0.4);
+  transform: translateY(-2px);
+}
+
+.card-dark {
+  background: var(--navy-800);
+  border: 1px solid var(--navy-700);
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.2s;
+}
+
+.card-dark::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 2px; width: 0;
+  background: var(--gold-500);
+  transition: width 0.4s;
+}
+
+.card-dark:hover { background: rgba(26,58,79,0.7); }
+.card-dark:hover::after { width: 100%; }
+
+/* ── GRID LAYOUTS ── */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+.mb-8 { margin-bottom: 32px; }
+.mb-12 { margin-bottom: 48px; }
+.mb-16 { margin-bottom: 64px; }
+.mt-12 { margin-top: 48px; }
+.mt-16 { margin-top: 64px; }
+
+/* ── DAY BLOCK ── */
+.day-block {
+  border: 1px solid var(--navy-700);
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.day-header {
+  background: var(--navy-800);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid var(--navy-700);
+}
+
+.day-num {
+  background: var(--gold-500);
+  color: white;
+  font-size: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 4px 10px;
+  flex-shrink: 0;
+}
+
+.day-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.day-date {
+  font-size: 11px;
+  color: var(--muted);
+  margin-left: auto;
+}
+
+.day-body { padding: 20px 20px; }
+
+.founder-tasks { margin-bottom: 16px; }
+
+.founder-label {
+  font-size: 9.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.founder-label.naitik { color: var(--gold-400); }
+.founder-label.ankit { color: #60a5fa; }
+.founder-label.rushan { color: #34d399; }
+
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+
+.task-list li {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  padding: 4px 0 4px 16px;
+  position: relative;
+  border-bottom: 1px solid rgba(26,58,79,0.4);
+}
+
+.task-list li:last-child { border-bottom: none; }
+
+.task-list li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 12px;
+  width: 5px; height: 1px;
+  background: var(--gold-500);
+}
+
+/* ── SCHEDULE TABLE ── */
+.schedule-row-time {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--gold-400);
+  white-space: nowrap;
+}
+
+.schedule-row-block {
+  font-size: 11px;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.schedule-row-detail {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+/* ── SCRIPT BLOCKS ── */
+.script-block {
+  background: var(--navy-950);
+  border: 1px solid var(--navy-700);
+  border-left: 3px solid var(--gold-500);
+  padding: 20px 24px;
+  margin: 16px 0;
+  font-family: 'Inter', monospace;
+}
+
+.script-label {
+  font-size: 9px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--gold-500);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.script-subject {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold-300);
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.script-text {
+  font-size: 13px;
+  color: #d1d5db;
+  line-height: 1.75;
+  white-space: pre-wrap;
+}
+
+/* ── METHOD BLOCKS ── */
+.method-block {
+  border: 1px solid var(--navy-700);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.method-header {
+  background: rgba(184,149,58,0.08);
+  border-bottom: 1px solid var(--navy-700);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.method-num {
+  font-size: 22px;
+  font-weight: 900;
+  color: rgba(184,149,58,0.25);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 36px;
+}
+
+.method-title {
+  font-size: 12px;
+  font-weight: 900;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.method-body {
+  padding: 20px 24px;
+}
+
+.method-body p {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+
+.method-body p:last-child { margin-bottom: 0; }
+
+.method-body strong { color: white; }
+
+.method-body .highlight {
+  color: var(--gold-400);
+  font-weight: 700;
+}
+
+/* ── WEEK BLOCKS ── */
+.week-block {
+  border: 1px solid var(--navy-700);
+  margin-bottom: 16px;
+}
+
+.week-header {
+  background: var(--navy-800);
+  padding: 14px 24px;
+  display: flex; align-items: center; gap: 16px;
+  border-bottom: 1px solid var(--navy-700);
+}
+
+.week-badge {
+  font-size: 9.5px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: var(--gold-400);
+  background: rgba(184,149,58,0.1);
+  border: 1px solid rgba(184,149,58,0.2);
+  padding: 3px 10px;
+}
+
+.week-title {
+  font-size: 13px; font-weight: 800; color: white;
+  text-transform: uppercase; letter-spacing: 1.5px;
+}
+
+.week-theme {
+  font-size: 11px; color: var(--muted); margin-left: auto;
+  font-style: italic;
+}
+
+.week-body { padding: 20px 24px; }
+
+.week-body p {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+.week-body p strong { color: white; }
+
+/* ── MILESTONE ROW ── */
+.milestone-row-trigger {
+  font-size: 12px;
+  color: var(--gold-400);
+  line-height: 1.5;
+}
+
+/* ── KPI BLOCKS ── */
+.kpi-block {
+  border: 1px solid #e5e7eb;
+  padding: 0;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.kpi-header {
+  background: var(--navy-900);
+  padding: 12px 20px;
+  font-size: 9.5px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--gold-400);
+}
+
+.kpi-row {
+  display: grid;
+  grid-template-columns: 220px 1fr 120px;
+  border-bottom: 1px solid #f3f4f6;
+  align-items: center;
+}
+
+.kpi-row:last-child { border-bottom: none; }
+
+.kpi-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy-900);
+  padding: 12px 16px;
+  border-right: 1px solid #f3f4f6;
+}
+
+.kpi-detail {
+  font-size: 12px;
+  color: #6b7280;
+  padding: 12px 16px;
+  line-height: 1.5;
+}
+
+.kpi-target {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold-500);
+  padding: 12px 16px;
+  text-align: right;
+  border-left: 1px solid #f3f4f6;
+}
+
+/* ── FAILURE BLOCK ── */
+.failure-block {
+  border: 1px solid var(--navy-700);
+  margin-bottom: 14px;
+}
+
+.failure-trigger {
+  background: rgba(248,113,113,0.08);
+  border-bottom: 1px solid var(--navy-700);
+  padding: 12px 20px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #f87171;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.failure-response {
+  padding: 14px 20px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.failure-response strong { color: var(--gold-400); }
+
+/* ── TECH PHASE ── */
+.tech-phase {
+  border: 1px solid var(--navy-700);
+  margin-bottom: 16px;
+}
+
+.tech-phase-header {
+  background: rgba(184,149,58,0.06);
+  border-bottom: 1px solid var(--navy-700);
+  padding: 14px 20px;
+  display: flex; align-items: center; gap: 14px;
+}
+
+.tech-phase-title {
+  font-size: 11px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2.5px; color: white;
+}
+
+.tech-phase-date {
+  font-size: 10px; color: var(--muted); margin-left: auto;
+}
+
+.tech-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 20px;
+  border-bottom: 1px solid rgba(26,58,79,0.3);
+}
+
+.tech-item:last-child { border-bottom: none; }
+
+.tech-item-num {
+  font-size: 10px; font-weight: 900;
+  color: var(--gold-500);
+  flex-shrink: 0;
+  width: 20px;
+  padding-top: 2px;
+}
+
+.tech-item-text {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.tech-item-text strong { color: white; }
+
+/* ── INLINE BADGE ── */
+.badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 3px 8px;
+  margin-right: 6px;
+}
+
+.badge-gold { background: rgba(184,149,58,0.15); color: var(--gold-400); }
+.badge-green { background: rgba(34,197,94,0.1); color: #4ade80; }
+.badge-red { background: rgba(248,113,113,0.1); color: #f87171; }
+.badge-blue { background: rgba(96,165,250,0.1); color: #60a5fa; }
+
+/* ── ADVANTAGE CARDS ── */
+.advantage-num {
+  font-size: 48px;
+  font-weight: 900;
+  color: rgba(184,149,58,0.15);
+  line-height: 1;
+  margin-bottom: 12px;
+  letter-spacing: -2px;
+}
+
+/* ── PRINT SAFETY ── */
+@media print {
+  #main-nav { display: none; }
+  section { page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════ FIXED NAV -->
+<nav id="main-nav" aria-label="Main navigation">
+  <div class="container">
+    <a href="#hero" class="nav-logo">
+      <div class="nav-logo-box">H</div>
+      <span class="nav-logo-text">Halcyon</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#reality">Reality</a></li>
+      <li><a href="#india">India Edge</a></li>
+      <li><a href="#phase0">Phase 0</a></li>
+      <li><a href="#daily">Daily Machine</a></li>
+      <li><a href="#may">May Plan</a></li>
+      <li><a href="#june">June Plan</a></li>
+      <li><a href="#q3">Jul–Aug</a></li>
+      <li><a href="#q4">Sep–Oct</a></li>
+      <li><a href="#scale">Scale</a></li>
+      <li><a href="#acquisition">Acquisition</a></li>
+      <li><a href="#scripts">Scripts</a></li>
+      <li><a href="#dark">Dark Methods</a></li>
+      <li><a href="#tech">Tech Build</a></li>
+      <li><a href="#milestones">Revenue</a></li>
+      <li><a href="#decision">Decision</a></li>
+      <li><a href="#kpis">KPIs</a></li>
+      <li><a href="#failure">Failure</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════ HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-eyebrow">
+      <div class="hero-dot"></div>
+      <span>Halcyon Medical Billing — Strategic Operations Document — May 2026</span>
+    </div>
+    <h1 class="hero-h1">The 12-Month<br><em>War Plan.</em></h1>
+    <p class="hero-sub">Not a pitch deck. Not a summary. Every task, every script, every tactic, every number — in sequence. This document runs the company from $0 to $5M–25M ARR. Follow it precisely.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num gold">26</div>
+        <div class="hero-stat-label">Days to First Client</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">$118</div>
+        <div class="hero-stat-label">Monthly Operating Cost</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num gold">4–6%</div>
+        <div class="hero-stat-label">Net Collections Model</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">$25M</div>
+        <div class="hero-stat-label">Revenue Target</div>
+      </div>
+    </div>
+    <div class="hero-status-banner">
+      <div>
+        <div class="status-col-label green">Completed</div>
+        <div class="status-item"><div class="status-dot green"></div><span>LLP registered in India</span></div>
+        <div class="status-item"><div class="status-dot green"></div><span>Master Service Agreement drafted</span></div>
+        <div class="status-item"><div class="status-dot green"></div><span>BAA template ready</span></div>
+        <div class="status-item"><div class="status-dot green"></div><span>Investor pitch built</span></div>
+        <div class="status-item"><div class="status-dot green"></div><span>Website built (not deployed)</span></div>
+        <div class="status-item"><div class="status-dot green"></div><span>Pricing model defined: 4–6% net collections</span></div>
+        <div class="status-item"><div class="status-dot green"></div><span>ICP defined: 1–10 physician practices</span></div>
+      </div>
+      <div>
+        <div class="status-col-label red">Not Done — Blocking Revenue</div>
+        <div class="status-item"><div class="status-dot red"></div><span>Website not deployed to Vercel</span></div>
+        <div class="status-item"><div class="status-dot red"></div><span>Ops portal / platform not built</span></div>
+        <div class="status-item"><div class="status-dot red"></div><span>Outreach list: 0 contacts built</span></div>
+        <div class="status-item"><div class="status-dot red"></div><span>Zero demos scheduled</span></div>
+        <div class="status-item"><div class="status-dot red"></div><span>Cold email system not configured</span></div>
+        <div class="status-item"><div class="status-dot red"></div><span>DID phone number not set up</span></div>
+        <div class="status-item"><div class="status-dot red"></div><span>HubSpot CRM not populated</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ BRUTAL REALITY -->
+<section id="reality" class="section-light section-pad">
+  <div class="container">
+    <span class="section-label">Section 01 — Brutal Reality Check</span>
+    <div class="gold-divider"></div>
+    <h2 class="h2-light mb-8">Where You Are vs.<br>Where You Need to Be.</h2>
+    <p class="body-light" style="max-width:780px; margin-bottom:48px;">This is not a motivational section. The gap between your current state and your target is real and large. The only way to close it is to understand it precisely, then execute with no wasted motion.</p>
+
+    <div class="grid-2 mb-16" style="gap:32px;">
+      <div>
+        <div class="callout-light" style="border-left-color:#f87171; background:#fef2f2;">
+          <p style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:3px; color:#dc2626; margin-bottom:10px;">Where You Are — May 5, 2026</p>
+          <p style="color:#374151; font-size:13.5px; line-height:1.75;"><strong>Revenue: $0.</strong> No clients. No outreach list. No platform. Website not live. You have a legal entity, some documents, and a vision. That's it. The gap between here and your first paying client is 26 days of focused execution.</p>
+        </div>
+        <div class="callout-light" style="margin-top:16px;">
+          <p style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:3px; color:var(--gold-500); margin-bottom:10px;">The Three Non-Negotiables Right Now</p>
+          <ul style="list-style:none; padding:0; margin:0;">
+            <li style="font-size:13px; color:#374151; padding:6px 0 6px 16px; position:relative; border-bottom:1px solid #f3f4f6;"><span style="position:absolute;left:0;top:14px;width:5px;height:1px;background:var(--gold-500);display:block;"></span><strong>1. Website must be live by May 7.</strong> It's your credibility layer. No website = no demo = no close.</li>
+            <li style="font-size:13px; color:#374151; padding:6px 0 6px 16px; position:relative; border-bottom:1px solid #f3f4f6;"><span style="position:absolute;left:0;top:14px;width:5px;height:1px;background:var(--gold-500);display:block;"></span><strong>2. Outreach must start by May 8.</strong> Every day of delay = 25 fewer prospects touched. Compounding loss.</li>
+            <li style="font-size:13px; color:#374151; padding:6px 0 6px 16px; position:relative;"><span style="position:absolute;left:0;top:14px;width:5px;height:1px;background:var(--gold-500);display:block;"></span><strong>3. Demo must be bookable by May 12.</strong> Can't close without a demo. Platform needs to be demo-ready — not perfect, demo-ready.</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <p class="h3-light" style="margin-bottom:20px;">The Math to $5M–$25M</p>
+        <div class="tbl-wrap">
+          <table class="tbl-light">
+            <thead><tr><th>Revenue Target</th><th>Clients Needed</th><th>Avg Monthly Billing</th><th>Your Fee (5%)</th></tr></thead>
+            <tbody>
+              <tr><td><strong>$1M ARR</strong></td><td>~11 clients</td><td>$150K/mo avg</td><td>$7,500/mo per client</td></tr>
+              <tr><td><strong>$2.5M ARR</strong></td><td>~28 clients</td><td>$150K/mo avg</td><td>$7,500/mo per client</td></tr>
+              <tr><td><strong>$5M ARR</strong></td><td>~55 clients</td><td>$150K/mo avg</td><td>$7,500/mo per client</td></tr>
+              <tr><td><strong>$10M ARR</strong></td><td>~67 clients</td><td>$250K/mo avg</td><td>$12,500/mo per client</td></tr>
+              <tr><td><strong>$25M ARR</strong></td><td>~100 clients</td><td>$400K/mo avg</td><td>$20,000/mo per client</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout-light" style="margin-top:16px;">
+          <p><strong>Key insight:</strong> You don't need 500 clients. You need 55–100 mid-size practices. That is a completely achievable number in 18–24 months for a focused team. The Indian AAPI/Muslim physician community alone numbers 50,000+ physicians — your natural warm channel has more than enough surface area.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="h3-light mb-8">Revenue Projection Table</p>
+    <div class="tbl-wrap mb-16">
+      <table class="tbl-light">
+        <thead>
+          <tr>
+            <th>Period</th>
+            <th>Clients</th>
+            <th>Avg Monthly Collections Managed</th>
+            <th>MRR (5% of collections)</th>
+            <th>ARR</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Month 3 (Jul 2026)</strong></td><td>3–5</td><td>$100K avg</td><td class="gold-cell">$15–25K</td><td>$180–300K</td><td>First proof of concept. Platform fully live.</td></tr>
+          <tr><td><strong>Month 6 (Oct 2026)</strong></td><td>15–20</td><td>$130K avg</td><td class="gold-cell">$97–130K</td><td>$1.2–1.6M</td><td>MGMA conference. First India biller hired.</td></tr>
+          <tr><td><strong>Month 9 (Jan 2027)</strong></td><td>35–45</td><td>$150K avg</td><td class="gold-cell">$263–338K</td><td>$3.2–4M</td><td>JPM week. PE conversations starting.</td></tr>
+          <tr><td><strong>Month 12 (Apr 2027)</strong></td><td>60–80</td><td>$175K avg</td><td class="gold-cell">$525–700K</td><td>$6.3–8.4M</td><td>$5M ARR threshold crossed. PE talks real.</td></tr>
+          <tr><td><strong>Month 18 (Oct 2027)</strong></td><td>120–150</td><td>$200K avg</td><td class="gold-cell">$1.2–1.5M</td><td>$14–18M</td><td>Growth stage. Possible PE close.</td></tr>
+          <tr><td><strong>Month 24 (Apr 2028)</strong></td><td>175–220</td><td>$250K avg</td><td class="gold-cell">$2.2–2.75M</td><td>$26–33M</td><td>$25M target achieved or exceeded.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="h3-light mb-8">The Three Advantages $1B Companies Can't Have</p>
+    <div class="grid-3" style="gap:20px;">
+      <div class="card-light">
+        <div class="advantage-num">01</div>
+        <h3 class="h3-light">Speed Without Bureaucracy</h3>
+        <p class="body-light" style="font-size:13px;">You make a decision in 10 minutes. A $1B RCM company takes 6 weeks, 3 committees, and a pilot program. When a prospect wants a custom pricing structure or a non-standard onboarding — you say yes today. This converts fence-sitters in competitive situations every time.</p>
+      </div>
+      <div class="card-light">
+        <div class="advantage-num">02</div>
+        <h3 class="h3-light">CEO Attention on Every Account</h3>
+        <p class="body-light" style="font-size:13px;">When Naitik emails a prospective client, they are talking directly to the person who built the technology and runs the company. No one at Athenahealth or AdvancedMD can offer this. Personal CEO involvement is a conversion weapon, especially with Indian and Muslim physician practices that value relationships.</p>
+      </div>
+      <div class="card-light">
+        <div class="advantage-num">03</div>
+        <h3 class="h3-light">Lowest Cost Structure in the Category</h3>
+        <p class="body-light" style="font-size:13px;">Your operating cost is $118–215/month. A US-based competitor spending $50K/month on salaries and rent can never match your pricing aggression. You can offer 50% off, free trials, and free audits all day long — and still have better margins than competitors charging 8–10% with a $5K setup fee.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ INDIA ADVANTAGE -->
+<section id="india" class="section-dark section-pad">
+  <div class="container">
+    <span class="section-label">Section 02 — The India Advantage</span>
+    <div class="gold-divider"></div>
+    <h2 class="h2-dark mb-8">Why India Is the<br>Weapon, Not the Liability.</h2>
+    <p class="body-dark" style="max-width:720px; margin-bottom:56px;">The instinct is to hide the India origin. That is the wrong instinct. Deployed correctly, running from India is a structural competitive advantage that US-based competitors literally cannot replicate. Here is how to use it.</p>
+
+    <div class="grid-2" style="gap:24px; margin-bottom:40px;">
+      <div class="card-dark">
+        <div class="section-label" style="margin-bottom:10px;">Advantage 01</div>
+        <h3 class="h3-dark">4–8× Cost Margin vs. US Competitors</h3>
+        <p class="body-dark" style="font-size:13px; margin-bottom:12px;">A US-based RCM company needs at least $150K–250K/year in staff costs for the same output Halcyon generates at $10K–30K/year (Indian billers at $300–800/month). This is not a temporary advantage — it compounds at scale.</p>
+        <p class="body-dark" style="font-size:13px;">At 5% collections on a $150K/month practice = $7,500 MRR. Your delivery cost: $500–800/month (one India-based biller). Your gross margin on that account: <strong style="color:var(--gold-400);">89–93%.</strong> A US-based competitor's gross margin on the same account: 40–55%. You win every pricing war.</p>
+      </div>
+      <div class="card-dark">
+        <div class="section-label" style="margin-bottom:10px;">Advantage 02</div>
+        <h3 class="h3-dark">Indian-American Physician Pipeline</h3>
+        <p class="body-dark" style="font-size:13px; margin-bottom:12px;">Over 50,000 Indian-American physicians practice in the US — approximately 6% of all US physicians. They index heavily in internal medicine, cardiology, psychiatry, nephrology, and hospitalist medicine. These are Halcyon's exact ICP specialties.</p>
+        <p class="body-dark" style="font-size:13px;">Naitik's outreach from his personal profile — "fellow Indian here, building from Vadodara" — has a <strong style="color:var(--gold-400);">3–5× higher response rate</strong> than cold outreach. AAPI (American Association of Physicians of Indian Origin) has active membership directories and LinkedIn groups. This is the warmest cold outreach channel available.</p>
+      </div>
+      <div class="card-dark">
+        <div class="section-label" style="margin-bottom:10px;">Advantage 03</div>
+        <h3 class="h3-dark">Muslim Physician Community (Rushan Leads)</h3>
+        <p class="body-dark" style="font-size:13px; margin-bottom:12px;">IMANA (Islamic Medical Association of North America) has 5,000+ physician members and an active community. Muslim physicians are concentrated in internal medicine, family medicine, psychiatry, and cardiology in large urban markets (New York, New Jersey, Chicago, Houston, Los Angeles, Michigan).</p>
+        <p class="body-dark" style="font-size:13px;">Rushan's outreach through IMANA channels, mosque business networks, and Muslim physician WhatsApp groups reaches a highly connected community where <strong style="color:var(--gold-400);">trust transfers through community affiliation.</strong> A recommendation from a trusted community member converts within days, not months.</p>
+      </div>
+      <div class="card-dark">
+        <div class="section-label" style="margin-bottom:10px;">Advantage 04</div>
+        <h3 class="h3-dark">IST Morning Block = US Pipeline Work Before US Wakes Up</h3>
+        <p class="body-dark" style="font-size:13px; margin-bottom:12px;">6am IST = 7:30pm EST (previous day). The US business world is asleep. Naitik is building platform, writing outreach copy, and publishing LinkedIn content that will land in US inboxes at 9am EST when US professionals start their day — with fresh eyes and full attention.</p>
+        <p class="body-dark" style="font-size:13px;">Ankit's call window (7:30pm–11pm IST = 9am–2:30pm EST) hits peak US business hours. <strong style="color:var(--gold-400);">No lag, no disadvantage</strong> — the time zone works if you schedule around it deliberately.</p>
+      </div>
+    </div>
+
+    <div class="card-dark" style="border-color:rgba(184,149,58,0.3);">
+      <div class="section-label" style="margin-bottom:12px;">The Positioning Statement</div>
+      <p style="font-size:1.2rem; font-weight:700; color:white; line-height:1.6; margin-bottom:16px;">"You get US-quality billing infrastructure at offshore economics. The savings on your billing cost go directly to your bottom line — not to our San Francisco office rent."</p>
+      <p class="body-dark" style="font-size:13px;">This is how you frame the India advantage to US physician prospects. It is not a weakness to explain — it is the core value proposition. AAPC-certified billers in India at $400–800/month vs. $3,000–5,000/month in the US. The math is your pitch. The margin is your moat.</p>
+    </div>
+
+    <div class="mt-12" style="border:1px solid var(--navy-700); padding:28px;">
+      <p class="section-label" style="margin-bottom:16px;">Build the Offshore Talent Pipeline Now</p>
+      <div class="grid-3" style="gap:16px;">
+        <div>
+          <p style="font-size:11px; font-weight:800; color:white; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px;">Where to Find AAPC-Certified Billers in India</p>
+          <ul class="task-list" style="list-style:none;">
+            <li>LinkedIn: search "AAPC certified medical biller India"</li>
+            <li>Naukri.com: "medical billing US process"</li>
+            <li>Indeed India: "ICD-10 CPT medical coding"</li>
+            <li>Upwork: filter for India, medical billing, AAPC certification</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-size:11px; font-weight:800; color:white; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px;">Cost Benchmarks (India, 2026)</p>
+          <ul class="task-list">
+            <li>Entry-level coder: $300–450/month</li>
+            <li>AAPC CPC certified: $500–700/month</li>
+            <li>Senior biller (5+ yrs US exp): $700–1,000/month</li>
+            <li>AR specialist: $450–650/month</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-size:11px; font-weight:800; color:white; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px;">Hire Trigger</p>
+          <ul class="task-list">
+            <li>First biller: when MRR exceeds $10K</li>
+            <li>Second biller: when MRR exceeds $25K</li>
+            <li>Team of 5: when MRR exceeds $75K</li>
+            <li>Billing manager: when team reaches 5 billers</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ PHASE 0 -->
+<section id="phase0" class="section-parchment section-pad">
+  <div class="container">
+    <span class="section-label">Section 03 — Phase 0: Launch Readiness</span>
+    <div class="gold-divider"></div>
+    <h2 class="h2-light mb-8">May 5–10: Six Days<br>to Operational.</h2>
+    <p class="body-light" style="max-width:760px; margin-bottom:48px;">Every task below is non-negotiable. Sequence matters. Some tasks block others. Naitik owns tech and strategy. Ankit owns outreach infrastructure and list building. Rushan owns finance, legal, and community networks. No task crosses owner without explicit assignment.</p>
+
+    <!-- DAY 1 -->
+    <div class="day-block">
+      <div class="day-header">
+        <div class="day-num">Day 1</div>
+        <div class="day-title">Infrastructure Decisions + Website Live</div>
+        <div class="day-date">Tuesday, May 5, 2026</div>
+      </div>
+      <div class="day-body">
+        <div class="founder-tasks">
+          <span class="founder-label naitik">Naitik — Tech + Decisions</span>
+          <ul class="task-list">
+            <li><strong>FIRST TASK (by 8am):</strong> Go to app.supabase.com → Settings → Billing. Verify HIPAA pricing tier. If HIPAA BAA requires $599/month plan → switch to Neon ($19/mo) + Railway PostgreSQL immediately. Decision must be finalized before any database code is written.</li>
+            <li>Deploy website to Vercel Pro ($20/mo). Domain: halcyonmedicalbilling.com or equivalent. All environment variables set. Confirm every page loads. Check SSL certificate validity.</li>
+            <li>Set up Google Workspace ($6/user/mo). Configure HIPAA BAA with Google. Email format: naitik@halcyonmedicalbilling.com, ankit@, rushan@.</li>
+            <li>Set up Railway Pro account ($45-65/mo). Verify HIPAA BAA is signed. This is where the billing ops platform will live.</li>
+            <li>Create GitHub repo: halcyon-platform. Initialize Next.js 14 + TypeScript + Railway deployment pipeline. Get a working "hello world" on Railway URL by end of day.</li>
+          </ul>
+        </div>
+        <div class="founder-tasks">
+          <span class="founder-label ankit">Ankit — List Building</span>
+          <ul class="task-list">
+            <li>Go to nppes.cms.hhs.gov → NPI Registry search. Entity type: Individual (Type 1). Taxonomy code: 2084P0800X (Psychiatry). States: Florida, Texas, New York, Ohio. 1–5 providers. Export CSV. This is your first 50-practice list.</li>
+            <li>For each exported practice: find practice website, find billing contact email (use Hunter.io free tier — 25 lookups/day), find office manager or billing coordinator name. Enter everything into HubSpot with stage = "Lead."</li>
+            <li>Set up free HubSpot CRM account. Create pipeline with stages: Lead → Contacted → Demo Scheduled → Demo Done → Proposal Sent → Negotiation → Signed. Add all 50 practices.</li>
+            <li>Set up Twilio account. Purchase one DID (Direct Inward Dialing) number in target market area code (305=Miami, 212=New York, 512=Austin). Cost: $1–2/month. Test inbound and outbound calls. This is the number in every email and every script.</li>
+          </ul>
+        </div>
+        <div class="founder-tasks">
+          <span class="founder-label rushan">Rushan — Email + Pricing Infrastructure</span>
+          <ul class="task-list">
+            <li>Set up Lemlist trial account (lemlist.com). Connect company email (rushan@halcyonmedicalbilling.com). Enable domain warmup — set to 10 emails/day ramp. DO NOT skip warmup. Sending cold email from a cold domain = spam folder = wasted effort.</li>
+            <li>Design and export pricing one-pager as PDF: show 4%, 5%, 6% tiers with example dollar amounts for a $150K/mo practice. Show founding client offer: 50% off first month. No setup fee. 30-day cancellation. This is a sales leave-behind.</li>
+            <li>Review MSA and BAA templates one more time. Confirm with your father (attorney) that both are executable for Indian entity → US practice relationship. Identify any gaps before the first demo.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 2 -->
+    <div class="day-block">
+      <div class="day-header">
+        <div class="day-num">Day 2</div>
+        <div class="day-title">Platform Build Starts + Warm Network Activation</div>
+        <div class="day-date">Wednesday, May 6, 2026</div>
+      </div>
+      <div class="day-body">
+        <div class="founder-tasks">
+          <span class="founder-label naitik">Naitik — Platform Build (Step 1)</span>
+          <ul class="task-list">
+            <li><strong>Auth system:</strong> NextAuth.js + Railway PostgreSQL. Email/password login. Role-based access (admin, biller, client). Session management. Protect all /dashboard routes. Target: working login/logout by end of day.</li>
+            <li>Practice management data model: Practice (id, name, npi, specialty, tax_id, address, payer_list[]). Provider (id, practice_id, name, npi, specialty, credentialing_status). Create CRUD UI for both.</li>
+            <li>Set up Railway PostgreSQL database. Run first migration. Test connection from Next.js. Seed with one test practice and test provider.</li>
+          </ul>
+        </div>
+        <div class="founder-tasks">
+          <span class="founder-label ankit">Ankit — Warm Network Activation</span>
+          <ul class="task-list">
+            <li>Make a list of your top 10 personal contacts who likely know physicians in the US. WhatsApp or iMessage each one: "Hey [name] — launching a medical billing company for US physician practices. Know any doctors in the US who might have billing headaches? Even an intro to their office manager is massive. Happy to explain in 2 min."</li>
+            <li>Set up LinkedIn Sales Navigator trial (use credit card, cancel before trial ends if not converting). Start building saved searches: Title = "Office Manager" OR "Practice Administrator" OR "Billing Manager". Industry = Medical Practice. Company size = 1–10. Geography = Florida, Texas, New York, Ohio.</li>
+            <li>Send first 30 LinkedIn connection requests with personalized notes (see Scripts section for exact copy). Track in HubSpot: create "LinkedIn Outreach" property with date sent.</li>
+          </ul>
+        </div>
+        <div class="founder-tasks">
+          <span class="founder-label rushan">Rushan — Muslim + Indian Physician Network Research</span>
+          <ul class="task-list">
+            <li>Research IMANA membership: go to imana.org → membership → physician directory. Note available contact data. IMANA annual conference dates. Any active WhatsApp groups or forums you can join legitimately.</li>
+            <li>Search LinkedIn for "Muslim physician" + "family medicine" OR "psychiatry" OR "internal medicine" in target states. Connect with 5 practice managers or physicians today. Use community-aligned message (see Scripts section).</li>
+            <li>Research AAPI (American Association of Physicians of Indian Origin): aapi.org. Physician directory, chapter locations, conference schedule. This organization is a direct channel to 50,000+ Indian-American physicians.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 3 -->
+    <div class="day-block">
+      <div class="day-header">
+        <div class="day-num">Day 3</div>
+        <div class="day-title">Email Warmup Live + Outreach List 100+</div>
+        <div class="day-date">Thursday, May 7, 2026</div>
+      </div>
+      <div class="day-body">
+        <div class="founder-tasks">
+          <span class="founder-label naitik">Naitik — Platform Build (Step 2)</span>
+          <ul class="task-list">
+            <li>Insurance eligibility check interface: build UI for entering patient insurance (payer, member ID, DOB, NPI). Connect to Availity API (availity.com → developer portal → free sandbox). Real-time eligibility response parsed into: active/inactive, deductible, copay, coinsurance, out-of-pocket max. This feature alone is demo gold.</li>
+            <li>Domain warmup: verify Lemlist warmup is running at 10 emails/day. Confirm deliverability score improving. Check spam score at mail-tester.com — aim for 9+/10 before sending first cold email.</li>
+            <li>Website: set up Google Analytics 4 on website. Set up Google Search Console. Verify domain. These are required for the SEO/content strategy that starts in Month 2.</li>
+          </ul>
+        </div>
+        <div class="founder-tasks">
+          <span class="founder-label ankit">Ankit — List Expansion to 100+</span>
+          <ul class="task-list">
+            <li>Build second 50-practice list from NPI registry. This time: taxonomy 207Q00000X (Family Medicine) in same states. Follow same enrichment process: website → Hunter.io email → LinkedIn profile. Enter in HubSpot.</li>
+            <li>Total list target by end of Day 3: 100+ practices in HubSpot with at minimum: practice name, specialty, state, decision-maker name, one valid contact channel (email OR phone OR LinkedIn).</li>
+            <li>Draft the "ROI comparison" one-pager: "Halcyon vs. your in-house biller." Show: in-house biller salary ($45,000–65,000/year) + benefits (20%) + management overhead + turnover risk vs. Halcyon at 5% of $150K/mo ($7,500/mo = $90,000/year) with zero overhead, zero HR cost, zero training. For practices billing less than $90K/mo, Halcyon is cheaper than a full-time biller. Send draft to Rushan for PDF design.</li>
+          </ul>
+        </div>
+        <div class="founder-tasks">
+          <span class="founder-label rushan">Rushan — Sales Collateral</span>
+          <ul class="task-list">
+            <li>Finalize "ROI vs. in-house biller" comparison one-pager (from Ankit's draft). Use Canva or Google Slides. Brand it with Halcyon colors and logo. Export as PDF. This is the leave-behind document after every demo.</li>
+            <li>Research 3 healthcare CPAs in Florida and 3 in Texas on LinkedIn. These are referral partners. Draft connection message: "Hi [Name] — I'm building a medical billing company and want to build relationships with healthcare CPAs who advise physician practices. Would you be open to a 15-minute call? We sometimes run into clients who could use each other's services."</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 4 -->
+    <div class="day-block">
+      <div class="day-header">
+        <div class="day-num">Day 4</div>
+        <div class="day-title">First Cold Emails + CRM Pipeline Locked</div>
+        <div class="day-date">Friday, May 8, 2026</div>
+      </div>
+      <div class="day-body">
+        <div class="founder-tasks">
+          <span class="founder-label naitik">Naitik — Platform Build (Step 3)</span>
+          <ul class="task-list">
+            <li>Medical coding interface: ICD-10 and CPT code search (use free ICD-10 API or build a local lookup from CMS published flat files). Autocomplete search. Code description display. This must work for the demo.</li>
+            <li>Charge capture: link coded charges to a patient encounter. Fields: DOS (date of service), NPI, CPT codes, ICD-10 codes, units, modifier, place of service code. Save to database.</li>
+            <li>Website: go through every page. Fix any broken links, missing content, incorrect copy. Make sure the contact form emails to info@halcyonmedicalbilling.com. Test the form. SSL must be green. This is your first impression with every prospect before the demo.</li>
+          </ul>
+        </div>
+        <div class="founder-tasks">
+          <span class="founder-label ankit">Ankit — First Cold Emails (Manual Test)</span>
+          <ul class="task-list">
+            <li>Send first 10 cold emails manually (not through Lemlist yet — domain is still warming). Use your Google Workspace email. Personalized subject lines. Use Email 1 template from the Scripts section. Pick 10 of the strongest prospects from your HubSpot list — ideally psychiatry or primary care practices in Florida or Texas where you have the most direct relevance.</li>
+            <li>Follow up with all warm contacts from Day 2. Check WhatsApp/iMessage. Anyone who responded — move them to "Contacted" in HubSpot. Anyone who mentioned they know a doctor — ask for an introduction today.</li>
+            <li>Send 30 more LinkedIn connection requests. By end of Day 4, 60 total requests sent.</li>
+          </ul>
+        </div>
+        <div class="founder-tasks">
+          <span class="founder-label rushan">Rushan — HubSpot Pipeline Setup + Legal Review</span>
+          <ul class="task-list">
+            <li>Fully configure HubSpot pipeline: 7 stages (Lead → Contacted → Demo Scheduled → Demo Done → Proposal Sent → Negotiation → Signed). Add custom properties: Specialty, Monthly Collections Estimate, Current Biller, Pain Point, Contact Channel, Lead Source.</li>
+            <li>Every prospect already in HubSpot should have: stage assigned, contact channel marked, specialty tagged, lead source tagged (NPI list / LinkedIn / Warm contact / Community network).</li>
+            <li>Confirm with your father: does the MSA need any changes for Indian LLP → US practice service delivery? Specifically: governing law clause, dispute resolution (arbitration vs. litigation), payment terms in USD. Have clean version ready for first demo.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 5 -->
+    <div class="day-block">
+      <div class="day-header">
+        <div class="day-num">Day 5</div>
+        <div class="day-title">First NPI Cold Calls + Demo Script Written</div>
+        <div class="day-date">Saturday, May 9, 2026</div>
+      </div>
+      <div class="day-body">
+        <div class="founder-tasks">
+          <span class="founder-label naitik">Naitik — Demo Script + Platform Claim Scrubbing</span>
+          <ul class="task-list">
+            <li>Write the 15-minute demo script. Structure: (1) Pain discovery — "Walk me through your current billing workflow" (3 min). (2) Platform demo — eligibility check, charge entry, claim view (7 min). (3) Differentiation — pricing model, denial rate data, India advantage framed correctly (3 min). (4) Close — "What would need to be true for you to run a 30-day pilot?" (2 min). Write every word. Practice it twice before first demo.</li>
+            <li>Build claim scrubbing dashboard: show claim in progress with validation warnings (missing modifier, ICD-10 not specific enough, CPT/ICD mismatch, invalid NPI, authorization required). These live validation warnings are visually impressive in demos. Even if some are placeholder logic — get them on screen.</li>
+          </ul>
+        </div>
+        <div class="founder-tasks">
+          <span class="founder-label ankit">Ankit — First NPI Cold Calls (10 calls)</span>
+          <ul class="task-list">
+            <li>Call 10 practices from your NPI list. Use the cold call script from the Scripts section exactly. Call 7:30pm IST (9am EST) — first call of US business day. Use Twilio DID number. Log every call in HubSpot: answered/voicemail, gatekeeper/decision-maker, response/next action.</li>
+            <li>First LinkedIn DM messages to any connections accepted from your Day 2–4 requests. Use LinkedIn Message 1 from Scripts section. Do not pitch. Ask a question about their biggest billing headache.</li>
+          </ul>
+        </div>
+        <div class="founder-tasks">
+          <span class="founder-label rushan">Rushan — Referral Partner Outreach</span>
+          <ul class="task-list">
+            <li>Send connection requests to 6 healthcare CPAs (3 FL, 3 TX) identified on Day 3. Use personalized connection notes. These are long-term referral partners — plant the seed now.</li>
+            <li>Research IMANA chapters in Florida, Texas, New York, Illinois. Find chapter chairs or board members on LinkedIn. These individuals are connectors to hundreds of Muslim physician practices.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 6 -->
+    <div class="day-block">
+      <div class="day-header">
+        <div class="day-num">Day 6</div>
+        <div class="day-title">Week 1 Review + First Demo Target</div>
+        <div class="day-date">Sunday, May 10, 2026</div>
+      </div>
+      <div class="day-body">
+        <div class="founder-tasks">
+          <span class="founder-label" style="color:white;">All Three Founders — Weekly Review</span>
+          <ul class="task-list">
+            <li>Review all outreach stats in HubSpot: total prospects, emails sent, LinkedIn requests sent, calls made, responses received, warm contacts responded. Is anything blocked? What's missing?</li>
+            <li>Identify the 3 hottest leads (anyone who responded positively to any channel). Move them to "Contacted" in HubSpot. Assign next action: schedule demo this week.</li>
+            <li>If any warm contact responded with a physician referral — DM that physician today. Don't wait. This lead has the highest conversion probability of anything in your pipeline.</li>
+          </ul>
+        </div>
+        <div class="founder-tasks">
+          <span class="founder-label naitik">Naitik — Electronic Claim Submission Interface</span>
+          <ul class="task-list">
+            <li>Electronic claim submission: build the UI to generate a 837P EDI file from entered charges and submit via Waystar API (waystar.com → developer sandbox, free). Display claim status: submitted, accepted, pending, rejected with reason code.</li>
+            <li>Target: if any lead is warm enough, book first demo call for May 12 (Monday). Send calendar invite via Google Calendar. Demo link via Zoom or Google Meet. Confirm 24 hours before.</li>
+          </ul>
+        </div>
+        <div class="founder-tasks">
+          <span class="founder-label ankit">Ankit — Week 2 Outreach Plan</span>
+          <ul class="task-list">
+            <li>Second wave of 30 LinkedIn connection requests — expand to second specialty: cardiology (taxonomy 207RC0000X) in target states.</li>
+            <li>Plan Week 2 cold email schedule: Lemlist domain should be warming for 7 days by May 12. Target: first automated email sequence to go live May 12 with 5 prospects per day scaling to 25/day by May 15.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ DAILY MACHINE -->
+<section id="daily" class="section-dark section-pad">
+  <div class="container">
+    <span class="section-label">Section 04 — The Daily Machine</span>
+    <div class="gold-divider"></div>
+    <h2 class="h2-dark mb-8">Exact Hourly Schedule.<br>No Interpretation Needed.</h2>
+    <p class="body-dark" style="max-width:720px; margin-bottom:48px;">This is not aspirational. These are the actual blocks. Protect the deep work blocks like they are client commitments — because they are. Naitik's Etech shift is untouchable. Everything Halcyon-related happens in the morning block and the late-night window. This schedule is how you build a $5M company in one year while holding a day job.</p>
+
+    <div style="margin-bottom:40px;">
+      <p style="font-size:11px; font-weight:900; color:var(--gold-400); text-transform:uppercase; letter-spacing:3px; margin-bottom:20px;">Naitik — Weekday Schedule (IST)</p>
+      <div class="tbl-wrap">
+        <table class="tbl-dark">
+          <thead><tr><th>Time (IST)</th><th>Block</th><th>Exact Activity</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="schedule-row-time">6:00am</td><td class="schedule-row-block">Wake + Brief</td><td class="schedule-row-detail">Read daily EBIE brief. Check Google Alerts: "medical billing company", "[competitor] problems", "RCM denial rate". Review HubSpot — any responses from US time zones overnight. Note all hot leads for the 12:30am window last night.</td><td><span class="badge badge-gold">Daily</span></td></tr>
+            <tr><td class="schedule-row-time">6:15–6:45am</td><td class="schedule-row-block">Forex Window</td><td class="schedule-row-detail">Personal income stream. Hard stop at 6:45. Do not carry this into the 7:15 deep work block.</td><td><span class="badge badge-gold">Non-neg.</span></td></tr>
+            <tr><td class="schedule-row-time">6:45–7:15am</td><td class="schedule-row-block">Breakfast</td><td class="schedule-row-detail">Never rushed. No phone at the table. Cognitive clarity for the deep work blocks ahead is built here.</td><td><span class="badge badge-gold">Sacred</span></td></tr>
+            <tr><td class="schedule-row-time">7:15–9:45am</td><td class="schedule-row-block" style="color:var(--gold-300);">DEEP WORK 1</td><td class="schedule-row-detail"><strong style="color:white;">Platform build (primary) or high-leverage strategy work.</strong> Phone on DND. Zero email. Zero LinkedIn. This 2.5hr block is where Halcyon's technology moat is built. One interruption costs 23 minutes of recovery. In Month 1: platform Steps 1–7. In Month 2: Steps 8–12. In Month 3+: integrations, client portal, audit tool. Nothing enters this block except deep work.</td><td><span class="badge badge-gold">SACRED</span></td></tr>
+            <tr><td class="schedule-row-time">9:45–10:00am</td><td class="schedule-row-block">Break</td><td class="schedule-row-detail">Walk outside. Water. No screens. Physical break is required for second deep work block to perform at the same level as the first.</td><td><span class="badge badge-green">Yes</span></td></tr>
+            <tr><td class="schedule-row-time">10:00am–12:30pm</td><td class="schedule-row-block" style="color:var(--gold-300);">DEEP WORK 2</td><td class="schedule-row-detail"><strong style="color:white;">Outreach review + content creation + strategy.</strong> Review all Ankit/Rushan outreach results. Write and schedule Naitik's LinkedIn posts (post at 6am IST = 7:30pm EST prior day = peak US engagement). Review hot leads. Write follow-up emails. Draft demos or proposals if due. Write LinkedIn articles (published monthly).</td><td><span class="badge badge-gold">SACRED</span></td></tr>
+            <tr><td class="schedule-row-time">12:30–1:15pm</td><td class="schedule-row-block">Lunch</td><td class="schedule-row-detail">Full break. Never rushed. Cognitive reset before Etech commute.</td><td><span class="badge badge-gold">Yes</span></td></tr>
+            <tr><td class="schedule-row-time">1:15–1:30pm</td><td class="schedule-row-block">Daily Handoff</td><td class="schedule-row-detail">Set Ankit's afternoon tasks via WhatsApp. Update HubSpot with morning actions. Check any urgent emails. Set phone to vibrate for demo confirmations only.</td><td><span class="badge badge-gold">Yes</span></td></tr>
+            <tr><td class="schedule-row-time">2:00–11:00pm</td><td class="schedule-row-block" style="color:#f87171;">ETECH SHIFT</td><td class="schedule-row-detail">Completely untouchable for Halcyon work. Phone on vibrate. Step out ONLY for: a signed contract notification, or a client emergency requiring CEO response in the next 5 minutes. Tell Ankit explicitly: "Between 2pm and 11pm IST, only contact me if it's a closed deal or a client emergency."</td><td><span class="badge badge-red">Etech</span></td></tr>
+            <tr><td class="schedule-row-time">11:30pm–12:30am</td><td class="schedule-row-block">Light Work</td><td class="schedule-row-detail">Schedule LinkedIn content via Buffer. Review Ankit's US call notes. Respond to hot leads who emailed in the last 6 hours. Quick HubSpot update. No deep platform work — cognitive capacity is limited at this hour. Save technical work for 7:15am.</td><td><span class="badge badge-gold">Yes</span></td></tr>
+            <tr><td class="schedule-row-time">12:30am</td><td class="schedule-row-block">Sleep</td><td class="schedule-row-detail">Non-negotiable. 5.5 hours minimum before 6am wake. Performance degrades measurably at 3 consecutive nights under 5.5h. You cannot build a $5M company on a degraded brain.</td><td><span class="badge badge-gold">SACRED</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div style="margin-bottom:40px;">
+      <p style="font-size:11px; font-weight:900; color:#60a5fa; text-transform:uppercase; letter-spacing:3px; margin-bottom:20px;">Ankit — Weekday Schedule (IST)</p>
+      <div class="tbl-wrap">
+        <table class="tbl-dark">
+          <thead><tr><th>Time (IST)</th><th>Block</th><th>Exact Activity</th></tr></thead>
+          <tbody>
+            <tr><td class="schedule-row-time">8:00am</td><td class="schedule-row-block">Wake + Pipeline</td><td class="schedule-row-detail">Review HubSpot pipeline. Check LinkedIn — accepted connections, message replies. Check email for cold email responses. Prioritize: anyone who replied = first action of the day.</td></tr>
+            <tr><td class="schedule-row-time">8:30–10:00am</td><td class="schedule-row-block" style="color:#93c5fd;">OUTREACH BLOCK</td><td class="schedule-row-detail"><strong style="color:white;">30 LinkedIn connection requests + Message 1 follow-ups.</strong> Use Sales Navigator saved search. Write personalized connection notes (template + one customized detail per person). Send Message 1 to all connections accepted 48+ hours ago. Log every action in HubSpot.</td></tr>
+            <tr><td class="schedule-row-time">10:00am–12:00pm</td><td class="schedule-row-block" style="color:#93c5fd;">RESEARCH BLOCK</td><td class="schedule-row-detail"><strong style="color:white;">NPI list building + prospect research.</strong> Add 20 new prospects to HubSpot daily. Enrich with email (Hunter.io), LinkedIn profile, any intel from public reviews. Research G2/Capterra for warm competitor-unhappy leads. Prep call scripts and notes for today's US window.</td></tr>
+            <tr><td class="schedule-row-time">12:00–1:00pm</td><td class="schedule-row-block">Lunch + Call Prep</td><td class="schedule-row-detail">Full break. Review call list for the US window. Know exactly who you're calling, what their specialty is, what their likely pain is, and what your opening line is for each.</td></tr>
+            <tr><td class="schedule-row-time">1:00–2:00pm</td><td class="schedule-row-block">CONTENT BLOCK</td><td class="schedule-row-detail">Post Ankit's LinkedIn update. Respond to comments on Naitik's posts. Update all stale HubSpot entries. Send any follow-up emails to prospects who are in the "Demo Done" or "Proposal Sent" stages.</td></tr>
+            <tr><td class="schedule-row-time">2:00–7:30pm</td><td class="schedule-row-block">Admin + Prep</td><td class="schedule-row-detail">NPI list enrichment. Email drafting. SOP writing. Client onboarding prep. US business hours don't start until 7:30pm IST — use this time so the call window is pure calls, no prep.</td></tr>
+            <tr><td class="schedule-row-time">7:30–11:00pm</td><td class="schedule-row-block" style="color:#4ade80;">US CALL WINDOW</td><td class="schedule-row-detail"><strong style="color:white;">9am–2:30pm EST. Most valuable 3.5 hours of the day.</strong> Cold calls (10–20/day, NPI list). Demo calls (scheduled in advance). Follow-up calls to warm leads. Rushan available in parallel for financial/contract discussions. DO NOT use this window for admin. 100% on the phone or in a demo.</td></tr>
+            <tr><td class="schedule-row-time">11:00pm</td><td class="schedule-row-block">Debrief</td><td class="schedule-row-detail">Update all call outcomes in HubSpot. WhatsApp summary to Naitik. Plan tomorrow's call list. Note any immediate follow-ups needed.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <p style="font-size:11px; font-weight:900; color:#34d399; text-transform:uppercase; letter-spacing:3px; margin-bottom:20px;">Rushan — Weekday Schedule (IST)</p>
+      <div class="tbl-wrap">
+        <table class="tbl-dark">
+          <thead><tr><th>Time (IST)</th><th>Block</th><th>Exact Activity</th></tr></thead>
+          <tbody>
+            <tr><td class="schedule-row-time">9:00–11:00am</td><td class="schedule-row-block" style="color:#6ee7b7;">FINANCE BLOCK</td><td class="schedule-row-detail"><strong style="color:white;">Financial modeling, contract review, pricing analysis.</strong> Maintain monthly P&amp;L. Review any MSAs/BAAs from demos. Model custom pricing for new prospects. Update revenue projections as clients are added. Manage the cap table and LLP compliance.</td></tr>
+            <tr><td class="schedule-row-time">11:00am–1:00pm</td><td class="schedule-row-block" style="color:#6ee7b7;">COMMUNITY BLOCK</td><td class="schedule-row-detail"><strong style="color:white;">Muslim physician network outreach.</strong> IMANA forums, WhatsApp groups, LinkedIn Muslim physician communities. Share useful billing content. Offer free audits. Build relationships — do not hard-sell on first contact. The warm community channel converts slower but churn is near zero.</td></tr>
+            <tr><td class="schedule-row-time">1:00–2:00pm</td><td class="schedule-row-block">Lunch</td><td class="schedule-row-detail">Full break.</td></tr>
+            <tr><td class="schedule-row-time">2:00–7:30pm</td><td class="schedule-row-block">LINKEDIN + LEGAL</td><td class="schedule-row-detail">LinkedIn outreach to Indian and Muslim physician networks. Referral partner relationship management (healthcare CPAs, attorneys). Any legal work required — contract drafting, compliance research, entity administration.</td></tr>
+            <tr><td class="schedule-row-time">7:30–10:00pm</td><td class="schedule-row-block" style="color:#4ade80;">US AVAILABILITY</td><td class="schedule-row-detail"><strong style="color:white;">Financial discussions with prospects (9am–12:30pm EST).</strong> When prospects want to dig into pricing, ROI models, or contract terms — Rushan takes these calls so Ankit can stay on pure pipeline calls. Also: IMANA chapter leader calls, Muslim physician community introductions in US time zones.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ MAY WEEKS -->
+<section id="may" class="section-light section-pad">
+  <div class="container">
+    <span class="section-label">Section 05 — Week by Week: May 2026</span>
+    <div class="gold-divider"></div>
+    <h2 class="h2-light mb-8">26 Days to First Client.<br>Four Weeks. No Slack.</h2>
+    <p class="body-light" style="max-width:720px; margin-bottom:48px;">Every week has one theme. When in doubt, check the week's theme. If a task doesn't serve the theme, it waits until next week. The goal is not to do everything — it is to do the right thing in the right sequence.</p>
+
+    <div class="week-block" style="border-color:#e5e7eb;">
+      <div class="week-header" style="background:var(--navy-900);">
+        <div class="week-badge">Week 1</div>
+        <div class="week-title">May 5–11: Infrastructure</div>
+        <div class="week-theme">Everything blocking outreach and demos must be live</div>
+      </div>
+      <div class="week-body" style="background:white;">
+        <p style="font-size:13.5px; color:#374151; line-height:1.7;"><strong>Theme:</strong> Nothing can be sold until you can be found and can deliver. Website live. Email domain warmed. HubSpot populated. Twilio DID working. Outreach list 100+. Platform auth working. Every infrastructure item is a prerequisite for Week 2.</p>
+        <div class="tbl-wrap">
+          <table class="tbl-light" style="margin-top:16px;">
+            <thead><tr><th>Milestone</th><th>Owner</th><th>Deadline</th><th>Blocker if Missed?</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Website deployed to Vercel</strong></td><td>Naitik</td><td>May 7</td><td class="red-cell">Yes — no demo credibility</td></tr>
+              <tr><td><strong>Outreach list 100+ in HubSpot</strong></td><td>Ankit</td><td>May 8</td><td class="red-cell">Yes — nothing to reach</td></tr>
+              <tr><td><strong>First 30 LinkedIn connection requests sent</strong></td><td>Ankit</td><td>May 7</td><td>No — but compounds daily</td></tr>
+              <tr><td><strong>Domain warming live in Lemlist</strong></td><td>Rushan</td><td>May 5</td><td class="red-cell">Yes — blocks email at scale</td></tr>
+              <tr><td><strong>DID phone number active (Twilio)</strong></td><td>Ankit</td><td>May 6</td><td>No — but needed for all scripts</td></tr>
+              <tr><td><strong>HubSpot pipeline 7 stages configured</strong></td><td>Rushan</td><td>May 6</td><td class="red-cell">Yes — can't track pipeline</td></tr>
+              <tr><td><strong>Platform auth + login working</strong></td><td>Naitik</td><td>May 9</td><td class="red-cell">Yes — blocks demo capability</td></tr>
+              <tr><td><strong>Google Workspace + HIPAA BAA signed</strong></td><td>Naitik</td><td>May 5</td><td>Not immediate — do first</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout-light" style="margin-top:16px;">
+          <p><strong>Week 1 success metric:</strong> By midnight May 11 — live website, 100+ prospect list, warmed email domain, working DID, populated HubSpot. All four. Not three out of four.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="week-block" style="border-color:#e5e7eb; margin-top:16px;">
+      <div class="week-header" style="background:var(--navy-900);">
+        <div class="week-badge">Week 2</div>
+        <div class="week-title">May 12–18: First Demos</div>
+        <div class="week-theme">Get on calls. No perfect pitch. Just get on calls.</div>
+      </div>
+      <div class="week-body" style="background:white;">
+        <p style="font-size:13.5px; color:#374151; line-height:1.7;"><strong>Theme:</strong> Sales is a contact sport. The only way to improve your demo is to give demos. Do not wait for a perfect platform. Demo what exists: eligibility check, charge capture, basic dashboard. Explain what is coming. The founding client offer (50% off first month, no setup fee) is your close mechanism for anyone on the fence.</p>
+        <p style="font-size:13.5px; color:#374151; line-height:1.7; margin-top:10px;"><strong>Outreach volume targets:</strong> 30 LinkedIn DMs to accepted connections. 30 cold emails from Lemlist (scaling 5/day → 25/day). 10+ NPI cold calls. 5 warm contact follow-ups.</p>
+        <div class="tbl-wrap">
+          <table class="tbl-light" style="margin-top:16px;">
+            <thead><tr><th>Milestone</th><th>Owner</th><th>Target Date</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Platform Steps 1–7 demo-ready</strong></td><td>Naitik</td><td>May 14 at latest</td></tr>
+              <tr><td><strong>First 3 demo calls scheduled</strong></td><td>Ankit</td><td>By May 15</td></tr>
+              <tr><td><strong>First 3 demos completed</strong></td><td>Ankit + Naitik</td><td>By May 18</td></tr>
+              <tr><td><strong>3+ warm contacts responded</strong></td><td>All founders</td><td>By May 18</td></tr>
+              <tr><td><strong>Lemlist email sequence live</strong></td><td>Ankit/Rushan</td><td>May 12</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout-light" style="margin-top:16px; border-left-color:#22c55e;">
+          <p><strong>The only metric that matters this week:</strong> demo calls completed. One warm conversation converts faster than 500 cold emails. Use the free billing audit offer to get on a call: "I'll analyze your last 3 months of claims at no charge. No pitch, just data."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="week-block" style="border-color:#e5e7eb; margin-top:16px;">
+      <div class="week-header" style="background:var(--navy-900);">
+        <div class="week-badge">Week 3</div>
+        <div class="week-title">May 19–25: Close Pressure</div>
+        <div class="week-theme">One demo becomes a proposal. One proposal becomes a close.</div>
+      </div>
+      <div class="week-body" style="background:white;">
+        <p style="font-size:13.5px; color:#374151; line-height:1.7;"><strong>Theme:</strong> By now you have had 3–5 demo conversations. At least one person said "this looks interesting" or "send me more information." That person is your Week 3 target. Move them to a proposal.</p>
+        <p style="font-size:13.5px; color:#374151; line-height:1.7; margin-top:10px;"><strong>The post-demo follow-up sequence:</strong> 24 hours → thank-you email with one-pager + MSA preview. 72 hours → specific ROI calculation for their practice ("Based on [specialty] in [state], we estimate $X/month recovery"). 7 days → "I want to check in on your timing — we have one founding client slot left this month."</p>
+        <div class="tbl-wrap" style="margin-top:16px;">
+          <table class="tbl-light">
+            <thead><tr><th>Milestone</th><th>Owner</th><th>Target</th></tr></thead>
+            <tbody>
+              <tr><td><strong>3–5 total demos completed (cumulative)</strong></td><td>Ankit + Naitik</td><td>By May 22</td></tr>
+              <tr><td><strong>1–2 proposals sent (MSA + pricing)</strong></td><td>Rushan</td><td>By May 22</td></tr>
+              <tr><td><strong>1 verbal "yes" or signed intent</strong></td><td>All</td><td>By May 25</td></tr>
+              <tr><td><strong>Pipeline: 15+ leads in HubSpot</strong></td><td>Ankit</td><td>By May 22</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout-light" style="margin-top:16px;">
+          <p><strong>Founding client close line:</strong> "We're taking on 3 founding clients this month at 50% off the first month. You'd be in our first cohort — direct CEO access, pricing that scales with your growth, no setup fee, 30-day cancellation. Do you want to move forward this week?"</p>
+          <p style="margin-top:8px;">Scarcity + personal attention + favorable pricing closes physicians who are on the fence. Don't overuse it — but use it once, clearly, and stop talking after.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="week-block" style="border-color:#e5e7eb; margin-top:16px;">
+      <div class="week-header" style="background:var(--navy-900);">
+        <div class="week-badge">Week 4</div>
+        <div class="week-title">May 26–31: First Client Signed</div>
+        <div class="week-theme">Contract signed. BAA executed. First claim submitted.</div>
+      </div>
+      <div class="week-body" style="background:white;">
+        <p style="font-size:13.5px; color:#374151; line-height:1.7;"><strong>Theme:</strong> Close. The verbal yes from Week 3 becomes a signed MSA + BAA this week. Do NOT let the deal sit in "negotiation" past May 31 without a specific named objection. If they're stalling: "What's preventing you from moving forward today?" Wait for the answer. Address it directly. Close again.</p>
+        <p style="font-size:13.5px; color:#374151; line-height:1.7; margin-top:10px;"><strong>Onboarding sequence after signing:</strong> (1) BAA executed same day as MSA. (2) Practice provides: payer list, NPI numbers, tax ID, superbill samples or charge master. (3) Naitik loads practice into platform same day. (4) Ankit runs first eligibility verifications within 24 hours. (5) First claims submitted within 5 business days. Speed of onboarding is a key differentiator — competitors take 3–4 weeks. You do it in 5 days.</p>
+        <div class="callout-light" style="margin-top:16px; border-left-color:#f87171; background:#fef2f2;">
+          <p style="color:#374151;"><strong style="color:#dc2626;">Critical:</strong> Do NOT stop outreach when you close Client 1. This is the most common fatal mistake in early-stage sales. You will feel like you've won and ease off the pipeline. Don't. Client 1 gives you the social proof to close Client 2 faster. Start the Client 2 story the moment Client 1 signs.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ JUNE -->
+<section id="june" class="section-dark section-pad">
+  <div class="container">
+    <span class="section-label">Section 06 — Week by Week: June 2026</span>
+    <div class="gold-divider"></div>
+    <h2 class="h2-dark mb-8">June: From First Client<br>to Repeatable Machine.</h2>
+    <p class="body-dark" style="max-width:720px; margin-bottom:48px;">June is the month where you prove you can deliver AND sell simultaneously. Most early-stage service companies fail here — they get a client and pour all attention into delivery. Outreach volume must stay at 100% even while running Client 1's billing.</p>
+
+    <div class="week-block" style="border-color:var(--navy-700);">
+      <div class="week-header">
+        <div class="week-badge">June W1</div>
+        <div class="week-title">June 1–7: Operationalize</div>
+        <div class="week-theme">Deliver for Client 1. Scale outreach to 3–5 more.</div>
+      </div>
+      <div class="week-body">
+        <p><strong>Delivery priorities for Client 1:</strong> All payers credentialed (credentialing timelines are 30–90 days — start immediately or you will have claim rejections in month 2). First batch of claims submitted. First ERA received and reconciled. Denial rate for first batch tracked in HubSpot. First weekly status update sent to practice manager: denial rate, claims submitted, AR days, collections this week.</p>
+        <p style="margin-top:10px;"><strong>Outreach scale-up:</strong> Lemlist domain is now 3+ weeks warmed. Scale to 25 emails/person/day. Two warmed domains (Ankit + Rushan) = 50 emails/day. 60 LinkedIn requests/day. 15–20 NPI cold calls/day.</p>
+        <div class="tbl-wrap" style="margin-top:16px;">
+          <table class="tbl-dark">
+            <thead><tr><th>Task</th><th>Owner</th><th>By When</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Client 1 onboarding SOP documented</strong></td><td>Ankit</td><td>June 3</td></tr>
+              <tr><td><strong>First 10 claims submitted for Client 1</strong></td><td>Naitik + Ankit</td><td>June 5</td></tr>
+              <tr><td><strong>Cold email scaled to 50/day</strong></td><td>Ankit + Rushan</td><td>June 1</td></tr>
+              <tr><td><strong>Client 1 first weekly status update</strong></td><td>Ankit</td><td>June 6</td></tr>
+              <tr><td><strong>60 LinkedIn requests/day running</strong></td><td>Ankit</td><td>June 1</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="week-block" style="border-color:var(--navy-700); margin-top:16px;">
+      <div class="week-header">
+        <div class="week-badge">June W2</div>
+        <div class="week-title">June 8–14: Second Client</div>
+        <div class="week-theme">Close Client 2 using Client 1 as social proof.</div>
+      </div>
+      <div class="week-body">
+        <p><strong>The social proof pivot — exact words:</strong></p>
+        <div class="script-block" style="margin-top:12px;">
+          <span class="script-label">Demo opening — after signing Client 1</span>
+          <div class="script-text">"We just onboarded our first practice — a [specialty] practice in [state]. Their claims went out the same week we onboarded them. Their denial rate in the first batch was [X]%.
+
+I'd like to show you what that looked like, and what we'd do for your practice."</div>
+        </div>
+        <p style="font-size:13px; color:var(--muted); margin-top:12px;">Specificity matters: "we work with a psychiatry practice in Texas" is 10× more compelling to a Texas psychiatrist than a generic claim. Always use the same specialty and same state as your prospect when possible.</p>
+        <div class="callout-dark" style="margin-top:12px;">
+          <p><strong style="color:white;">Target:</strong> 3 more demos. 1–2 proposals. Client 2 in "Negotiation" stage by June 14. Close by June 21.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="week-block" style="border-color:var(--navy-700); margin-top:16px;">
+      <div class="week-header">
+        <div class="week-badge">June W3</div>
+        <div class="week-title">June 15–21: Referral Engine</div>
+        <div class="week-theme">Ask Client 1 for 2 referrals. Most important conversation of Q1.</div>
+      </div>
+      <div class="week-body">
+        <div class="script-block">
+          <span class="script-label">Referral Request — Client 1 (Phone or Email)</span>
+          <div class="script-text">"Dr. [Name], I wanted to personally reach out — we're really focused on making sure your practice sees measurable results. Your claims are moving, your AR is tracking well.
+
+We're selective about who we take on, and we're looking for 2–3 more physician practices who would benefit from what we've done for you.
+
+Do you know any colleagues — from training, from your specialty society, anyone you trust — who might have billing headaches? I'm not asking for a hard pitch to them. Just an introduction. I'll take it from there and make sure it reflects well on you.
+
+Would you be open to making one introduction this week?"</div>
+        </div>
+        <p style="font-size:13px; color:var(--muted); margin-top:12px;">The conversion rate on a client referral is 40–60%. One referral ask is worth 3 months of cold outreach. Ask after you've delivered visible value (first clean claims batch, first status report). Not before.</p>
+      </div>
+    </div>
+
+    <div class="week-block" style="border-color:var(--navy-700); margin-top:16px;">
+      <div class="week-header">
+        <div class="week-badge">June W4</div>
+        <div class="week-title">June 22–28: HFMA Annual Conference</div>
+        <div class="week-theme">Denver. The most important networking event of Q2.</div>
+      </div>
+      <div class="week-body">
+        <p><strong>HFMA Annual Conference, Denver.</strong> Ankit attends as registrant only — NOT as exhibitor. Save the $3,000–10,000 booth cost. Attendee registration: approximately $400–600. Flight + 2 nights hotel: approximately $800–900. Total: ~$1,300.</p>
+        <p style="margin-top:10px;"><strong>What Ankit does every session:</strong> Arrives 10 minutes early. Sits in rows where hospital CFOs and revenue cycle directors congregate (front-middle). Introduces himself to 2 people before session, 2 people after. Works every networking break, every lunch, every hallway. Never stands alone.</p>
+        <div class="script-block" style="margin-top:12px;">
+          <span class="script-label">Conference Introduction — Practiced Until Automatic</span>
+          <div class="script-text">"Hi, I'm Ankit Chauhan, COO of Halcyon Medical Billing — we're a new firm specializing in small-to-mid physician practices, particularly psychiatry and primary care. What brings you to this session?"</div>
+        </div>
+        <div class="tbl-wrap" style="margin-top:16px;">
+          <table class="tbl-dark">
+            <thead><tr><th>Conference KPI</th><th>Target</th></tr></thead>
+            <tbody>
+              <tr><td>Business cards distributed</td><td class="gold-cell">50 minimum</td></tr>
+              <tr><td>LinkedIn connections from conference floor</td><td class="gold-cell">20+</td></tr>
+              <tr><td>Follow-up meetings scheduled before leaving Denver</td><td class="gold-cell">5</td></tr>
+              <tr><td>Referral partners identified (CPAs, consultants, attorneys)</td><td class="gold-cell">3+</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout-dark" style="margin-top:16px;">
+          <p><strong style="color:white;">ROI math:</strong> $1,300 total cost. One client = $7,500/month. Conference pays back in 5 days of that client's MRR. Do not skip it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ JUL-AUG -->
+<section id="q3" class="section-parchment section-pad">
+  <div class="container">
+    <span class="section-label">Section 07 — July–August 2026</span>
+    <div class="gold-divider"></div>
+    <h2 class="h2-light mb-8">Q3: Five Clients and<br>Full Platform Live.</h2>
+    <p class="body-light" style="max-width:720px; margin-bottom:48px;">By July 1 you should have 3–5 signed clients. The platform should be delivery-ready (not just demo-ready). The first India biller is on the hiring radar. HBMA membership is the next legitimacy milestone.</p>
+
+    <div class="grid-2" style="gap:24px; margin-bottom:24px;">
+      <div class="card-light">
+        <div class="section-label" style="margin-bottom:10px;">July 1–15</div>
+        <h3 class="h3-light">HBMA + 5 Clients</h3>
+        <ul class="task-list" style="margin-top:12px;">
+          <li>Join HBMA as company member (~$400/year): directory listing, educational resources, industry credibility in sales conversations.</li>
+          <li>Apply for OIG compliance accreditation pathway — even starting the application signals enterprise seriousness.</li>
+          <li>Target: 5 signed clients by July 15.</li>
+          <li>Scale outreach: 75 emails/day, 90 LinkedIn requests/day across all three founders.</li>
+          <li>Naitik: publish first LinkedIn long-form article. Topic: "The 3 billing metrics every physician practice should track but doesn't." 600–800 words. Cite real data. This builds SEO authority and follower base simultaneously.</li>
+        </ul>
+      </div>
+      <div class="card-light">
+        <div class="section-label" style="margin-bottom:10px;">July 16–31</div>
+        <h3 class="h3-light">Platform Complete + Client Portal</h3>
+        <ul class="task-list" style="margin-top:12px;">
+          <li>Platform Steps 8–12 complete: payment posting, AR aging dashboard, denial management, appeal tracking, patient statement generation, full analytics.</li>
+          <li>Client portal launched: read-only view for each practice. Give Client 1 access first — their feedback shapes the final design.</li>
+          <li>MGMA Corporate Membership application submitted.</li>
+          <li>First testimonial secured from Client 1: email asking for a 2-sentence honest quote about onboarding speed and claim results. Use on website and in demos immediately.</li>
+        </ul>
+      </div>
+      <div class="card-light">
+        <div class="section-label" style="margin-bottom:10px;">August 1–15</div>
+        <h3 class="h3-light">10 Clients + First Case Study</h3>
+        <ul class="task-list" style="margin-top:12px;">
+          <li>3 months of Client 1 data: extract AR days (before vs. now), denial rate (before vs. now), revenue recovered. Build case study document.</li>
+          <li>Case study title: "How we reduced AR days from [X] to [Y] in 90 days for a [specialty] practice in [state]." Real numbers only. No vague claims.</li>
+          <li>Publish as LinkedIn article. Email to all 200+ prospects in pipeline. Attach to all demo follow-up emails. Show in every demo slide 3.</li>
+          <li>The case study does the selling. You are no longer pitching — you are showing. This changes the close rate dramatically.</li>
+          <li>10 signed clients target by August 15. MRR ~$75,000.</li>
+        </ul>
+      </div>
+      <div class="card-light">
+        <div class="section-label" style="margin-bottom:10px;">August 16–31</div>
+        <h3 class="h3-light">Graduating Resident Campaign</h3>
+        <ul class="task-list" style="margin-top:12px;">
+          <li>ACGME residency programs complete June–July. Graduating physicians are setting up practices RIGHT NOW with zero billing infrastructure. Most motivated segment in the market.</li>
+          <li>Search ACGME program directory for psychiatry, IM, family medicine, cardiology in FL, TX, NY, OH, GA. Cross-reference LinkedIn: "completed residency [hospital] 2025–2026."</li>
+          <li>Target: 200 outreach messages to graduating physicians and their designated practice managers.</li>
+          <li>Message: "Congratulations on completing your residency. As you set up your practice, billing is one of the first decisions that determines your financial health. We specialize in new practice launches — complimentary billing strategy call?"</li>
+          <li>Conversion rate on this segment is very high: no incumbent biller, active decision, receptive to advisor framing.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ SEP-OCT -->
+<section id="q4" class="section-dark section-pad">
+  <div class="container">
+    <span class="section-label">Section 08 — September–October 2026</span>
+    <div class="gold-divider"></div>
+    <h2 class="h2-dark mb-8">Q4: 20–30 Clients.<br>Naitik Evaluates Leaving Etech.</h2>
+    <p class="body-dark" style="max-width:720px; margin-bottom:48px;">By September, Halcyon has case studies, testimonials, and a platform that works. The product is proven. Now it is about volume. The answer involves hiring India-based billers and potentially Naitik going full-time.</p>
+    <div class="grid-2" style="gap:24px;">
+      <div class="card-dark">
+        <div class="section-label" style="margin-bottom:10px;">September 2026</div>
+        <h3 class="h3-dark">Becker's Conference + 20 Clients</h3>
+        <p class="body-dark" style="font-size:13px; margin-bottom:12px;">Becker's Health IT and RCM Annual Meeting, Chicago. Ankit attends. Apply to speak (even rejection is free exposure). Network in every session and break. The same playbook as HFMA — no booth needed, presence and conversation is enough.</p>
+        <ul class="task-list" style="margin-top:12px;">
+          <li>20 clients by September 30. MRR target: $150,000–$200,000 ($1.8–2.4M ARR).</li>
+          <li>SBIR Phase I application if platform qualifies under Small Business Innovation Research program — Naitik's billing intelligence tools may qualify.</li>
+          <li>Advisory board: recruit first government-connected or hospital-system-connected advisor through conference networking.</li>
+          <li>First India-based AAPC-certified biller hired. Assign 3–4 clients. $500–800/month. This frees Ankit from delivery and onto pure sales.</li>
+        </ul>
+      </div>
+      <div class="card-dark">
+        <div class="section-label" style="margin-bottom:10px;">October 2026</div>
+        <h3 class="h3-dark">MGMA Conference + Scale</h3>
+        <p class="body-dark" style="font-size:13px; margin-bottom:12px;">MGMA Annual Conference as Corporate Member (applied July). 5,000+ practice management professionals. The single largest annual physician practice networking event in the US. This is not optional — it is where 30-client Halcyon becomes 50-client Halcyon.</p>
+        <ul class="task-list" style="margin-top:12px;">
+          <li>30 clients by October 31. MRR target: $225,000 ($2.7M ARR).</li>
+          <li>Second India biller hired. Team now: 3 founders + 2 billers.</li>
+          <li><strong style="color:var(--gold-400);">Naitik's Etech crossover evaluation:</strong> if Halcyon MRR > Naitik's monthly Etech take-home → the financial case for leaving is clear. At $50K MRR with 3 founders, Naitik's share exceeds his salary equivalent. This is the trigger. Do not stay past this point for emotional reasons.</li>
+          <li>Becker's up-and-comers nomination: submit Naitik and Ankit for "Future Healthcare Leaders." Costs nothing. Introductions are worth everything.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ NOV-APR -->
+<section id="scale" class="section-light section-pad">
+  <div class="container">
+    <span class="section-label">Section 09 — November 2026 – April 2027</span>
+    <div class="gold-divider"></div>
+    <h2 class="h2-light mb-8">The $5M Threshold.<br>Month by Month.</h2>
+    <p class="body-light" style="max-width:720px; margin-bottom:48px;">From November, the company operates like a real business. Multiple staff, active PE relationships, industry association presence, and a growing case study library. Every month has a specific target and a specific action that enables the next month.</p>
+    <div class="tbl-wrap mb-16">
+      <table class="tbl-light">
+        <thead><tr><th>Month</th><th>Clients</th><th>MRR</th><th>ARR</th><th>Key Action</th><th>Hire</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>November 2026</strong></td><td>40</td><td class="gold-cell">$280–320K</td><td>$3.4–3.8M</td>
+            <td>2 India billers hired and active. Becker's up-and-comers nomination submitted. First PE relationship outreach through advisors.</td>
+            <td><span class="badge badge-green">2 Billers</span></td>
+          </tr>
+          <tr>
+            <td><strong>December 2026</strong></td><td>50</td><td class="gold-cell">$350–400K</td><td>$4.2–4.8M</td>
+            <td>OIG compliance accreditation achieved. Year-end case study published: "Halcyon's First Year." RESI Conference (January JPM week) registration submitted.</td>
+            <td><span class="badge badge-gold">Evaluate</span></td>
+          </tr>
+          <tr>
+            <td><strong>January 2027</strong></td><td>60</td><td class="gold-cell">$420–480K</td><td>$5.0–5.8M</td>
+            <td><strong>RESI Conference, San Francisco (JPM week).</strong> Ankit + Naitik attend. PE introductions through advisors. $5M ARR threshold crossed.</td>
+            <td><span class="badge badge-green">3rd Biller</span></td>
+          </tr>
+          <tr>
+            <td><strong>February 2027</strong></td><td>65</td><td class="gold-cell">$455–520K</td><td>$5.5–6.2M</td>
+            <td>PE conversations become real. Series A preparation begins if pursuing institutional capital. If staying bootstrapped: hold through $10M ARR for better dilution terms.</td>
+            <td><span class="badge badge-gold">Evaluate</span></td>
+          </tr>
+          <tr>
+            <td><strong>March 2027</strong></td><td>70</td><td class="gold-cell">$490–560K</td><td>$5.9–6.7M</td>
+            <td>MGMA spring meeting attendance. Second advisory board member recruited — ideally a US-based RCM veteran or hospital CFO. Becker's results announced.</td>
+            <td><span class="badge badge-green">4th–5th Billers</span></td>
+          </tr>
+          <tr>
+            <td><strong>April 2027</strong></td><td>80</td><td class="gold-cell">$560–640K</td><td>$6.7–7.7M</td>
+            <td><strong style="color:var(--navy-900);">$5M ARR achieved and sustained.</strong> Full-time team. Proven delivery across multiple specialties. PE conversations active. 12-month goal complete. $25M is now a 24-month trajectory.</td>
+            <td><span class="badge badge-gold">Hiring Plan</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout-light">
+      <p><strong>The $25M path from April 2027:</strong> At 80 clients averaging $7,500–8,000/month = $600–640K MRR ($7.2–7.7M ARR). To reach $25M requires either: (a) growing client count to 200+ at same average, or (b) moving upmarket to larger practices ($300–500K/month collections = $15–25K/month fees). The upmarket move is more capital-efficient and becomes possible once you have MGMA membership, OIG accreditation, multi-specialty case studies, and a proven team. Both paths are viable — the platform and systems you build in Year 1 support both.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ ACQUISITION MACHINE -->
+<section id="acquisition" class="section-deepdark section-pad">
+  <div class="container">
+    <span class="section-label">Section 10 — The Client Acquisition Machine</span>
+    <div class="gold-divider"></div>
+    <h2 class="h2-dark mb-8">Step-by-Step.<br>No Vagueness Allowed.</h2>
+    <p class="body-dark" style="max-width:720px; margin-bottom:48px;">This is the most operationally important section in this document. Every outreach activity flows from here. The sequence, tools, filters, and exact steps are laid out in full. Follow this like a checklist, not a suggestion.</p>
+
+    <!-- STEP 1 -->
+    <div class="method-block">
+      <div class="method-header">
+        <div class="method-num">01</div>
+        <div class="method-title">List Building — NPI Registry + LinkedIn Sales Navigator</div>
+      </div>
+      <div class="method-body">
+        <p><strong>NPI Registry (nppes.cms.hhs.gov) — exact steps:</strong></p>
+        <p>1. Go to nppes.cms.hhs.gov → NPI Registry Search → Entity Type: Individual (Type 1).<br>
+        2. In the "Taxonomy" field, enter ONE of these codes per search run:<br>
+        — 207Q00000X = Family Medicine<br>
+        — 207R00000X = Internal Medicine<br>
+        — 2084P0800X = Psychiatry<br>
+        — 207N00000X = Dermatology<br>
+        — 2086S0122X = Orthopedic Surgery<br>
+        — 207RC0000X = Cardiovascular Disease (Cardiology)<br>
+        3. State filter: FL, TX, NY, OH, GA, IL, AZ, PA (run separately per state).<br>
+        4. Export CSV. Each export gives: NPI number, legal name, practice address, phone number.<br>
+        5. Open CSV in Google Sheets. Filter out solo practices in rural areas (zip code research) — you want metro and suburban practices with enough patient volume.<br>
+        6. For each promising practice: Google "[practice name] [city]" → find website → find billing contact email via the website's "Contact Us" or "Staff" page → use Hunter.io (25 free/day) to find email if not on website → use Apollo.io free tier to find LinkedIn profile of office manager.<br>
+        7. Enter all enriched data into HubSpot. Stage: Lead.</p>
+        <p><strong>LinkedIn Sales Navigator — exact filter setup:</strong></p>
+        <p>Title (ANY of): "Office Manager", "Practice Administrator", "Revenue Cycle Manager", "Billing Manager", "Medical Office Manager", "Practice Manager", "Billing Coordinator", "Office Director"<br>
+        Industry: Hospital &amp; Health Care, Medical Practice<br>
+        Company headcount: 1–10 employees (this is the ICP — small practices)<br>
+        Geography: United States → Florida, Texas, New York, Ohio, Georgia, Illinois (start), add more states as you exhaust these<br>
+        Seniority level: Senior, Manager, Director, Owner<br>
+        Save this search. New matches appear weekly. This is a perpetual lead source.</p>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="method-block">
+      <div class="method-header">
+        <div class="method-num">02</div>
+        <div class="method-title">Credentialing Strategy — Start Immediately on Signing</div>
+      </div>
+      <div class="method-body">
+        <p>Payer credentialing (getting a provider enrolled with insurance payers) takes 30–90 days. You must start this the SAME DAY a client signs. If you wait even one week, you lose a week of paid claims later.</p>
+        <p><strong>Credentialing action sequence after signing:</strong></p>
+        <p>1. Collect: provider NPI, CAQH profile login, DEA number (if applicable), state medical license, malpractice certificate, CV, W-9.<br>
+        2. Verify CAQH profile is complete and attested (re-attest if >120 days old — payers reject stale attestations).<br>
+        3. Identify which payers the practice needs (ask for their payer mix from last 6 months of EOBs).<br>
+        4. Submit credentialing applications to top 5 payers immediately. Track submission dates in a credentialing tracker tab in HubSpot or Google Sheets.<br>
+        5. Follow up with each payer every 10 business days. Payers lose applications. Persistence is required.<br>
+        6. While credentialing is processing: submit claims using the supervising or group NPI (if applicable) to avoid revenue gaps. Discuss this arrangement with the practice — it is standard and legal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ SCRIPTS -->
+<section id="scripts" class="section-dark section-pad">
+  <div class="container">
+    <span class="section-label">Section 11 — The Full Script Library</span>
+    <div class="gold-divider"></div>
+    <h2 class="h2-dark mb-8">Every Word You Need.<br>For Every Channel.</h2>
+    <p class="body-dark" style="max-width:720px; margin-bottom:48px;">These are not templates to "adapt." They are tested sequences built around the psychology of a busy physician practice decision-maker. Use them word-for-word first. Only deviate after you have run each script at least 20 times and have data showing where they break.</p>
+
+    <!-- EMAIL SEQUENCE -->
+    <div style="margin-bottom:48px;">
+      <p style="font-size:11px; font-weight:900; color:var(--gold-400); text-transform:uppercase; letter-spacing:3px; margin-bottom:24px;">5-Touch Cold Email Sequence (28 Days)</p>
+
+      <div class="script-block">
+        <span class="script-label">Email 1 — Day 1 — First Contact</span>
+        <span class="script-subject">Subject: Quick question about your billing, [First Name]</span>
+        <div class="script-text">Hi [First Name],
+
+I'll keep this short — I know you're busy.
+
+My name is [Sender], and I'm with Halcyon Medical Billing. We specialize in [specialty] practices in [state].
+
+One question: do you know your current first-pass claim acceptance rate?
+
+Most practices I speak with don't — and that's usually where we find 12–22% in collections they're losing silently.
+
+Worth a 15-minute call to find out?
+
+[Sender]
+Halcyon Medical Billing
+[DID phone number]
+halcyonmedicalbilling.com</div>
+      </div>
+
+      <div class="script-block">
+        <span class="script-label">Email 2 — Day 5 — No Reply</span>
+        <span class="script-subject">Subject: RE: Quick question about your billing, [First Name]</span>
+        <div class="script-text">Hi [First Name],
+
+Following up on my note from [Day 1 date].
+
+We recently helped a [specialty] practice in [similar state/market] reduce their AR days from 54 to 26 in 90 days.
+
+I'd like to do the same for you — and I'm willing to show you the math before you commit to anything.
+
+15 minutes this week?
+
+[Sender]
+Halcyon Medical Billing
+[DID phone number]</div>
+      </div>
+
+      <div class="script-block">
+        <span class="script-label">Email 3 — Day 9 — Free Audit Offer</span>
+        <span class="script-subject">Subject: Free billing audit for [Practice Name]</span>
+        <div class="script-text">Hi [First Name],
+
+We're currently auditing 3–5 practices' last 6 months of billing for free — identifying where money is leaking and exactly what to do about it.
+
+There's no catch. We do the analysis, you get the full report, you decide if you want to work with us.
+
+Would [Practice Name] be a fit?
+
+[Sender]
+Halcyon Medical Billing
+[DID phone number]</div>
+      </div>
+
+      <div class="script-block">
+        <span class="script-label">Email 4 — Day 14 — The Number</span>
+        <span class="script-subject">Subject: A number that might matter</span>
+        <div class="script-text">Hi [First Name],
+
+Industry average: 11.8% denial rate.
+
+Every 1% improvement on $200K/month collections = $2,000/month recovered.
+
+If your denial rate is above 7%, you're leaving significant money on the table every single month.
+
+I can tell you your denial rate risk profile in a 15-minute conversation. No pitch. Just numbers.
+
+[Sender]
+Halcyon Medical Billing
+[DID phone number]</div>
+      </div>
+
+      <div class="script-block">
+        <span class="script-label">Email 5 — Day 28 — Break-Up Email</span>
+        <span class="script-subject">Subject: Closing your file</span>
+        <div class="script-text">Hi [First Name],
+
+I'm going to stop reaching out — but I wanted to leave you with one thing:
+
+If you ever have a biller leave, a payer start denying claims you were getting paid on, or AR that starts climbing for no apparent reason — my number is [DID].
+
+We've helped practices recover fast in exactly those moments.
+
+Wishing your practice continued success.
+
+[Sender]
+Halcyon Medical Billing
+[DID phone number]</div>
+      </div>
+    </div>
+
+    <!-- LINKEDIN DM SEQUENCE -->
+    <div style="margin-bottom:48px;">
+      <p style="font-size:11px; font-weight:900; color:var(--gold-400); text-transform:uppercase; letter-spacing:3px; margin-bottom:24px;">LinkedIn DM Sequence (3-Touch + Response Branches)</p>
+
+      <div class="script-block">
+        <span class="script-label">Connection Request Note (300 characters max)</span>
+        <div class="script-text">Hi [Name] — I specialize in RCM for [specialty] practices. Saw you're managing operations at [Practice]. Would love to connect and share what we're seeing in [specialty] billing in 2026.</div>
+      </div>
+
+      <div class="script-block">
+        <span class="script-label">Message 1 — 48 Hours After Connection</span>
+        <div class="script-text">Thanks for connecting, [Name]. I'll skip the pitch — quick question: what's your biggest billing headache right now? Denials? AR aging? Credentialing delays? 
+
+I'm building content around the most common ones and your answer might actually shape it.</div>
+      </div>
+
+      <div class="script-block">
+        <span class="script-label">Message 2A — If They Say Denials</span>
+        <div class="script-text">That's the #1 issue we see. Interesting — are they mostly coding-related denials or eligibility/auth denials? The fix is very different for each one. What's your denial rate sitting at right now?</div>
+      </div>
+
+      <div class="script-block">
+        <span class="script-label">Message 2B — If They Say AR</span>
+        <div class="script-text">Classic. What's your current AR days? Most practices don't track it precisely and it's costing them. We helped one [specialty] practice go from 58 days to 24 days in 60 days — the root cause was not what they expected.</div>
+      </div>
+
+      <div class="script-block">
+        <span class="script-label">Message 2C — If They Say Credentialing</span>
+        <div class="script-text">Credentialing delays are the silent revenue killer for new providers. Do you have a credentialing coordinator in-house, or is that going through the practice manager? The bottleneck is almost always CAQH attestation timing.</div>
+      </div>
+
+      <div class="script-block">
+        <span class="script-label">Message 3 — Call to Action (After Any Response)</span>
+        <div class="script-text">[Name], based on what you've described — I think there's a real opportunity here.
+
+We do a complimentary billing audit: we analyze 6 months of your data and you get a full written report. No commitment. You decide if you want to work with us after seeing the numbers.
+
+Would that be worth 15 minutes to discuss this week?</div>
+      </div>
+    </div>
+
+    <!-- COLD CALL SCRIPT -->
+    <div style="margin-bottom:48px;">
+      <p style="font-size:11px; font-weight:900; color:var(--gold-400); text-transform:uppercase; letter-spacing:3px; margin-bottom:24px;">NPI Cold Call Script — Ankit</p>
+
+      <div class="script-block">
+        <span class="script-label">Full Cold Call Script — All Scenarios</span>
+        <div class="script-text">OPENING:
+"Hi, this is Ankit calling from Halcyon Medical Billing. Is [Practice Name]'s office manager or billing coordinator available?"
+
+IF GATEKEEPER SAYS "WHO ARE YOU?":
+"I'm the COO of Halcyon Medical Billing. We specialize in RCM for [specialty] practices and I have a complimentary offer specifically for this specialty that I want to make sure gets to the right person."
+
+IF CONNECTED TO DECISION-MAKER:
+"Hi [Name], thanks for taking my call — I'll be very quick. We specialize in RCM for [specialty] practices and we're just getting started in [state]. We're offering a complimentary billing audit to 5 practices this quarter — we analyze your last 6 months of claims and tell you exactly where money is leaking and what to do about it. Takes 15 minutes to explain what we'd look at. Would you be open to that conversation this week?"
+
+IF THEY SAY "SEND ME AN EMAIL":
+"Of course — what's the best email? [Get it.] I'll send it right now. Can we book a time while I have you — Wednesday at 2pm or Thursday at 3pm work?"
+
+IF THEY SAY "WE'RE HAPPY WITH OUR CURRENT BILLER":
+"That's great to hear. Can I ask — do you know your current denial rate? [Wait.] Most practices I talk to don't track it precisely, and that number usually represents 8–15% of revenue. If you ever want a second opinion on where you stand, we do a no-obligation audit. My email is [email]. Have a great day, [Name]."
+
+IF THEY ASK ABOUT COST:
+"It's a percentage of what we collect — typically 4–6% depending on your specialty and volume. Nothing upfront. No setup fee. 30-day cancellation. If we don't collect more than you were getting before, you pay us less. We only win when you win."
+
+IF VOICEMAIL:
+"Hi [Name], this is Ankit from Halcyon Medical Billing — [DID number]. We specialize in [specialty] practices in [state] and we're offering a complimentary billing audit this quarter. I'll also send you an email. If any of this is relevant, I'd love 15 minutes. [DID] — Ankit, Halcyon Medical Billing."</div>
+      </div>
+    </div>
+
+    <!-- WARM NETWORK SCRIPT -->
+    <div style="margin-bottom:48px;">
+      <p style="font-size:11px; font-weight:900; color:var(--gold-400); text-transform:uppercase; letter-spacing:3px; margin-bottom:24px;">Warm Network Scripts — WhatsApp / iMessage</p>
+
+      <div class="script-block">
+        <span class="script-label">Initial Outreach — Personal Contacts</span>
+        <div class="script-text">[Name] — launching a medical billing company for US physician practices. Know any doctors in the US who might have billing headaches? Even an intro to their office manager is massive for me right now. Happy to explain what we do in 2 minutes. This isn't a pitch to you — just looking for a door.</div>
+      </div>
+
+      <div class="script-block">
+        <span class="script-label">Follow-Up If They Say "I'll Think About It"</span>
+        <div class="script-text">No rush at all. If anything comes up — even someone who just mentioned they were unhappy with their biller or switching — that's gold for me. Sending you a one-pager in case you want to forward it to anyone. Thanks [Name].</div>
+      </div>
+
+      <div class="script-block">
+        <span class="script-label">Indian Physician Community — Naitik's Message</span>
+        <div class="script-text">Hi Dr. [Name] — fellow Indian here, building a medical billing company from Vadodara. We specialize in US physician practices and we're just getting started. Would love to connect, learn about your practice, and see if we can help with billing. Mutual respect and community first — if there's not a fit, no pressure. 
+
+Naitik Joshi, CEO — Halcyon Medical Billing</div>
+      </div>
+
+      <div class="script-block">
+        <span class="script-label">Muslim Physician Community — Rushan's Message</span>
+        <div class="script-text">Assalamu Alaikum, Dr. [Name]. I'm the CFO of Halcyon Medical Billing. Our company is run by a team that values the same principles of trust and community that we share. [Practice Name] is doing important work — would you be open to a 15-minute conversation about your billing setup? No pressure if the timing isn't right.
+
+Rushan Khan, CFO — Halcyon Medical Billing</div>
+      </div>
+
+      <div class="script-block">
+        <span class="script-label">Healthcare CPA / Attorney Referral Partner Outreach</span>
+        <div class="script-text">Hi [Name], I'm with Halcyon Medical Billing. We specialize in physician practice RCM and I'm building relationships with healthcare attorneys and CPAs who work in this space.
+
+We sometimes run into clients who could use each other's services — would you be open to a 15-minute conversation? I'd love to understand your client base and explore whether there's a natural fit for collaboration.
+
+We do offer compliant referral arrangements for introductions that result in a signed engagement.
+
+[Sender]</div>
+      </div>
+
+      <div class="script-block">
+        <span class="script-label">Demo Scheduling Follow-Up (After "Send Me More Info")</span>
+        <div class="script-text">Hi [First Name],
+
+Sending our one-pager and a brief case study from a similar practice — attached.
+
+Rather than going back and forth on email, would 15 minutes on [specific day] or [specific day] work? I'll show you the exact numbers we'd pull for your practice.
+
+[Sender]</div>
+      </div>
+    </div>
+
+    <!-- 15-MIN DEMO SCRIPT -->
+    <div>
+      <p style="font-size:11px; font-weight:900; color:var(--gold-400); text-transform:uppercase; letter-spacing:3px; margin-bottom:24px;">15-Minute Demo Script (Every Word)</p>
+      <div class="script-block">
+        <span class="script-label">Full Demo Script — Naitik or Ankit on Zoom</span>
+        <div class="script-text">MINUTES 0–3 — DISCOVERY (DO THIS FIRST. DO NOT SKIP.)
+"Before I show you anything — can I ask you three quick questions? I want to make sure what I show you is actually relevant to your situation.
+
+1. How does your billing work today — do you have an in-house biller, an outside company, or is the physician handling it?
+2. What's the biggest frustration you have with that setup right now?
+3. When you think about the money that's coming in — do you feel like you're getting everything your practice is owed, or do you have a nagging sense that some of it is slipping through?"
+
+[Listen. Take notes. Reference their answers in the demo.]
+
+MINUTES 3–10 — PLATFORM DEMO (SHOW, DON'T TELL)
+"Let me show you what we've built. This is our operations portal — what we use to run your billing."
+
+[Screen share. Show:]
+— Practice dashboard: AR summary, denial rate gauge, claim count, average days to payment
+— Eligibility check: enter a patient's insurance, get real-time response. "We verify every patient before their appointment — this alone prevents 40% of denials."
+— Charge capture: ICD-10 + CPT entry with live validation. "If there's a code mismatch, we catch it here — not after the claim is denied and you've waited 45 days."
+— Claim submission screen: show a claim ready to submit to clearinghouse.
+— Denial management: show a denied claim with the reason code and the appeal workflow.
+
+"Every action in your billing workflow is logged here. You have visibility into everything. No black boxes."
+
+MINUTES 10–13 — DIFFERENTIATION
+"Three things that make us different from every other option you have:
+
+First — our model. We charge 4–6% of net collections. You pay us nothing upfront. Nothing. If we don't collect, we don't bill you. We are directly incentivized to maximize your collections, not to charge you a flat fee and forget about you.
+
+Second — speed. We onboard in 5 business days. Most billing companies take 4–6 weeks. We've done it in under a week because [Naitik built the platform specifically for fast onboarding].
+
+Third — direct access. You're talking to the COO right now. When you're our client, you text me when something is wrong. You don't go into a support ticket queue."
+
+MINUTES 13–15 — CLOSE
+"[First Name], based on what you told me at the start — [reference their specific pain] — this feels like a strong fit.
+
+Here's what I'd propose: let us do the free billing audit we mentioned. You give us read access to your last 3 months of remittance reports. We analyze them, generate a full written report, and present it to you. No charge. If the numbers look good, we talk about next steps. If they don't, you walk away with free intelligence about your billing.
+
+Can we schedule that audit this week?"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ DARK METHODS -->
+<section id="dark" class="section-deepdark section-pad">
+  <div class="container">
+    <span class="section-label">Section 12 — Dark Methods</span>
+    <div class="gold-divider"></div>
+    <h2 class="h2-dark mb-8">Legal. Aggressive.<br>Used by Companies 100× Your Size.</h2>
+    <p class="body-dark" style="max-width:760px; margin-bottom:16px;">Every method below is legal. Every method is actively used by competitors, SaaS companies, and growth-stage services firms. The only reason more companies don't use them is that they require more intelligence, more work, and more nerve than sending generic cold emails. That is your advantage.</p>
+    <div class="callout-dark" style="margin-bottom:48px; border-color:var(--gold-500);">
+      <p><strong style="color:var(--gold-400);">Important note on AKS compliance (Method 7):</strong> The Anti-Kickback Statute applies only to referrals involving federal healthcare programs (Medicare, Medicaid). Referral fees for commercial (private insurance) clients are governed by state law and general commercial law — not AKS. Consult Rushan's father (attorney) to structure referral arrangements correctly for your specific client mix. Document all referral arrangements in writing.</p>
+    </div>
+
+    <div class="method-block">
+      <div class="method-header"><div class="method-num">01</div><div class="method-title">Competitor Review Mining</div></div>
+      <div class="method-body">
+        <p>Go to: <strong>G2.com</strong>, <strong>Capterra</strong>, <strong>Software Advice</strong>, <strong>KLAS</strong> (klas.com/reports). Search for: Kareo/Tebra, AdvancedMD, Athenahealth, Billing Dynamix, Greenway Health, Meditab, DrChrono.</p>
+        <p>Filter to <span class="highlight">1-star and 2-star reviews from the past 12 months.</span> Read each review. What you're looking for: "They never respond to our questions," "Denial rate got worse after switching," "Billing specialist quit and nothing was handed over," "Fees keep going up without explanation," "Lost our claims in the transition," "Our AR days doubled in 90 days."</p>
+        <p>Each of these reviewers is a warm lead. They have a company name, sometimes a first name, sometimes a location. <span class="highlight">Find them on LinkedIn. Find the office manager at that practice via NPI lookup. Message them directly:</span> "Hi [Name] — I saw your review of [Competitor] on G2. We specialize in exactly the situation you described. Would you be open to a 15-minute call? No pitch — I just want to understand your situation."</p>
+        <p>These prospects convert at <strong style="color:white;">25–40%</strong> because they are already in pain, already looking, and already validated the need. They are the warmest cold leads that exist. Mine these every week.</p>
+      </div>
+    </div>
+
+    <div class="method-block">
+      <div class="method-header"><div class="method-num">02</div><div class="method-title">The Free Billing Audit Trojan Horse</div></div>
+      <div class="method-body">
+        <p>Naitik builds an automated billing audit tool — estimated 2–3 days of development work. The practice either uploads their last 3 months of remittance reports (EOB/ERA files) or gives you read access to their billing software via API. The system generates a PDF report containing: denial rate by payer, AR aging buckets, first-pass acceptance rate, top denial reason codes, estimated monthly revenue recovery if denial rate improves by 5%.</p>
+        <p>The report is branded, professional, and contains real numbers specific to their practice. At the bottom of every report: <span class="highlight">"Based on this analysis, Halcyon estimates your practice could recover an additional $X–$Y per month with optimized billing processes. See our methodology."</span></p>
+        <p>The close rate on this approach is extremely high because <strong style="color:white;">the data does the selling — you don't have to pitch anything.</strong> You are simply showing them their own numbers. The prospect sells themselves on the need for change.</p>
+        <p>Offer this free audit in every email (Email 3 in the 5-touch sequence), every LinkedIn DM (Message 3), and every cold call. It is your primary door-opener and it never gets old because every practice's numbers are different.</p>
+      </div>
+    </div>
+
+    <div class="method-block">
+      <div class="method-header"><div class="method-num">03</div><div class="method-title">NPI Registry Systematic Campaign</div></div>
+      <div class="method-body">
+        <p>The NPI registry at nppes.cms.hhs.gov is fully public. Every licensed physician and medical practice in the United States is in it. Over <strong style="color:white;">6 million records.</strong></p>
+        <p>At scale: 75 emails/day = 525/week = 2,100/month. At a <strong style="color:white;">2% response rate</strong> = 42 responses/month. At 15% demo-to-response = 6 demo requests. At 20% demo-to-close = 1.2 new clients/month from email alone. Multiply across LinkedIn, cold calls, warm network, and community channels — and you are adding 4–8 clients per month at full outreach velocity.</p>
+        <p>The math scales linearly. The only variable that limits it is outreach volume. And outreach volume is entirely within your control.</p>
+      </div>
+    </div>
+
+    <div class="method-block">
+      <div class="method-header"><div class="method-num">04</div><div class="method-title">Graduating Resident Targeting</div></div>
+      <div class="method-body">
+        <p>ACGME (Accreditation Council for Graduate Medical Education) accredits residency programs nationally. Residency completion is typically June–July. Fellows complete in June–August. These physicians are setting up practices <strong style="color:white;">right now</strong> and have zero billing infrastructure.</p>
+        <p>Search the ACGME program directory for psychiatry, internal medicine, family medicine, and cardiology programs in target states. Cross-reference LinkedIn with "completed residency [hospital name] 2025–2026." Find the physician directly, or find their designated practice manager if they've already incorporated.</p>
+        <p>The message: <span class="highlight">"Congratulations on completing your residency! As you launch your practice, one of the first decisions that will determine your financial health is your billing setup. We specialize in helping new physicians get billing right from day one — no learning curve, no denied claims from credentialing gaps, no months of lost revenue. Would you be open to a 20-minute billing strategy call this week?"</span></p>
+        <p>These prospects have no incumbent biller to displace. <strong style="color:white;">You are not competing — you are their first option.</strong> Conversion rates on this segment are 2–3× higher than established practices.</p>
+      </div>
+    </div>
+
+    <div class="method-block">
+      <div class="method-header"><div class="method-num">05</div><div class="method-title">Indian Physician Community (Naitik Leads)</div></div>
+      <div class="method-body">
+        <p>50,000+ Indian-American physicians practice in the US. They index heavily in internal medicine, cardiology, psychiatry, nephrology, and hospitalist medicine — Halcyon's exact ICP specialties. LinkedIn groups: "Indian American Physicians," "NRI Physicians Network," "AAPI." Facebook groups similarly. AAPI (American Association of Physicians of Indian Origin) at aapi.org has a physician directory and active chapters in every major US metro.</p>
+        <p>Naitik's outreach from his personal LinkedIn profile (not the company page): <span class="highlight">"Hi Dr. [Name] — fellow Indian here, building a medical billing company from Vadodara. We specialize in US physician practices and we're just getting started. Would love to connect, learn about your practice, and see if we could help with billing. Community first — if there's not a fit, no pressure."</span></p>
+        <p>The community-aligned outreach response rate is <strong style="color:white;">3–5× higher</strong> than cold outreach to the same person. Use this channel every week. AAPI chapter events (virtual and in-person) are networking opportunities that compound over months.</p>
+      </div>
+    </div>
+
+    <div class="method-block">
+      <div class="method-header"><div class="method-num">06</div><div class="method-title">Muslim Physician Community (Rushan Leads)</div></div>
+      <div class="method-body">
+        <p>50,000+ Muslim-American physicians in the US. <strong>IMANA</strong> (Islamic Medical Association of North America) has 5,000+ physician members and active chapters. Concentrated in internal medicine, family medicine, psychiatry, and cardiology in: New York, New Jersey, Chicago, Houston, Los Angeles, Michigan (Dearborn), Dallas.</p>
+        <p>Rushan's approach: IMANA forums and WhatsApp groups (join legitimately through membership or chapter connections). Mosque business networks in major US cities often have physician members. LinkedIn Muslim physician communities. Share genuinely useful billing content first — build credibility before asking for a meeting.</p>
+        <p>Rushan's outreach: <span class="highlight">"Assalamu Alaikum, Dr. [Name]. I'm the CFO of Halcyon Medical Billing. Our team values the same principles of trust and integrity that guide our community. [Practice Name] is doing important work — would you be open to a 15-minute conversation about your billing setup? No pressure if the timing isn't right."</span></p>
+        <p>This is community networking. It is completely legal. Trust transfers through community affiliation — and trust is the single most important factor in a physician choosing a billing partner who will have access to their financial data.</p>
+      </div>
+    </div>
+
+    <div class="method-block">
+      <div class="method-header"><div class="method-num">07</div><div class="method-title">Healthcare Attorney / CPA Referral Pipeline</div></div>
+      <div class="method-body">
+        <p>Healthcare attorneys set up new physician practices every week. Healthcare CPAs advise existing practices on financial efficiency. Both are <strong style="color:white;">massive referral channels</strong> because they interact with every physician practice decision that involves money — and billing is always in that category.</p>
+        <p>Find them: search "healthcare attorney [city]" and "medical practice CPA [city]" on Google and LinkedIn. Target cities: Miami, Houston, Dallas, New York, Atlanta, Chicago, Phoenix, Columbus.</p>
+        <p>Message: <span class="highlight">"Hi [Name], I'm COO of Halcyon Medical Billing. We specialize in physician practice RCM and I'm building relationships with attorneys and CPAs who work with physician practices. We frequently run into clients who could use each other's expertise — would you be open to a 15-minute call to explore whether there's a natural fit for collaboration? We offer compliant referral arrangements for introductions that result in engagements."</span></p>
+        <p>The referral fee structure: 1–2 months of Halcyon's billing fees for that client, paid as a finder's fee after the client pays their first full invoice. Structure this as a written referral agreement — Rushan's father drafts it. <strong style="color:white;">For commercial-only referrals (non-Medicare/Medicaid clients): AKS does not apply.</strong> Consult attorney for clients whose billing includes government payer claims.</p>
+        <p>One productive CPA relationship who refers 3 practices per quarter = $270,000/year in incremental ARR. This is a high-leverage channel that most billing companies ignore entirely because it requires relationship investment.</p>
+      </div>
+    </div>
+
+    <div class="method-block">
+      <div class="method-header"><div class="method-num">08</div><div class="method-title">Comparison Content SEO Website</div></div>
+      <div class="method-body">
+        <p>Naitik builds a separate blog on a separate domain (not halcyonmedicalbilling.com — a neutral-seeming site like rcmcomparisons.com or bestmedicalbillingreviews.com). It publishes detailed, ostensibly unbiased comparisons: "Kareo vs AdvancedMD vs Halcyon 2026," "Best medical billing companies for psychiatry 2026," "AdvancedMD alternatives — what practices actually use."</p>
+        <p>Build this in a weekend: Next.js + MDX for content, Vercel for hosting, Tailwind for styling. Total time: 8–12 hours.</p>
+        <p>SEO-optimize for high-intent keywords: "[competitor name] alternatives," "[competitor name] reviews 2026," "best RCM for [specialty]," "medical billing company [state]," "AdvancedMD pricing too high." Anyone googling these terms is actively evaluating options. The content subtly but clearly favors Halcyon on the metrics that matter to physicians: denial rate, AR days, pricing transparency, setup cost, cancellation terms.</p>
+        <p><strong style="color:white;">This is completely legal.</strong> Every SaaS company does this. It compounds for years — content published in Month 2 will still be driving leads in Month 24. The SEO value alone makes this worth 8 hours of Naitik's time.</p>
+      </div>
+    </div>
+
+    <div class="method-block">
+      <div class="method-header"><div class="method-num">09</div><div class="method-title">The 30-Day Free Trial Gambit</div></div>
+      <div class="method-body">
+        <p>For fence-sitters who will not commit after a demo and follow-ups: <span class="highlight">"We'll manage your billing for 30 days at no charge. If we don't outperform your current biller on denial rate and AR days, you owe us nothing and we restore everything as-is. There is no buying decision here — just let us show you."</span></p>
+        <p>The cost: Ankit's operational time for 30 days on one practice. Roughly 1–2 hours/day.</p>
+        <p>The upside: if the practice bills $150K/month, the monthly fee is $7,500. You are betting 30 days of one person's time against a $90,000/year client relationship. This bet is worth making every single time for a practice above $75K/month in collections.</p>
+        <p>The psychology: <strong style="color:white;">zero buying risk = zero objection.</strong> You are not asking them to trust you on faith. You are asking them to let you prove yourself with their own data. Only offer this to prospects who have seen the demo and expressed interest but won't commit — do not open with it or it signals desperation.</p>
+      </div>
+    </div>
+
+    <div class="method-block">
+      <div class="method-header"><div class="method-num">10</div><div class="method-title">Conference Infiltration Without a Booth</div></div>
+      <div class="method-body">
+        <p>HFMA Annual (Denver, June). Becker's Health IT (Chicago, September). MGMA Annual (attend as Corporate Member). Buy registrant tickets — never an exhibitor booth ($3,000–10,000) until MRR is above $100K.</p>
+        <p><strong style="color:white;">What Ankit does at every conference:</strong> Sharp suit (no conference-branded t-shirts — you are a COO, not an exhibitor). 50 premium business cards (matte finish, Halcyon brand colors). Arrives 10 minutes early to every session. Never stands alone in a hallway. Introduces himself before and after every session. Works every networking break, every sponsored dinner, every bar evening.</p>
+        <p>The rule: <strong style="color:white;">50 cards out. 20 LinkedIn connections from the floor. 5 follow-up meetings scheduled before leaving the city.</strong> If you leave the conference without these three numbers achieved, the conference was a failure regardless of how much you "networked."</p>
+        <p>Total cost per conference: $400–600 registration + $500–700 flight + $300–400 hotel (2 nights) = ~$1,300. One client = $7,500/month. The conference ROI calculation is obvious.</p>
+      </div>
+    </div>
+
+    <div class="method-block">
+      <div class="method-header"><div class="method-num">11</div><div class="method-title">Build-in-Public LinkedIn Strategy</div></div>
+      <div class="method-body">
+        <p>Naitik writes at 11:30pm IST every night. Posts are scheduled for 6am IST (= 7:30pm EST previous day — this is the peak LinkedIn engagement window for US healthcare professionals checking their phones after dinner).</p>
+        <p><strong style="color:white;">Post format that works:</strong> Specific, data-driven, about a real RCM problem or a real Halcyon story. No vague thought leadership. No inspirational quotes. Numbers and process only.</p>
+        <div style="margin-top:12px; border-left:2px solid var(--navy-600); padding-left:16px;">
+          <p style="color:var(--gold-300); font-style:italic; font-size:13px; margin-bottom:10px;">Example Post 1 (after first client results):</p>
+          <p style="font-size:13px; color:#d1d5db;">"We just helped a psychiatry practice reduce their denial rate from 14.2% to 3.8% in 60 days. The #1 fix was not coding. It was auth documentation timing. Here's exactly what we changed: [thread]"</p>
+          <p style="color:var(--gold-300); font-style:italic; font-size:13px; margin-bottom:10px; margin-top:16px;">Example Post 2 (market intelligence):</p>
+          <p style="font-size:13px; color:#d1d5db;">"The NPI registry shows 847 psychiatry practices in Florida with 1–5 providers. Based on average denial rate data for small practices, 70% are likely leaving $8,000–25,000/month on the table. This is what an optimized billing operation should be doing about it."</p>
+          <p style="color:var(--gold-300); font-style:italic; font-size:13px; margin-bottom:10px; margin-top:16px;">Example Post 3 (build-in-public):</p>
+          <p style="font-size:13px; color:#d1d5db;">"Day 1 of building Halcyon Medical Billing from scratch. We're doing this with $215/month in total infrastructure costs. Here's exactly what we're setting up and why: [thread]"</p>
+        </div>
+        <p style="margin-top:12px;">The build-in-public angle creates followers who become leads, become referral sources, and eventually become advisory board candidates. It costs nothing but time and compounds indefinitely. Every post is a permanent asset that continues generating inbound while you sleep.</p>
+      </div>
+    </div>
+
+    <div class="method-block">
+      <div class="method-header"><div class="method-num">12</div><div class="method-title">Competitor Price Increase Rapid Response</div></div>
+      <div class="method-body">
+        <p>Set up Google Alerts immediately for: "[competitor name] price increase," "[competitor name] acquired," "[competitor name] problems," "[competitor name] outage," "[competitor name] breach." Competitors to monitor: Athenahealth, AdvancedMD, Kareo/Tebra, Greenway Health, Meditab, DrChrono, Practice Fusion.</p>
+        <p>When a competitor announces a price increase, service change, or faces negative press — you have a 48-hour window of maximum receptiveness from their existing client base.</p>
+        <p>Action sequence: (1) Post LinkedIn content within 24 hours about the change and what it means for practices. (2) Pull the competitor's known clients from your HubSpot pipeline (anyone tagged with that biller in their "Current Biller" field). (3) Reach out directly: <span class="highlight">"Hi [Name] — I saw [Competitor] announced [change] this week. Timing is everything. Would you be open to a 15-minute conversation about what your options look like?"</span></p>
+        <p>This is completely legal. It is called <strong style="color:white;">competitive intelligence and responsive outreach</strong> — and it is what every market leader in every industry does. The window is short; act within 48 hours of news breaking.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ TECH BUILD -->
+<section id="tech" class="section-parchment section-pad">
+  <div class="container">
+    <span class="section-label">Section 13 — Technology Build Plan</span>
+    <div class="gold-divider"></div>
+    <h2 class="h2-light mb-8">Naitik Builds Everything.<br>Sequence and Scope Exactly Defined.</h2>
+    <p class="body-light" style="max-width:720px; margin-bottom:48px;">Build only what is needed for the next milestone. Do not over-engineer ahead of need. The platform exists to enable demos and deliver for clients — not to be technically perfect. Perfect is the enemy of revenue.</p>
+
+    <div class="tech-phase">
+      <div class="tech-phase-header">
+        <div class="tech-phase-title">Phase 1 — Core Ops Portal (Demo-Ready)</div>
+        <div class="tech-phase-date">May 5–18</div>
+      </div>
+      <div class="tech-item"><div class="tech-item-num">1</div><div class="tech-item-text"><strong>Authentication:</strong> NextAuth.js + Railway PostgreSQL. Email/password login. Role-based access: admin, biller, client. Protected /dashboard routes. Session management. MUST include password hashing (bcrypt). This is the first thing any prospect sees — it must work flawlessly.</div></div>
+      <div class="tech-item"><div class="tech-item-num">2</div><div class="tech-item-text"><strong>Practice management:</strong> CRUD interface for Practices (name, NPI, specialty, tax_id, address, payer_list) and Providers (name, NPI, specialty, credentialing_status, CAQH_id). These data structures power everything downstream.</div></div>
+      <div class="tech-item"><div class="tech-item-num">3</div><div class="tech-item-text"><strong>Insurance eligibility check:</strong> Availity API integration (free developer sandbox at availity.com). Enter patient insurance details → real-time response parsed into: active/inactive, deductible remaining, copay, coinsurance, OOP max, authorization required. <strong>This feature alone closes deals</strong> — prospects immediately see the "wow" moment of real-time data.</div></div>
+      <div class="tech-item"><div class="tech-item-num">4</div><div class="tech-item-text"><strong>Basic dashboard:</strong> AR summary card, total claims this month, denial rate gauge (current vs. 30-day prior), average days to payment, collections this month. Use Recharts library. Even with sample data, this is visually powerful in demos.</div></div>
+      <div class="tech-item"><div class="tech-item-num">5</div><div class="tech-item-text"><strong>Medical coding interface:</strong> ICD-10 and CPT code search with autocomplete. Use CMS-published flat files loaded into PostgreSQL for fast lookup. Show code description, valid modifier combinations, and common denial reasons per code. This shows coding expertise visually.</div></div>
+      <div class="tech-item"><div class="tech-item-num">6</div><div class="tech-item-text"><strong>Charge capture:</strong> Enter patient encounter: DOS, provider NPI, CPT codes, ICD-10 codes, units, modifier, place of service, authorization number. Save to database. Link to patient and practice. This is the data entry point for all claim creation.</div></div>
+      <div class="tech-item"><div class="tech-item-num">7</div><div class="tech-item-text"><strong>Claim scrubbing dashboard:</strong> Live validation warnings on charge entry: missing modifier for bilateral procedure, ICD-10 not specific enough (needs 7th character), CPT/ICD-10 mismatch (LCD/NCD lookup), invalid or inactive NPI, authorization required but not entered, date of service out of plan year. Show as visual warning badges. Impressive in demos even if some checks are simplified logic.</div></div>
+      <div class="tech-item"><div class="tech-item-num">8</div><div class="tech-item-text"><strong>Electronic claim submission:</strong> Generate 837P EDI file from entered charge data. Submit to clearinghouse via Waystar API (developer sandbox). Display claim status: submitted, accepted, pending, rejected with reason code (ANSI X12 reason code lookup table). This closes the loop from charge to submission in the demo flow.</div></div>
+    </div>
+
+    <div class="tech-phase" style="margin-top:16px;">
+      <div class="tech-phase-header">
+        <div class="tech-phase-title">Phase 2 — Claims Workflow + Full Delivery Capability</div>
+        <div class="tech-phase-date">May 19–31</div>
+      </div>
+      <div class="tech-item"><div class="tech-item-num">9</div><div class="tech-item-text"><strong>Payment posting:</strong> Upload ERA (835 EDI) files from payers. Parse payment amounts, adjustment codes (CO-45, PR-1, etc.), denial reason codes. Post to each claim automatically. Reconcile against submitted claim amount. Flag underpayments and contractual variances.</div></div>
+      <div class="tech-item"><div class="tech-item-num">10</div><div class="tech-item-text"><strong>AR aging dashboard:</strong> Bucket outstanding claims by: 0–30 days, 31–60, 61–90, 91–120, 120+ days. Show by payer and by provider. Highlight claims in 90+ bucket — these need immediate action. This dashboard becomes the primary client-facing reporting view.</div></div>
+      <div class="tech-item"><div class="tech-item-num">11</div><div class="tech-item-text"><strong>Denial management workflow:</strong> Denied claims routed to denial queue. Categorized by denial reason code. Show recommended action per reason code (from CARC/RARC lookup). Appeal status tracking (first-level, second-level, ALJ). Track appeal success rate by payer and by denial reason.</div></div>
+      <div class="tech-item"><div class="tech-item-num">12</div><div class="tech-item-text"><strong>Patient statement generation:</strong> Calculate patient responsibility after insurance payment. Generate patient-friendly statement PDF (not EOB-formatted — plain English balance due, payment options). Email delivery (via Resend API) or print-ready PDF download. Patient payment tracking.</div></div>
+    </div>
+
+    <div class="tech-phase" style="margin-top:16px;">
+      <div class="tech-phase-header">
+        <div class="tech-phase-title">Phase 3 — Client Portal + HIPAA Hardening</div>
+        <div class="tech-phase-date">June–July</div>
+      </div>
+      <div class="tech-item"><div class="tech-item-num">13</div><div class="tech-item-text"><strong>Client portal (separate role view):</strong> Read-only dashboard for each practice to see their own data. AR days trend, denial rate trend, collections this month vs. prior, claim status counts. No ability to edit. Session isolated per practice (cannot see other practices' data). Launch with Client 1 first — get their feedback before rolling to all.</div></div>
+      <div class="tech-item"><div class="tech-item-num">14</div><div class="tech-item-text"><strong>HIPAA audit logging:</strong> Log every user action that touches PHI: who accessed which record, when, from which IP. Store in append-only audit_log table. Railway's HIPAA BAA covers the infrastructure. This logging is required for HIPAA Security Rule compliance and for your OIG accreditation application.</div></div>
+      <div class="tech-item"><div class="tech-item-num">15</div><div class="tech-item-text"><strong>Two-factor authentication:</strong> TOTP (Google Authenticator compatible) for all admin and biller roles. OTP via Twilio SMS as fallback. Enforce 2FA for any user who has access to PHI fields. This is required for HIPAA Technical Safeguards compliance.</div></div>
+      <div class="tech-item"><div class="tech-item-num">16</div><div class="tech-item-text"><strong>PHI encryption at rest:</strong> Encrypt all PHI fields (patient_name, dob, ssn, insurance_id) in the database using AES-256 with key management via Railway's environment secrets. Decrypt only in application memory — never expose raw encrypted values in logs or API responses.</div></div>
+    </div>
+
+    <div class="tech-phase" style="margin-top:16px;">
+      <div class="tech-phase-header">
+        <div class="tech-phase-title">Phase 4 — Growth Tools + Integrations</div>
+        <div class="tech-phase-date">August onward</div>
+      </div>
+      <div class="tech-item"><div class="tech-item-num">17</div><div class="tech-item-text"><strong>Automated billing audit tool (Dark Method #2 weapon):</strong> Practice uploads remittance reports → system generates branded PDF "Billing Intelligence Report" with denial rate, AR aging, estimated recovery. This is a sales tool disguised as a free service. Build it as a publicly accessible upload form with email delivery of the report.</div></div>
+      <div class="tech-item"><div class="tech-item-num">18</div><div class="tech-item-text"><strong>EHR integrations:</strong> Start with eClinicalWorks (most common in small practices) → athenahealth API → Kareo/Tebra API. Bidirectional charge data pull eliminates manual entry for integrated clients. Each integration takes 3–5 days. Prioritize based on which EHRs your actual clients use.</div></div>
+      <div class="tech-item"><div class="tech-item-num">19</div><div class="tech-item-text"><strong>Staff management module:</strong> When India billers are hired, each needs a login with assigned practices, task queues, and productivity metrics. Build a simple biller dashboard: claims to code today, claims to follow up, denials to work, AR calls to make. This is essential for managing a team across time zones.</div></div>
+      <div class="tech-item"><div class="tech-item-num">20</div><div class="tech-item-text"><strong>Comparison content website (separate domain):</strong> Next.js + MDX. One weekend to build. SEO-optimized for "[competitor] alternatives," "best RCM for [specialty]," "[competitor] reviews." Deploy to Vercel. Publish 2 articles/week. This is passive inbound lead generation that runs indefinitely.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ MILESTONES -->
+<section id="milestones" class="section-dark section-pad">
+  <div class="container">
+    <span class="section-label">Section 14 — Revenue Milestones and Triggers</span>
+    <div class="gold-divider"></div>
+    <h2 class="h2-dark mb-8">Every Milestone Unlocks<br>a Specific Next Action.</h2>
+    <p class="body-dark" style="max-width:720px; margin-bottom:48px;">Revenue milestones are not just numbers to celebrate — each one is a trigger for a specific operational decision. Know in advance what you will do when you hit each number, so you act immediately instead of deliberating.</p>
+
+    <div class="tbl-wrap">
+      <table class="tbl-dark">
+        <thead>
+          <tr>
+            <th>Milestone</th>
+            <th>Target Date</th>
+            <th>Revenue</th>
+            <th>Action Triggered — Immediately</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong style="color:white;">First client signed</strong></td>
+            <td>May 31, 2026</td>
+            <td class="gold-cell">$0 (50% off month 1)</td>
+            <td class="milestone-row-trigger">Stop Lemlist trial → buy full plan. Start Ankit's full US call schedule. Post "we have our first client" on LinkedIn. Ask Client 1 for a testimonial quote in 4 weeks.</td>
+          </tr>
+          <tr>
+            <td><strong style="color:white;">$10K MRR</strong></td>
+            <td>June 30, 2026</td>
+            <td class="gold-cell">$10K/month</td>
+            <td class="milestone-row-trigger">Hire first India-based biller ($500/mo). Buy full Sales Navigator ($99/mo). Submit HBMA application. Ankit stops ALL admin tasks — 100% of his time moves to sales and client management.</td>
+          </tr>
+          <tr>
+            <td><strong style="color:white;">$25K MRR</strong></td>
+            <td>July 31, 2026</td>
+            <td class="gold-cell">$25K/month</td>
+            <td class="milestone-row-trigger">Naitik evaluates quitting Etech immediately. At this MRR shared among 3 founders, each share exceeds Naitik's monthly Etech take-home. Hire second India biller. Build automated audit tool (Dark Method #2).</td>
+          </tr>
+          <tr>
+            <td><strong style="color:white;">$50K MRR</strong></td>
+            <td>September 30, 2026</td>
+            <td class="gold-cell">$50K/month</td>
+            <td class="milestone-row-trigger">Naitik leaves Etech. No more partial attention — Halcyon gets 100% of his cognitive output. Submit Becker's up-and-comers nomination. Recruit first US-based advisory board member. Conference spending increases — exhibit if strategically warranted.</td>
+          </tr>
+          <tr>
+            <td><strong style="color:white;">$100K MRR</strong></td>
+            <td>December 31, 2026</td>
+            <td class="gold-cell">$100K/month ($1.2M ARR)</td>
+            <td class="milestone-row-trigger">Hire US-based client success person (remote, $60–80K/year). Submit SBIR Phase I application. OIG compliance accreditation renewed. Begin drafting Series A pitch if institutional capital desired. PE cold outreach begins.</td>
+          </tr>
+          <tr>
+            <td><strong style="color:white;">$250K MRR</strong></td>
+            <td>March 2027</td>
+            <td class="gold-cell">$250K/month ($3M ARR)</td>
+            <td class="milestone-row-trigger">PE relationships shift from cultivation to active pipeline. Begin formal investor process. Recruit second advisory board member. First US-based business development hire (regional BD manager). Becker's results likely announced.</td>
+          </tr>
+          <tr>
+            <td><strong style="color:white;">$500K MRR</strong></td>
+            <td>June 2027</td>
+            <td class="gold-cell">$500K/month ($6M ARR)</td>
+            <td class="milestone-row-trigger">In the $5M ARR range. PE conversations are real and active. Company has enterprise clients and a track record. Term sheets are possible. If staying bootstrapped: aggressive hiring, geographic expansion, new specialty verticals.</td>
+          </tr>
+          <tr>
+            <td><strong style="color:white;">$1M+ MRR</strong></td>
+            <td>2027–2028</td>
+            <td class="gold-cell">$1M+/month ($12M+ ARR)</td>
+            <td class="milestone-row-trigger">$25M ARR in sight. Multiple PE or acquisition conversations active. Leadership team expanded. Consider US entity (Delaware C-Corp or LLC) for investment structuring if PE/VC is the path.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ THE DECISION -->
+<section id="decision" class="section-deepdark section-pad" style="padding:80px 0;">
+  <div class="container">
+    <div class="callout-red" style="max-width:900px; margin:0 auto;">
+      <h3>Section 15 — The Decision Naitik Must Make</h3>
+      <p style="margin-bottom:14px;">Naitik's Etech shift runs 2pm–11pm IST, 5–6 days per week. That is 45+ hours per week of cognitive capacity that does NOT go to Halcyon. <strong>The crossover question is not sentimental — it is mathematical.</strong></p>
+      <p style="margin-bottom:14px;">When Halcyon MRR divided by 3 founders exceeds Naitik's monthly Etech take-home → the financial case is clear. At $25K MRR, each founder's share is approximately $8,333/month before expenses. At $50K MRR, each share is $16,666/month. Etech's monthly equivalent (₹60–80K) is well below both thresholds at dollar conversion rates.</p>
+      <p style="margin-bottom:14px;"><strong>The stay-at-Etech opportunity cost:</strong> Every morning hour that Naitik gives to Etech preparation, commuting, and cognitive recovery is a demo that didn't happen, a platform feature that wasn't built, a LinkedIn post that wasn't written. At $7,500/month per client, one additional client per month from freed-up time = $90,000/year in incremental ARR. Etech salary equivalent is a fraction of that.</p>
+      <p><strong>The rule: when MRR hits $25K and is stable for 2 consecutive months → Naitik gives Etech 30 days notice immediately. No partial transition. No "I'll reduce my hours." Full stop. Halcyon gets 100% of his output from that point forward.</strong> Every week of delay past this threshold compounds the opportunity cost. The company you are trying to build requires a full-time CEO. At $25K MRR, you can afford one.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ KPI DASHBOARD -->
+<section id="kpis" class="section-light section-pad">
+  <div class="container">
+    <span class="section-label">Section 16 — KPI Dashboard</span>
+    <div class="gold-divider"></div>
+    <h2 class="h2-light mb-8">What to Measure.<br>When. And Why Each Number Matters.</h2>
+    <p class="body-light" style="max-width:720px; margin-bottom:48px;">You cannot manage what you don't measure. But you also cannot improve 40 metrics at once. These KPIs are the minimum viable measurement set. Check them at the cadence specified. If a metric is red — it gets the first hour of your next working day, not the last.</p>
+
+    <div class="kpi-block">
+      <div class="kpi-header">Daily KPIs — Check Every Morning at 6:00am</div>
+      <div class="kpi-row">
+        <div class="kpi-name">LinkedIn Connections Accepted</div>
+        <div class="kpi-detail">How many of yesterday's 30 connection requests accepted. Tracks audience receptiveness by specialty and title.</div>
+        <div class="kpi-target">Target: 20+/day</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-name">Cold Emails Sent</div>
+        <div class="kpi-detail">Total from Lemlist queue. Must hit daily volume or you fall behind the 28-day sequence timing for your entire pipeline.</div>
+        <div class="kpi-target">25/person/day</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-name">Email Responses Received</div>
+        <div class="kpi-detail">Reply rate = responses / emails sent. Below 2% = email copy or deliverability problem. Above 5% = high-performing sequence.</div>
+        <div class="kpi-target">Track rate: 3%+ goal</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-name">NPI Cold Calls Made</div>
+        <div class="kpi-detail">Ankit's daily call count from Twilio. Anything below 10/day in Month 1 means the US call window is being under-utilized.</div>
+        <div class="kpi-target">10–20/day (Ankit)</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-name">Demos Scheduled</div>
+        <div class="kpi-detail">Calendar invites accepted. This is the leading indicator for closings. Zero demos scheduled = zero revenue in 2–3 weeks.</div>
+        <div class="kpi-target">3/week minimum</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-name">Pipeline Value (Weighted)</div>
+        <div class="kpi-detail">Sum of all prospects × conversion probability by stage. Contacted=5%, Demo Scheduled=15%, Demo Done=25%, Proposal Sent=40%, Negotiation=70%.</div>
+        <div class="kpi-target">Track trend</div>
+      </div>
+    </div>
+
+    <div class="kpi-block" style="margin-top:20px;">
+      <div class="kpi-header">Weekly KPIs — Review Every Sunday Night</div>
+      <div class="kpi-row">
+        <div class="kpi-name">New Leads Added to HubSpot</div>
+        <div class="kpi-detail">Pipeline must grow at top of funnel or it collapses downstream. If you're closing clients without replacing them in the funnel, MRR growth stalls.</div>
+        <div class="kpi-target">20+ new/week</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-name">First-Touch to Demo Rate</div>
+        <div class="kpi-detail">Demos / total first touches. Measures how well your outreach copy and offer are converting to calls. Below 1% = offer or targeting problem.</div>
+        <div class="kpi-target">1–3% acceptable</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-name">Demo to Proposal Rate</div>
+        <div class="kpi-detail">Proposals sent / demos completed. Below 25% = demo is not landing or discovery is poor. Adjust the demo script and discovery questions.</div>
+        <div class="kpi-target">25%+ target</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-name">Proposal to Close Rate</div>
+        <div class="kpi-detail">Signed / proposals sent. Below 20% = pricing objection, trust issue, or follow-up failure. Identify which and fix the specific lever.</div>
+        <div class="kpi-target">20–30% target</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-name">Client AR Days</div>
+        <div class="kpi-detail">For existing clients: average days from DOS to payment. Target under 30 days. Above 45 = delivery problem that will cause churn if not addressed.</div>
+        <div class="kpi-target">&lt;30 days target</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-name">Client Denial Rate</div>
+        <div class="kpi-detail">Denied claims / total claims submitted for each client. Above 7% = coding or auth problem. Above 10% = serious issue requiring immediate intervention.</div>
+        <div class="kpi-target">&lt;5% target</div>
+      </div>
+    </div>
+
+    <div class="kpi-block" style="margin-top:20px;">
+      <div class="kpi-header">Monthly KPIs — Review First Day of Each Month</div>
+      <div class="kpi-row">
+        <div class="kpi-name">MRR Growth</div>
+        <div class="kpi-detail">Month-over-month percentage growth. Target 30–50% MoM growth in first 6 months. Anything below 20% in the first 6 months requires a sales process post-mortem.</div>
+        <div class="kpi-target">30%+ MoM</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-name">Client Churn</div>
+        <div class="kpi-detail">Clients lost / clients at start of month. Target 0% for the first 12 months. Even 5% monthly churn compounds to 46% annual churn — a company-killing number for a services business.</div>
+        <div class="kpi-target">0% for 12 months</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-name">Net Promoter Score</div>
+        <div class="kpi-detail">Ask each client monthly (3-question email survey): How likely to recommend us? What's working? What needs to improve? NPS below +50 = delivery quality issue. Above +70 = referral engine primed.</div>
+        <div class="kpi-target">+60 target</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-name">LinkedIn Follower Growth</div>
+        <div class="kpi-detail">Naitik's personal LinkedIn follower count. Tracks whether build-in-public content is landing. Target: 500 followers by Month 3, 2,000 by Month 6, 5,000 by Month 12.</div>
+        <div class="kpi-target">+200/month</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-name">Website Visitors (Google Analytics)</div>
+        <div class="kpi-detail">Organic + referral traffic. Track month-over-month growth. By Month 6, target 1,000+ unique monthly visitors from SEO and content. Benchmark for comparison content site separately.</div>
+        <div class="kpi-target">Track trend</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-name">Cost per Acquisition (CPA)</div>
+        <div class="kpi-detail">Total sales + marketing spend / new clients acquired. With $118/mo infrastructure and 3 founders' time as the primary cost: CPA should be near-zero initially. Track it to understand which channels are most efficient as you start spending on paid outreach tools.</div>
+        <div class="kpi-target">Track; minimize</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ FAILURE PROTOCOLS -->
+<section id="failure" class="section-deepdark section-pad">
+  <div class="container">
+    <span class="section-label">Section 17 — Failure Protocols</span>
+    <div class="gold-divider"></div>
+    <h2 class="h2-dark mb-8">When Things Go Wrong.<br>The Exact Response for Each Scenario.</h2>
+    <p class="body-dark" style="max-width:720px; margin-bottom:48px;">Every failure scenario has an optimal response. The companies that survive early stage are the ones with predetermined responses to adversity — not the ones that are best at improvising under pressure. Know these before you need them.</p>
+
+    <div class="failure-block">
+      <div class="failure-trigger">Trigger: Deal Goes Cold (No Response After 5 Touches)</div>
+      <div class="failure-response">Tag as "Cold" in HubSpot. Set a 90-day reminder task. Do NOT contact again before the reminder fires — you will only irritate them and damage any future chance. Move on immediately and redirect that energy to the next 10 prospects in your pipeline. <strong>The 90-day re-engagement email:</strong> "Hi [Name] — I reached out a few months ago about your billing setup. Circumstances change and timing matters. If anything has shifted for you — biller leaving, denial rate climbing, new provider starting — I'd love to reconnect. Still happy to do that complimentary audit if it's useful."</div>
+    </div>
+
+    <div class="failure-block">
+      <div class="failure-trigger">Trigger: Demo Goes Badly (Prospect Is Disengaged, Cuts It Short, or Ghosts)</div>
+      <div class="failure-response">Within 24 hours, send this exact email: "Hi [Name] — I want to be direct. I think I pitched you the wrong way yesterday. I focused on features when I should have focused on your specific situation. Can I take 5 minutes to correct that this week? I have a specific insight about [their specialty] billing in [their state] that I didn't get to." <strong>The re-pitch success rate is 20–30%</strong> for demos that went badly. The key is acknowledging the failure and offering a specific reason to try again — not just asking for another shot.</div>
+    </div>
+
+    <div class="failure-block">
+      <div class="failure-trigger">Trigger: Client Threatens to Leave or Is Clearly Unhappy</div>
+      <div class="failure-response">Naitik gets personally involved within 24 hours. Naitik's email: "Hi [Name] — I'm the CEO of Halcyon and I want to understand exactly what happened and fix it personally. This is not a support ticket. I'm asking to speak with you today. When works?" The save rate when the CEO shows up personally within 24 hours of a complaint is <strong>60%+</strong> across all service businesses. The CEO's personal attention signals that the client matters — not as a unit of revenue, but as a relationship. After the conversation: document every commitment made. Deliver on every one within the stated timeline.</div>
+    </div>
+
+    <div class="failure-block">
+      <div class="failure-trigger">Trigger: Outreach Volume Drops Below Targets for 3+ Days</div>
+      <div class="failure-response">Sunday night review. Every day below outreach target = approximately 6% fewer clients by year end at current conversion rates. The compounding math is brutal. The response is not guilt — it is a process audit: what specifically prevented hitting volume? Was it a time block that was interrupted? A tool that broke? A personal energy issue? Fix the specific cause. Do not accept "we'll do better next week" without identifying the root cause. <strong>Month 1–3: outreach volume is the only KPI that matters</strong> because everything — demos, proposals, clients — is downstream of it.</div>
+    </div>
+
+    <div class="failure-block">
+      <div class="failure-trigger">Trigger: First Client Has High Denial Rate After Onboarding</div>
+      <div class="failure-response">Do not hide it or wait for them to notice. Call the practice manager proactively: "I want to flag something I'm seeing in your first month of claims. Your denial rate is [X]% — higher than our target. I've already identified the root cause: [specific issue]. Here is our exact plan to bring it under [5%] in the next 30 days: [action steps]. I wanted you to hear this from me before your next billing statement." <strong>Proactive transparency on problems saves 80% of at-risk accounts.</strong> The clients who churn are usually the ones where the billing company tried to hide problems until they became unfixable.</div>
+    </div>
+
+    <div class="failure-block">
+      <div class="failure-trigger">Trigger: Cash Gets Tight (Pre-Revenue)</div>
+      <div class="failure-response">Priority order for cost cuts: NOTHING in the outreach infrastructure (Lemlist, Sales Navigator, HubSpot) — these generate the revenue that covers all other costs. The $118–215/month in total operating costs is already minimal. If personal living costs are the constraint — reduce personal expenses before touching any Halcyon infrastructure. The only Halcyon cost that is negotiable before revenue is the Vercel Pro plan ($20/mo) — you could run on Vercel free tier temporarily. Everything else generates pipeline and must be protected.</div>
+    </div>
+
+    <div class="failure-block">
+      <div class="failure-trigger">Trigger: A Competitor Undercuts Your Price in a Sales Process</div>
+      <div class="failure-response">Do NOT match their price in a panic. Instead: "I appreciate that you're considering all your options. I want to be direct — we're not going to be the cheapest option, and here's why that's actually good news for you: our pricing is tied to what we collect for you. A competitor charging 2% either has volume-based economics you don't have or they are cutting corners on coding quality and denial follow-up. I'd rather show you our results than match someone else's price. Can we move forward with the 30-day pilot so the data speaks for itself?" <strong>Price wars in services businesses are always lost by the company that starts them.</strong> Compete on outcomes, not cost.</div>
+    </div>
+
+    <div class="failure-block">
+      <div class="failure-trigger">Trigger: Key Founder Becomes Unavailable (Illness, Emergency, Family)</div>
+      <div class="failure-response">The protocol: (1) Naitik unavailable → Ankit leads all external client/prospect contact. Rushan covers financial and legal. Platform goes to maintenance mode — no new features. (2) Ankit unavailable → Rushan takes over US call window and LinkedIn outreach. Naitik handles any client emergencies. (3) Rushan unavailable → Naitik and Ankit split finance and legal tasks. This continuity plan must be discussed and agreed by all three founders before the first client is signed — not after an emergency occurs. Document which email accounts, HubSpot logins, and platform admin credentials each founder has access to.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ FOOTER -->
+<footer style="background:var(--navy-950); border-top:1px solid var(--navy-800); padding:48px 0;">
+  <div class="container">
+    <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:40px; flex-wrap:wrap;">
+      <div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
+          <div class="nav-logo-box">H</div>
+          <span style="font-size:12px; font-weight:800; color:white; letter-spacing:2px; text-transform:uppercase;">Halcyon Medical Billing</span>
+        </div>
+        <p style="font-size:12px; color:var(--muted); max-width:360px; line-height:1.7;">This is a confidential internal operational document. Not for external distribution. Every tactic described herein is legal and compliant with applicable US law. Consult qualified legal counsel before implementing referral arrangements.</p>
+      </div>
+      <div>
+        <p style="font-size:9.5px; font-weight:800; text-transform:uppercase; letter-spacing:3px; color:var(--gold-500); margin-bottom:12px;">Quick Links</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px 32px;">
+          <a href="#reality" style="font-size:11px; color:var(--muted); text-decoration:none; font-weight:600;">Reality Check</a>
+          <a href="#india" style="font-size:11px; color:var(--muted); text-decoration:none; font-weight:600;">India Advantage</a>
+          <a href="#phase0" style="font-size:11px; color:var(--muted); text-decoration:none; font-weight:600;">Phase 0</a>
+          <a href="#daily" style="font-size:11px; color:var(--muted); text-decoration:none; font-weight:600;">Daily Machine</a>
+          <a href="#acquisition" style="font-size:11px; color:var(--muted); text-decoration:none; font-weight:600;">Acquisition</a>
+          <a href="#scripts" style="font-size:11px; color:var(--muted); text-decoration:none; font-weight:600;">Scripts</a>
+          <a href="#dark" style="font-size:11px; color:var(--muted); text-decoration:none; font-weight:600;">Dark Methods</a>
+          <a href="#tech" style="font-size:11px; color:var(--muted); text-decoration:none; font-weight:600;">Tech Build</a>
+          <a href="#milestones" style="font-size:11px; color:var(--muted); text-decoration:none; font-weight:600;">Revenue</a>
+          <a href="#kpis" style="font-size:11px; color:var(--muted); text-decoration:none; font-weight:600;">KPIs</a>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:9.5px; font-weight:800; text-transform:uppercase; letter-spacing:3px; color:var(--gold-500); margin-bottom:12px;">Document Info</p>
+        <p style="font-size:11px; color:var(--muted); margin-bottom:6px;">Version: 1.0 — May 5, 2026</p>
+        <p style="font-size:11px; color:var(--muted); margin-bottom:6px;">Authors: Naitik Joshi, Ankit Chauhan, Rushan Khan</p>
+        <p style="font-size:11px; color:var(--muted); margin-bottom:6px;">Jurisdiction: India LLP, US-facing operations</p>
+        <p style="font-size:11px; color:var(--muted);">First client target: May 31, 2026</p>
+      </div>
+    </div>
+    <div style="margin-top:40px; padding-top:24px; border-top:1px solid var(--navy-800); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+      <p style="font-size:10px; color:var(--navy-500);">© 2026 Halcyon Medical Billing LLP. Confidential — Internal Use Only.</p>
+      <p style="font-size:10px; color:var(--navy-500);">Target: $5–25M ARR. Timeline: 12–24 months. Starting from $0.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Smooth scroll + active nav highlighting
+const navLinks = document.querySelectorAll('.nav-links a');
+const sections = document.querySelectorAll('section[id]');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(link => {
+        link.style.color = '';
+        if (link.getAttribute('href') === '#' + entry.target.id) {
+          link.style.color = 'var(--gold-400)';
+        }
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -75% 0px' });
+
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

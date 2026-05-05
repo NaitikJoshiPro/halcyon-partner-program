@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Halcyon — Strategic Power Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy-950: #060F18;
+    --navy-900: #0C1D2B;
+    --navy-800: #112436;
+    --navy-700: #1A3A4F;
+    --navy-600: #22506A;
+    --navy-500: #2A6080;
+    --navy-400: #4A7A9F;
+    --gold-700: #7A5A10;
+    --gold-600: #9A7520;
+    --gold-500: #B8953A;
+    --gold-400: #D4AF60;
+    --gold-300: #E8CC80;
+    --gold-200: #F0E4B8;
+    --gold-100: #FBF8F2;
+    --gold-50:  #FDFCF8;
+    --cream:    #FAFAF8;
+    --parchment:#F2EFE9;
+    --muted-dark: #7A95A5;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--navy-900);
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── LAYOUT ── */
+  .wrap {
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  /* ── SECTION RHYTHM ── */
+  section { position: relative; }
+
+  .sec-dark  { background: var(--navy-900); padding: 96px 0; }
+  .sec-deep  { background: var(--navy-950); padding: 96px 0; }
+  .sec-light { background: var(--cream);    padding: 96px 0; }
+  .sec-parch { background: var(--parchment);padding: 96px 0; }
+  .sec-white { background: #fff;            padding: 96px 0; }
+
+  /* ── TYPOGRAPHY ── */
+  .section-label {
+    font-size: 9.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--gold-500);
+    display: block;
+    margin-bottom: 10px;
+  }
+  .sec-light  .section-label,
+  .sec-parch  .section-label,
+  .sec-white  .section-label { color: var(--gold-600); }
+
+  .gold-divider {
+    width: 48px; height: 2px;
+    background: var(--gold-500);
+    margin-bottom: 24px;
+  }
+
+  h1 {
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    font-weight: 900;
+    line-height: 1.03;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  h1 span { color: var(--gold-400); }
+
+  h2 {
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+  .sec-dark h2, .sec-deep h2  { color: #fff; }
+  .sec-light h2, .sec-parch h2, .sec-white h2 { color: var(--navy-900); }
+
+  h3 {
+    font-size: 13px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  .sec-dark h3, .sec-deep h3 { color: #fff; }
+  .sec-light h3, .sec-parch h3, .sec-white h3 { color: var(--navy-900); }
+
+  p { line-height: 1.65; }
+  .sec-dark p, .sec-deep p { color: var(--muted-dark); }
+  .sec-light p, .sec-parch p, .sec-white p { color: #555; }
+
+  /* ── HERO BG GRID ── */
+  .hero-bg {
+    background-color: var(--navy-900);
+    background-image:
+      linear-gradient(rgba(184,149,58,.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(184,149,58,.045) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .compliance-bg {
+    background-color: var(--navy-950);
+    background-image:
+      linear-gradient(rgba(184,149,58,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(184,149,58,.04) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  /* ── CARDS ── */
+  .card-dark {
+    background: var(--navy-800);
+    border: 1px solid var(--navy-700);
+    padding: 28px 32px;
+    position: relative;
+    transition: background .2s ease, border-color .2s ease;
+  }
+  .card-dark:hover { background: var(--navy-700); border-color: rgba(184,149,58,.35); }
+  .card-dark::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    height: 2px; width: 0;
+    background: var(--gold-500);
+    transition: width .4s ease;
+  }
+  .card-dark:hover::after { width: 100%; }
+
+  .card-light {
+    background: #fff;
+    border: 1px solid #e8e8e4;
+    padding: 28px 32px;
+    transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  .card-light:hover {
+    border-color: rgba(184,149,58,.4);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0,0,0,.06);
+  }
+
+  /* ── STAT CARD ── */
+  .stat-card {
+    text-align: center;
+    padding: 28px 20px;
+    border: 1px solid var(--navy-700);
+    background: var(--navy-800);
+  }
+  .stat-val {
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 900;
+    color: var(--gold-400);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-lbl {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--muted-dark);
+  }
+
+  /* ── TABLES ── */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead tr { background: var(--navy-900); }
+  .sec-light thead tr { background: var(--navy-900); }
+  th {
+    padding: 10px 16px;
+    font-size: 9px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fff;
+    text-align: left;
+  }
+  td {
+    padding: 10px 16px;
+    border-bottom: 1px solid #e8e8e4;
+    vertical-align: top;
+    color: #444;
+    line-height: 1.5;
+  }
+  tbody tr:nth-child(even) td { background: #fafaf8; }
+  tbody tr:hover td { background: var(--gold-100); }
+
+  .td-dark td { border-bottom-color: var(--navy-700); color: var(--muted-dark); }
+  .td-dark tbody tr:nth-child(even) td { background: var(--navy-800); }
+  .td-dark tbody tr:hover td { background: rgba(184,149,58,.07); }
+
+  /* ── BADGES ── */
+  .badge {
+    display: inline-block;
+    font-size: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 3px 10px;
+    border: 1px solid;
+  }
+  .badge-gold  { color: var(--gold-500); border-color: var(--gold-500); background: rgba(184,149,58,.08); }
+  .badge-red   { color: #ef4444; border-color: #ef4444; background: rgba(239,68,68,.07); }
+  .badge-green { color: #10b981; border-color: #10b981; background: rgba(16,185,129,.07); }
+  .badge-muted { color: var(--muted-dark); border-color: var(--navy-600); background: transparent; }
+  .badge-dark  { color: #fff; border-color: var(--navy-600); background: var(--navy-800); }
+
+  /* ── CALLOUT ── */
+  .callout-gold {
+    border-left: 3px solid var(--gold-500);
+    background: var(--gold-100);
+    padding: 16px 20px;
+    color: #333;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+  .callout-gold strong { color: var(--navy-900); }
+
+  .callout-dark {
+    border-left: 3px solid var(--gold-500);
+    background: rgba(184,149,58,.06);
+    padding: 16px 20px;
+    color: var(--muted-dark);
+    font-size: 13px;
+    line-height: 1.65;
+  }
+  .callout-dark strong { color: #fff; }
+
+  /* ── GRID HELPERS ── */
+  .g2  { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .g3  { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .g4  { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; }
+  .g5  { display: grid; grid-template-columns: repeat(5,1fr); gap: 16px; }
+  .g6  { display: grid; grid-template-columns: repeat(6,1fr); gap: 14px; }
+
+  /* ── FIXED NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(12,29,43,.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--navy-700);
+    height: 52px;
+    display: flex; align-items: center;
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-box {
+    width: 28px; height: 28px;
+    background: var(--gold-500);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 14px; color: #fff;
+  }
+  .nav-name { font-size: 12px; font-weight: 900; color: #fff; letter-spacing: .5px; }
+  .nav-sub  { font-size: 7px; text-transform: uppercase; letter-spacing: 2.5px; color: var(--muted-dark); font-weight: 600; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    font-size: 11px; font-weight: 600;
+    color: var(--muted-dark);
+    text-decoration: none;
+    letter-spacing: .5px;
+    transition: color .15s;
+  }
+  .nav-links a:hover { color: #fff; }
+  .nav-tag {
+    font-size: 8px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: var(--gold-500); border: 1px solid var(--gold-500);
+    padding: 3px 10px;
+  }
+
+  /* ── NUMBERED STEP ── */
+  .step-num {
+    font-size: 9px; font-weight: 900;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: var(--gold-500);
+    margin-bottom: 8px;
+  }
+
+  /* ── PRIORITY DOT ── */
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+  }
+  .dot-red    { background: #ef4444; }
+  .dot-gold   { background: var(--gold-500); }
+  .dot-green  { background: #10b981; }
+  .dot-muted  { background: var(--navy-600); }
+
+  /* ── TIMELINE ── */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 6px; top: 0; bottom: 0;
+    width: 1px; background: var(--navy-700);
+  }
+  .tl-item { position: relative; margin-bottom: 28px; }
+  .tl-item::before {
+    content: '';
+    position: absolute; left: -24px; top: 6px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold-500);
+    box-shadow: 0 0 0 3px var(--navy-800);
+  }
+  .tl-month {
+    font-size: 9px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: var(--gold-500); margin-bottom: 4px;
+  }
+  .tl-title {
+    font-size: 14px; font-weight: 800;
+    color: #fff; margin-bottom: 4px;
+    letter-spacing: -.2px;
+  }
+  .tl-body { font-size: 12px; color: var(--muted-dark); line-height: 1.6; }
+
+  /* ── PE FIRM ROW ── */
+  .pe-row {
+    display: grid;
+    grid-template-columns: 200px 100px 1fr 160px;
+    gap: 0;
+    border-bottom: 1px solid var(--navy-700);
+    padding: 16px 0;
+    align-items: start;
+  }
+  .pe-row:last-child { border-bottom: none; }
+  .pe-name { font-size: 13px; font-weight: 800; color: #fff; }
+  .pe-aum  { font-size: 12px; font-weight: 700; color: var(--gold-400); }
+  .pe-desc { font-size: 12px; color: var(--muted-dark); line-height: 1.5; padding-right: 32px; }
+  .pe-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  /* ── REVOLVING DOOR CARD ── */
+  .rev-card {
+    background: var(--navy-800);
+    border: 1px solid var(--navy-700);
+    padding: 24px 28px;
+    position: relative;
+  }
+  .rev-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--gold-500);
+  }
+  .rev-name   { font-size: 16px; font-weight: 900; color: #fff; margin-bottom: 4px; }
+  .rev-gov    { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold-500); margin-bottom: 12px; }
+  .rev-now    { font-size: 12px; font-weight: 700; color: #fff; }
+  .rev-detail { font-size: 12px; color: var(--muted-dark); margin-top: 6px; line-height: 1.55; }
+  .rev-arrow  { font-size: 10px; color: var(--navy-500); margin: 4px 0; }
+
+  /* ── PLAYBOOK CARD ── */
+  .play-card {
+    background: #fff;
+    border: 1px solid #e8e8e4;
+    padding: 28px 28px 24px;
+    position: relative;
+    transition: border-color .2s, transform .2s, box-shadow .2s;
+  }
+  .play-card:hover {
+    border-color: rgba(184,149,58,.5);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0,0,0,.07);
+  }
+  .play-num {
+    font-size: 40px; font-weight: 900;
+    color: var(--gold-200);
+    line-height: 1;
+    margin-bottom: 12px;
+    letter-spacing: -2px;
+  }
+  .play-title {
+    font-size: 13px; font-weight: 900;
+    text-transform: uppercase; letter-spacing: 1px;
+    color: var(--navy-900);
+    margin-bottom: 8px;
+  }
+  .play-body { font-size: 12px; color: #666; line-height: 1.6; }
+  .play-tag-row { margin-top: 16px; display: flex; gap: 6px; flex-wrap: wrap; }
+
+  /* ── CONF CARD ── */
+  .conf-card {
+    background: var(--navy-800);
+    border: 1px solid var(--navy-700);
+    padding: 22px 24px;
+  }
+  .conf-date  { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--gold-500); margin-bottom: 6px; }
+  .conf-name  { font-size: 14px; font-weight: 900; color: #fff; margin-bottom: 4px; }
+  .conf-loc   { font-size: 11px; color: var(--muted-dark); margin-bottom: 10px; }
+  .conf-body  { font-size: 11px; color: var(--muted-dark); line-height: 1.55; }
+  .conf-prio  { display: inline-block; margin-top: 12px; font-size: 8px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; padding: 3px 10px; }
+
+  /* ── MULTIPLE TABLE ── */
+  .mult-bar { height: 6px; background: var(--navy-700); margin-top: 6px; }
+  .mult-fill { height: 6px; background: var(--gold-500); }
+
+  /* ── GREY AREA CARD ── */
+  .grey-card {
+    border: 1px solid var(--navy-700);
+    background: rgba(255,255,255,.02);
+    padding: 20px 24px;
+    position: relative;
+  }
+  .grey-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 2px; height: 100%;
+    background: rgba(184,149,58,.4);
+  }
+  .grey-title { font-size: 12px; font-weight: 800; color: var(--gold-300); margin-bottom: 6px; }
+  .grey-body  { font-size: 11px; color: var(--muted-dark); line-height: 1.6; }
+
+  /* ── SPACERS ── */
+  .mb8  { margin-bottom: 8px; }
+  .mb12 { margin-bottom: 12px; }
+  .mb16 { margin-bottom: 16px; }
+  .mb24 { margin-bottom: 24px; }
+  .mb32 { margin-bottom: 32px; }
+  .mb40 { margin-bottom: 40px; }
+  .mb48 { margin-bottom: 48px; }
+  .mb56 { margin-bottom: 56px; }
+  .mb64 { margin-bottom: 64px; }
+  .mt16 { margin-top: 16px; }
+  .mt24 { margin-top: 24px; }
+  .mt32 { margin-top: 32px; }
+  .mt40 { margin-top: 40px; }
+  .mt48 { margin-top: 48px; }
+
+  /* ── DIVIDERS ── */
+  hr { border: none; border-top: 1px solid var(--navy-700); margin: 32px 0; }
+  .hr-light { border-top: 1px solid #e8e8e4; margin: 28px 0; }
+
+  /* misc */
+  strong.gold { color: var(--gold-400); font-weight: 700; }
+  .text-gold  { color: var(--gold-500); }
+  .text-muted { color: var(--muted-dark); }
+  .text-white { color: #fff; }
+  .text-sm    { font-size: 12px; }
+  .text-xs    { font-size: 11px; }
+  .text-xxs   { font-size: 10px; }
+  .fw800 { font-weight: 800; }
+  .fw700 { font-weight: 700; }
+  .uppercase { text-transform: uppercase; letter-spacing: 1px; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
+
+  /* footer */
+  footer {
+    background: var(--navy-950);
+    border-top: 1px solid var(--navy-800);
+    padding: 28px 0;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--navy-600);
+  }
+
+  /* scroll padding for fixed nav */
+  section[id] { scroll-margin-top: 60px; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ NAV ═══════════════════════════ -->
+<nav>
+  <div class="wrap">
+    <div class="nav-logo">
+      <div class="nav-box">H</div>
+      <div>
+        <div class="nav-name">HALCYON</div>
+        <div class="nav-sub">Medical Billing</div>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#power">Power Map</a>
+      <a href="#pe">Private Equity</a>
+      <a href="#revolving">Revolving Door</a>
+      <a href="#playbook">Playbook</a>
+      <a href="#calendar">Calendar</a>
+      <a href="#exit">Exit Path</a>
+    </div>
+    <div class="nav-tag">Confidential · May 2026</div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+<section class="hero-bg" style="padding: 144px 0 96px;">
+  <div class="wrap">
+    <span class="section-label">Strategic Intelligence Report</span>
+    <div class="gold-divider"></div>
+    <h1 class="mb16">The RCM Power<br>Structure.<br><span>Every Lever.</span></h1>
+    <p style="font-size: 17px; color: var(--muted-dark); max-width: 640px; margin-bottom: 48px; line-height: 1.7;">
+      Who owns what, who they know, and exactly how Halcyon gets from pre-launch to industry leader before end of year. No bullshit.
+    </p>
+
+    <div class="g5 mb48">
+      <div class="stat-card">
+        <div class="stat-val">$8.9B</div>
+        <div class="stat-lbl">R1 RCM taken private</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">113</div>
+        <div class="stat-lbl">PE-owned RCM firms</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">53%</div>
+        <div class="stat-lbl">CMS exits to industry</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">17×</div>
+        <div class="stat-lbl">EBITDA paid for GeBBS</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">$12B</div>
+        <div class="stat-lbl">US billing outsourcing TAM</div>
+      </div>
+    </div>
+
+    <div class="callout-dark" style="max-width: 820px;">
+      <strong>The game:</strong> The US RCM industry is controlled by 6 PE firms, 3 revolving-door government networks, and a handful of conferences where all deals happen. This document maps every node. The playbook at the end tells you exactly how to use each one.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ POWER MAP ═══════════════════════════ -->
+<section id="power" class="sec-light">
+  <div class="wrap">
+    <span class="section-label">Section 01</span>
+    <div class="gold-divider" style="background: var(--gold-500);"></div>
+    <h2 class="mb8">Who Owns the Industry</h2>
+    <p style="max-width: 680px; margin-bottom: 48px;">Every major RCM platform is PE-backed. These are the companies — who bought them, what they paid, and what that means for you.</p>
+
+    <div style="overflow-x: auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Owner / Backer</th>
+            <th>Deal Value</th>
+            <th>Multiple</th>
+            <th>Revenue</th>
+            <th>Target Market</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>R1 RCM</strong></td>
+            <td>TowerBrook + CD&R<br><span style="font-size:11px;color:#888">ICG co-invested $1.2B</span></td>
+            <td><strong>$8.9B</strong></td>
+            <td>14.3× EBITDA</td>
+            <td>$2.31B</td>
+            <td>Large health systems, hospitals</td>
+            <td><span class="badge badge-dark">Private Nov 2024</span></td>
+          </tr>
+          <tr>
+            <td><strong>Waystar</strong></td>
+            <td>EQT (29%) · CPPIB (22%) · Bain (17%)</td>
+            <td><strong>IPO $968M</strong></td>
+            <td>Public (WAY)</td>
+            <td>$234M/Q</td>
+            <td>Mid–large practices, clearinghouse</td>
+            <td><span class="badge badge-green">Public (NASDAQ)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Athenahealth</strong></td>
+            <td>Veritas Capital + Elliott / Evergreen</td>
+            <td><strong>$5.7B</strong></td>
+            <td>—</td>
+            <td>~$1.7B</td>
+            <td>Ambulatory, 1–75 providers</td>
+            <td><span class="badge badge-dark">Private, IPO exploring</span></td>
+          </tr>
+          <tr>
+            <td><strong>Change Healthcare</strong></td>
+            <td>UnitedHealth Group / Optum</td>
+            <td><strong>$13B</strong></td>
+            <td>—</td>
+            <td>~$3.5B+</td>
+            <td>Enterprise, payers, hospitals</td>
+            <td><span class="badge badge-red">Post-hack scrutiny</span></td>
+          </tr>
+          <tr>
+            <td><strong>GeBBS Healthcare</strong></td>
+            <td>EQT (from ChrysCapital)</td>
+            <td><strong>$850M+</strong></td>
+            <td>~17× EBITDA</td>
+            <td>~$200M</td>
+            <td>US clients, offshore delivery</td>
+            <td><span class="badge badge-dark">Private Q4 2024</span></td>
+          </tr>
+          <tr>
+            <td><strong>Omega Healthcare</strong></td>
+            <td>Goldman Sachs Alt + Ontario Teachers'</td>
+            <td>Undisclosed</td>
+            <td>—</td>
+            <td>Est. $400M+</td>
+            <td>35K employees, offshore BPO</td>
+            <td><span class="badge badge-dark">Private, Jan 2025 deal</span></td>
+          </tr>
+          <tr>
+            <td><strong>FinThrive</strong></td>
+            <td>Clearlake Capital</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Est. $300M+</td>
+            <td>3,200+ hospital providers</td>
+            <td><span class="badge badge-dark">Refinanced $155M Nov 2024</span></td>
+          </tr>
+          <tr>
+            <td><strong>Ensemble Health</strong></td>
+            <td>Warburg Pincus + Berkshire Partners</td>
+            <td><strong>~$2.3B</strong></td>
+            <td>—</td>
+            <td>—</td>
+            <td>300+ hospitals outsourced RCM</td>
+            <td><span class="badge badge-dark">Private</span></td>
+          </tr>
+          <tr>
+            <td><strong>Conifer Health</strong></td>
+            <td>Tenet Healthcare (100% 2026)</td>
+            <td>CommonSpirit exit: $1.9B</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Tenet hospitals + commercial</td>
+            <td><span class="badge badge-gold">Losing $143B contract</span></td>
+          </tr>
+          <tr>
+            <td><strong>Cotiviti</strong></td>
+            <td>Veritas Capital + KKR (50/50)</td>
+            <td><strong>$11B valuation</strong></td>
+            <td>—</td>
+            <td>—</td>
+            <td>Health plan analytics, payers</td>
+            <td><span class="badge badge-dark">Private, May 2024 recap</span></td>
+          </tr>
+          <tr>
+            <td><strong>Zelis</strong></td>
+            <td>Bain Capital + Parthenon</td>
+            <td><strong>$17B valuation</strong></td>
+            <td>—</td>
+            <td>—</td>
+            <td>Healthcare payments, transparency</td>
+            <td><span class="badge badge-dark">Mubadala stake Dec 2024</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout-gold mt32">
+      <strong>Key insight:</strong> EQT owns both Waystar (clearinghouse software) and GeBBS (offshore BPO). They control the technology layer and the delivery layer simultaneously. This is the single most strategically important ownership relationship in RCM right now. Waystar is a potential channel partner for Halcyon — and a relationship that opens the EQT/JPMorgan network.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ PE MAP ═══════════════════════════ -->
+<section id="pe" class="sec-deep compliance-bg">
+  <div class="wrap">
+    <span class="section-label">Section 02</span>
+    <div class="gold-divider"></div>
+    <h2 class="mb8">Private Equity Landscape</h2>
+    <p style="max-width: 680px; margin-bottom: 48px; color: var(--muted-dark);">The 12 PE firms that control the industry — their named partners, fund sizes, and what they're actually buying.</p>
+
+    <div style="border: 1px solid var(--navy-700);">
+      <div style="background: var(--navy-900); padding: 10px 0;">
+        <div class="pe-row" style="padding: 8px 0; border: none;">
+          <div style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:var(--muted-dark);">Firm</div>
+          <div style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:var(--muted-dark);">AUM</div>
+          <div style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:var(--muted-dark);">RCM Holdings &amp; Key People</div>
+          <div style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:var(--muted-dark);">Relevance to Halcyon</div>
+        </div>
+      </div>
+      <div style="padding: 0 0 0 0;">
+
+        <div class="pe-row">
+          <div>
+            <div class="pe-name">EQT AB</div>
+            <div style="font-size:10px;color:var(--gold-500);margin-top:3px;">Swedish PE</div>
+          </div>
+          <div class="pe-aum">~$250B</div>
+          <div class="pe-desc">
+            <strong style="color:#fff;">Waystar</strong> (29% post-IPO, selling down) + <strong style="color:#fff;">GeBBS</strong> ($850M, 17× EBITDA).<br>
+            Key people: <strong style="color:var(--gold-300);">Eric Liu</strong> (Head NA PE, Global Co-Head Healthcare) · <strong style="color:var(--gold-300);">Ethan Waxman</strong> (Partner PE). Both sit on Waystar board.
+          </div>
+          <div class="pe-tags">
+            <span class="badge badge-gold">Highest Priority</span>
+            <span class="badge badge-muted">Channel partner</span>
+          </div>
+        </div>
+
+        <div class="pe-row">
+          <div>
+            <div class="pe-name">Clayton, Dubilier &amp; Rice</div>
+            <div style="font-size:10px;color:var(--gold-500);margin-top:3px;">CD&R</div>
+          </div>
+          <div class="pe-aum">$26B Fund XII</div>
+          <div class="pe-desc">
+            <strong style="color:#fff;">R1 RCM</strong> (co-owner with TowerBrook, $8.9B). Also: Kindred Healthcare, Agilon Health, Envision.<br>
+            Key person: <strong style="color:var(--gold-300);">Richard Schnall</strong> (Co-President, leads healthcare). WEF Davos access. Open on OpenSecrets — low political donation profile.
+          </div>
+          <div class="pe-tags">
+            <span class="badge badge-muted">Monitor for bolt-on</span>
+          </div>
+        </div>
+
+        <div class="pe-row">
+          <div>
+            <div class="pe-name">TowerBrook</div>
+            <div style="font-size:10px;color:var(--gold-500);margin-top:3px;">Soros PE lineage</div>
+          </div>
+          <div class="pe-aum">$25B+</div>
+          <div class="pe-desc">
+            <strong style="color:#fff;">R1 RCM</strong> (co-owner, was 36% pre-deal). Critical: TowerBrook co-sponsors <strong style="color:var(--gold-300);">ATHO fund with Ascension Health</strong> — a dedicated healthcare investment vehicle with the largest US Catholic health system. Founders: Neal Moszkowski + Ramez Sousou (ex-Soros).
+          </div>
+          <div class="pe-tags">
+            <span class="badge badge-gold">Ascension pathway</span>
+          </div>
+        </div>
+
+        <div class="pe-row">
+          <div>
+            <div class="pe-name">Veritas Capital</div>
+            <div style="font-size:10px;color:var(--gold-500);margin-top:3px;">Gov't contractor PE</div>
+          </div>
+          <div class="pe-aum">~$45B</div>
+          <div class="pe-desc">
+            <strong style="color:#fff;">Athenahealth</strong> + <strong style="color:#fff;">Cotiviti</strong> (50/50 w/ KKR, $11B). CEO <strong style="color:var(--gold-300);">Ramzi Musallam</strong> — 10× Wash100 Award (government contracting influence). Veritas is fundamentally a defense/government firm. VA and DoD healthcare contracts are in their orbit.
+          </div>
+          <div class="pe-tags">
+            <span class="badge badge-gold">Gov't access</span>
+            <span class="badge badge-muted">VA/DoD channel</span>
+          </div>
+        </div>
+
+        <div class="pe-row">
+          <div>
+            <div class="pe-name">KKR</div>
+            <div style="font-size:10px;color:var(--gold-500);margin-top:3px;">Global mega-PE</div>
+          </div>
+          <div class="pe-aum">~$600B+</div>
+          <div class="pe-desc">
+            <strong style="color:#fff;">Cotiviti</strong> (50/50 w/ Veritas) + <strong style="color:#fff;">Infinx Services</strong> (AI-driven prior auth/eligibility, May 2024). KKR is betting on AI-native RCM alongside a large analytics platform. Their Infinx investment signals exactly where the market is going.
+          </div>
+          <div class="pe-tags">
+            <span class="badge badge-muted">AI signal</span>
+          </div>
+        </div>
+
+        <div class="pe-row">
+          <div>
+            <div class="pe-name">Warburg Pincus</div>
+            <div style="font-size:10px;color:var(--gold-500);margin-top:3px;"></div>
+          </div>
+          <div class="pe-aum">$86B+</div>
+          <div class="pe-desc">
+            <strong style="color:#fff;">Ensemble Health Partners</strong> (co-owned w/ Berkshire Partners, ~$2.3B). Ensemble serves 300+ hospitals. Bon Secours Mercy Health (Catholic health system) retains board representation — another hospital-system-to-PE alignment.
+          </div>
+          <div class="pe-tags">
+            <span class="badge badge-muted">Hospital RCM bolt-on</span>
+          </div>
+        </div>
+
+        <div class="pe-row">
+          <div>
+            <div class="pe-name">Bain Capital</div>
+            <div style="font-size:10px;color:var(--gold-500);margin-top:3px;"></div>
+          </div>
+          <div class="pe-aum">~$185B+</div>
+          <div class="pe-desc">
+            <strong style="color:#fff;">Waystar</strong> (17% post-IPO, selling) + <strong style="color:#fff;">Zelis</strong> ($17B valuation, Dec 2024 Mubadala stake). Zelis CEO: Amanda Eisel. Bain is harvesting Waystar and doubling down on payments/transparency.
+          </div>
+          <div class="pe-tags">
+            <span class="badge badge-muted">Zelis payments angle</span>
+          </div>
+        </div>
+
+        <div class="pe-row">
+          <div>
+            <div class="pe-name">Goldman Sachs Alt.</div>
+            <div style="font-size:10px;color:var(--gold-500);margin-top:3px;">PE / Alt Investments</div>
+          </div>
+          <div class="pe-aum">$500B+ (firm AUM)</div>
+          <div class="pe-desc">
+            <strong style="color:#fff;">Omega Healthcare</strong> (retained significant stake after Ontario Teachers' co-lead buy-in, Jan 2025). Goldman's presence in RCM since 2019 via Omega's offshore BPO model (35,000 employees, 14 delivery centers).
+          </div>
+          <div class="pe-tags">
+            <span class="badge badge-muted">Offshore BPO play</span>
+          </div>
+        </div>
+
+        <div class="pe-row">
+          <div>
+            <div class="pe-name">Francisco Partners</div>
+            <div style="font-size:10px;color:var(--gold-500);margin-top:3px;">Tech-focused PE</div>
+          </div>
+          <div class="pe-aum">~$50B+</div>
+          <div class="pe-desc">
+            <strong style="color:#fff;">Zotec Partners</strong> — physician RCM specialist (radiology, emergency medicine, anesthesia, pathology). Specialty-focused model. Francisco's backing of a single specialty RCM firm validates the niche play.
+          </div>
+          <div class="pe-tags">
+            <span class="badge badge-gold">Niche model validated</span>
+          </div>
+        </div>
+
+        <div class="pe-row">
+          <div>
+            <div class="pe-name">Clearlake Capital</div>
+            <div style="font-size:10px;color:var(--gold-500);margin-top:3px;">LA-based PE</div>
+          </div>
+          <div class="pe-aum">Mid-tier</div>
+          <div class="pe-desc">
+            <strong style="color:#fff;">FinThrive</strong> (formerly nThrive, 3,200+ providers). Raised $155M new capital Nov 2024. Less politically connected than DC-orbit firms.
+          </div>
+          <div class="pe-tags">
+            <span class="badge badge-muted">Potential bolt-on buyer</span>
+          </div>
+        </div>
+
+        <div class="pe-row" style="border-bottom:none;">
+          <div>
+            <div class="pe-name">CPPIB</div>
+            <div style="font-size:10px;color:var(--gold-500);margin-top:3px;">Canada Pension</div>
+          </div>
+          <div class="pe-aum">~$600B+</div>
+          <div class="pe-desc">
+            <strong style="color:#fff;">Waystar</strong> (22.3% at IPO, selling down). Long-term infrastructure investor. Sam Blaichman (MD, Head NA Direct PE) sits on Waystar board. CPPIB's presence validates Waystar as infrastructure-grade healthcare asset.
+          </div>
+          <div class="pe-tags">
+            <span class="badge badge-muted">Institutional signal</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ REVOLVING DOOR ═══════════════════════════ -->
+<section id="revolving" class="sec-light">
+  <div class="wrap">
+    <span class="section-label">Section 03</span>
+    <div class="gold-divider" style="background:var(--gold-500);"></div>
+    <h2 class="mb8">The Revolving Door</h2>
+    <p style="max-width: 680px; margin-bottom: 12px;">A peer-reviewed Health Affairs study found that <strong>53% of senior CMS officials</strong> exit to private industry. The government/RCM corridor is wide open — these are the named people who walked through it.</p>
+
+    <div class="callout-gold mb40">
+      <strong>The rule:</strong> In this industry, a single advisory relationship with the right ex-government figure changes every institutional conversation you have. One name on your website unlocks hospital procurement, PE introductions, and regulatory credibility simultaneously.
+    </div>
+
+    <div class="g3 mb48">
+
+      <div class="rev-card">
+        <div class="rev-name">Seema Verma</div>
+        <div class="rev-gov">CMS Administrator · Trump Admin 2017–2021</div>
+        <div class="rev-arrow">↓ Advisory roles at TPG, Cressey &amp; Co; boards: Lumeris, Wellsky, LifeStance</div>
+        <div class="rev-arrow">↓ Now</div>
+        <div class="rev-now">EVP, Oracle Health &amp; Life Sciences</div>
+        <div class="rev-detail">
+          <strong style="color:var(--gold-300);">Highest-value target in RCM-adjacent space.</strong> Senate-confirmed 65-31. Ran Indiana Medicaid before CMS. Oracle Health is the EHR platform inside hundreds of hospitals. Her network spans every hospital CFO, state Medicaid director, and CMS official in the country. Promoted to EVP January 2024 — she is now operating, not coasting.
+        </div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-name">Marilyn Tavenner</div>
+        <div class="rev-gov">CMS Administrator · Obama Admin 2010–2015</div>
+        <div class="rev-arrow">↓ Oversaw ACA implementation, EHR incentive programs, MA expansion</div>
+        <div class="rev-arrow">↓ Then</div>
+        <div class="rev-now">CEO, AHIP (health insurance lobby) · $4.5M+ over 3 years</div>
+        <div class="rev-detail">
+          25 years at HCA (largest for-profit hospital chain) before CMS. Now on board of InnovAge. Represents the full circuit: hospital industry → government → payer lobby. Her network spans hospital chains, insurance companies, and Congress simultaneously. Current role with InnovAge signals she's available for advisory engagement.
+        </div>
+      </div>
+
+      <div class="rev-card">
+        <div class="rev-name">Current CMS: Dr. Mehmet Oz</div>
+        <div class="rev-gov">CMS Administrator · Trump Admin 2025–present</div>
+        <div class="rev-arrow">↓ Healthcare Advisory Committee announced March 2026</div>
+        <div class="rev-arrow">↓ Focus</div>
+        <div class="rev-now">Reducing administrative burden · 18-member committee</div>
+        <div class="rev-detail">
+          RFK Jr. + Oz committee selected 18 members from 400 nominees. Focus: chronic disease, administrative burden reduction, care for vulnerable populations. <strong style="color:var(--gold-300);">This is a double signal:</strong> threat (if billing simplifies, RCM need drops) AND opportunity (billing modernization requires RCM infrastructure). Monitor their quarterly outputs. Submit public comments.
+        </div>
+      </div>
+
+    </div>
+
+    <h3 class="mb24" style="color: var(--navy-900);">Trade Association Power Map</h3>
+    <div class="g2">
+
+      <div>
+        <table>
+          <thead><tr><th>Association</th><th>Who It Represents</th><th>Political Activity</th><th>Halcyon Action</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>HBMA</strong></td>
+              <td>Third-party billing companies (that's you)</td>
+              <td>Lobbies Congress; OIG co-branded compliance program</td>
+              <td><span class="badge badge-gold">Join immediately</span></td>
+            </tr>
+            <tr>
+              <td><strong>MGMA</strong></td>
+              <td>Physician practice administrators (your buyers)</td>
+              <td>Active; Anders Gilberg leads DC advocacy</td>
+              <td><span class="badge badge-gold">Corporate member</span></td>
+            </tr>
+            <tr>
+              <td><strong>HFMA</strong></td>
+              <td>Hospital CFOs, revenue cycle directors</td>
+              <td>Moderate; new CEO C. Ann Jordan Jan 2024</td>
+              <td><span class="badge badge-dark">Sponsor + speak</span></td>
+            </tr>
+            <tr>
+              <td><strong>AMA</strong></td>
+              <td>Physicians (RCM buyers)</td>
+              <td>AMPAC — highly active on payment reform, prior auth</td>
+              <td><span class="badge badge-muted">Monitor + align</span></td>
+            </tr>
+            <tr>
+              <td><strong>AAPC</strong></td>
+              <td>Individual coders &amp; billers</td>
+              <td>Certification body, low political</td>
+              <td><span class="badge badge-muted">Staff certifications</span></td>
+            </tr>
+            <tr>
+              <td><strong>AHIMA</strong></td>
+              <td>Health info management professionals</td>
+              <td>Active on interoperability, data governance</td>
+              <td><span class="badge badge-muted">Watch</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <h3 class="mb16" style="color:var(--navy-900);">Congressional Committees That Matter</h3>
+        <div class="card-light mb16">
+          <div class="step-num" style="color:var(--gold-600);">Senate Finance Committee</div>
+          <div style="font-size:13px;font-weight:800;color:var(--navy-900);margin-bottom:6px;">Chair: Sen. Mike Crapo (R-ID)</div>
+          <p class="text-sm">Jurisdiction over Medicare AND Medicaid. Grilled UHG CEO after the Change Healthcare hack. Ranking Member Wyden (D-OR) is the most vocal critic of healthcare PE consolidation and UNH market power.</p>
+        </div>
+        <div class="card-light mb16">
+          <div class="step-num" style="color:var(--gold-600);">House Energy &amp; Commerce</div>
+          <div style="font-size:13px;font-weight:800;color:var(--navy-900);margin-bottom:6px;">Medicaid, public health, FTC health issues</div>
+          <p class="text-sm">Published "What We Learned: Change Healthcare Cyber Attack" report. Active on healthcare data security and billing transparency.</p>
+        </div>
+        <div class="callout-gold">
+          <strong>UHG political spend in 2024:</strong> $4.47M PAC contributions, split bipartisan — $371K+ to Republican House, $276K+ to Democratic House. This is how a company buys access at scale. At pre-revenue, Halcyon's lever is not donations — it's <em>positioning as the compliance-first alternative</em> that committees concerned about UHG market power want to exist.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ PLAYBOOK ═══════════════════════════ -->
+<section id="playbook" class="sec-dark">
+  <div class="wrap">
+    <span class="section-label">Section 04 — The Main Event</span>
+    <div class="gold-divider"></div>
+    <h2 class="mb8">Year-End Industry Leadership Playbook</h2>
+    <p style="max-width: 720px; margin-bottom: 16px; color: var(--muted-dark);">Twelve moves. All legal. Some grey. Each one is specific, actionable, and compounds on the others. The sequence matters — earlier moves create the credibility for later ones.</p>
+    <div class="callout-dark mb48">
+      <strong>The frame:</strong> You don't need to be the biggest company by year-end. You need to be the most <em>credible</em> and <em>connected</em> small company in the industry. PE firms buy story + metrics. Clients buy trust. Both come from the same playbook.
+    </div>
+
+    <!-- MOVES 1–4: IMMEDIATE -->
+    <div style="margin-bottom: 48px;">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
+        <div style="height:1px;flex:1;background:var(--navy-700);"></div>
+        <div style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:3px;color:var(--gold-500);">Phase 1 — Credibility Foundation · Now – 60 Days</div>
+        <div style="height:1px;flex:1;background:var(--navy-700);"></div>
+      </div>
+      <div class="g4">
+
+        <div class="card-dark">
+          <div class="play-num" style="color:rgba(184,149,58,.2);">01</div>
+          <div class="play-title" style="color:#fff;">HBMA Membership + OIG Compliance Accreditation</div>
+          <div style="font-size:12px;color:var(--muted-dark);line-height:1.6;margin-bottom:16px;">
+            Join HBMA. Have a founder pursue CHBME certification. Then apply for HBMA's company-level compliance accreditation — co-branded with HHS's Office of Inspector General. This is the single credential that makes hospital procurement say yes when every other billing company doesn't have it. Cost: low. Timeline: 3–6 months. ROI: every enterprise conversation changes.
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="badge badge-gold">Do this week</span>
+            <span class="badge badge-green">Non-dilutive</span>
+          </div>
+        </div>
+
+        <div class="card-dark">
+          <div class="play-num" style="color:rgba(184,149,58,.2);">02</div>
+          <div class="play-title" style="color:#fff;">MGMA Corporate Membership</div>
+          <div style="font-size:12px;color:var(--muted-dark);line-height:1.6;margin-bottom:16px;">
+            Join at Corporate Member tier. Get listed in the MGMA Partner Solutions Directory. Your buyers — physician practice administrators — are MGMA members. 50,000+ healthcare professionals inside MGMA's network. Annual conference gets you in front of decision-makers in bulk. Premier Corporate Membership unlocks: priority conference booth, directory listing, access to MGMA's 15,000+ organization database.
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="badge badge-gold">Do this week</span>
+            <span class="badge badge-muted">Buyer access</span>
+          </div>
+        </div>
+
+        <div class="card-dark">
+          <div class="play-num" style="color:rgba(184,149,58,.2);">03</div>
+          <div class="play-title" style="color:#fff;">SAM.gov + State Medicaid Portals</div>
+          <div style="font-size:12px;color:var(--muted-dark);line-height:1.6;margin-bottom:16px;">
+            Register on SAM.gov (federal vendor registry). Then register in Florida AHCA, Ohio Medicaid, New York DOH, and Illinois DHFS vendor portals. CMS publishes a live State Medicaid IT Procurement Opportunities database. You cannot respond to an RFP you didn't see because you weren't registered. This is table stakes and takes a week.
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="badge badge-gold">This week</span>
+            <span class="badge badge-green">Free</span>
+          </div>
+        </div>
+
+        <div class="card-dark">
+          <div class="play-num" style="color:rgba(184,149,58,.2);">04</div>
+          <div class="play-title" style="color:#fff;">SBIR Grant Application — HHS Track</div>
+          <div style="font-size:12px;color:var(--muted-dark);line-height:1.6;margin-bottom:16px;">
+            SBIR was reauthorized April 13, 2026 after a 5-month freeze. Next HHS solicitations: June 23, August 19, September 6, 2026. Phase I: $305K non-dilutive. Phase II: $1.25M additional. A federal grant award does two things beyond the cash: it establishes a government relationship and gives you a credibility marker that no competitor can buy. NSF Digital Health SBIR is a parallel track.
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="badge badge-gold">Apply June 2026</span>
+            <span class="badge badge-green">$305K–$1.25M</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MOVES 5–8: NETWORK -->
+    <div style="margin-bottom: 48px;">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
+        <div style="height:1px;flex:1;background:var(--navy-700);"></div>
+        <div style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:3px;color:var(--gold-500);">Phase 2 — Network Architecture · 60–180 Days</div>
+        <div style="height:1px;flex:1;background:var(--navy-700);"></div>
+      </div>
+      <div class="g4">
+
+        <div class="card-dark">
+          <div class="play-num" style="color:rgba(184,149,58,.2);">05</div>
+          <div class="play-title" style="color:#fff;">Build the Advisory Board — Government Seat First</div>
+          <div style="font-size:12px;color:var(--muted-dark);line-height:1.6;margin-bottom:16px;">
+            Search LinkedIn for "former CMS" + "healthcare consulting." You want someone from post-2015, with Medicare/Medicaid policy background. Pay $2K–5K/month retainer or 0.15% equity vesting over 2 years. Add: one hospital CFO (200–500 bed system, not the top 10 — they won't advise startups), one physician group administrator from a 50+ physician multi-specialty group, one MGMA chapter past-president.
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="badge badge-gold">High priority</span>
+            <span class="badge badge-muted">Opens PE doors</span>
+          </div>
+        </div>
+
+        <div class="card-dark">
+          <div class="play-num" style="color:rgba(184,149,58,.2);">06</div>
+          <div class="play-title" style="color:#fff;">Becker's Up-and-Comers + Media Campaign</div>
+          <div style="font-size:12px;color:var(--muted-dark);line-height:1.6;margin-bottom:16px;">
+            Becker's publishes "80 Health IT &amp; Revenue Cycle Up-and-Comers" annually. Self-nominate or be nominated. It gets read by hospital executives nationwide. Simultaneously: pitch a bylined article to HFMA's Healthcare Financial Management on a specific billing insight. Submit a speaking proposal to Becker's RCM conference (September, Chicago). Contact: awarner@beckershealthcare.com.
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="badge badge-gold">Free visibility</span>
+            <span class="badge badge-muted">RevCycleIntelligence too</span>
+          </div>
+        </div>
+
+        <div class="card-dark">
+          <div class="play-num" style="color:rgba(184,149,58,.2);">07</div>
+          <div class="play-title" style="color:#fff;">HFMA Annual Conference — Denver, June 22–25</div>
+          <div style="font-size:12px;color:var(--muted-dark);line-height:1.6;margin-bottom:16px;">
+            This is where hospital CFOs and revenue cycle directors go. Open registration — not invite-only. Exhibit if budget allows. If not, register as attendees and work the room. 70+ sessions. CPE credits. The 2025 keynote is Amy Walter on the post-election political landscape — the audience is keyed into the political environment. Having a booth here is direct client pipeline.
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="badge badge-gold">June 22–25</span>
+            <span class="badge badge-muted">Denver, CO</span>
+          </div>
+        </div>
+
+        <div class="card-dark">
+          <div class="play-num" style="color:rgba(184,149,58,.2);">08</div>
+          <div class="play-title" style="color:#fff;">Waystar Partner Program</div>
+          <div style="font-size:12px;color:var(--muted-dark);line-height:1.6;margin-bottom:16px;">
+            Waystar has 30,000+ customers — practices that need a billing company on top of the technology. Get on Waystar's partner directory. Waystar's board includes Heidi Miller (former JPMorgan International CEO). A Waystar partnership is simultaneously: new client pipeline, technology credential, and an indirect JPMorgan relationship. Waystar is a clearinghouse layer — Halcyon sits above it.
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="badge badge-gold">Strategic partner</span>
+            <span class="badge badge-muted">JPM network access</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MOVES 9–12: SCALE + POSITION -->
+    <div>
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
+        <div style="height:1px;flex:1;background:var(--navy-700);"></div>
+        <div style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:3px;color:var(--gold-500);">Phase 3 — Positioning for Scale · 180 Days – Year End</div>
+        <div style="height:1px;flex:1;background:var(--navy-700);"></div>
+      </div>
+      <div class="g4">
+
+        <div class="card-dark">
+          <div class="play-num" style="color:rgba(184,149,58,.2);">09</div>
+          <div class="play-title" style="color:#fff;">Own a Specialty Niche</div>
+          <div style="font-size:12px;color:var(--muted-dark);line-height:1.6;margin-bottom:16px;">
+            Francisco Partners backed Zotec specifically for radiology/emergency/anesthesia billing. Specialty RCM companies command premium multiples because they're harder to replicate. Pick one: behavioral health (massive under-served post-pandemic), oncology (complex, high-revenue), or cardiology. Become the definitive expert. Publish the content. Speak at the specialty's own conference. Own that vertical before a larger firm does.
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="badge badge-gold">Behavioral health ←</span>
+            <span class="badge badge-muted">Premium multiple</span>
+          </div>
+        </div>
+
+        <div class="card-dark">
+          <div class="play-num" style="color:rgba(184,149,58,.2);">10</div>
+          <div class="play-title" style="color:#fff;">Becker's RCM Conference + Speaking Slot</div>
+          <div style="font-size:12px;color:var(--muted-dark);line-height:1.6;margin-bottom:16px;">
+            Becker's Health IT + Digital Health + RCM Annual Meeting is September, Chicago. This is the most targeted venue for an RCM company at any stage. Submit a speaking proposal now. A speaking slot at Becker's RCM conference puts you on the same stage as $1B+ companies. It changes how every prospect, partner, and PE firm encounters Halcyon. Also builds toward the Becker's 190 Hospital CFOs lists.
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="badge badge-gold">September · Chicago</span>
+            <span class="badge badge-muted">events@beckershealthcare.com</span>
+          </div>
+        </div>
+
+        <div class="card-dark">
+          <div class="play-num" style="color:rgba(184,149,58,.2);">11</div>
+          <div class="play-title" style="color:#fff;">RESI Conference (JPM Week) — January 2027</div>
+          <div style="font-size:12px;color:var(--muted-dark);line-height:1.6;margin-bottom:16px;">
+            JP Morgan Healthcare Conference (January, SF) is invite-only from JPM. RESI Conference runs concurrently — 1,000+ attendees, 700+ early-stage healthcare investors. Open registration. This is the deal week. Getting into JPM Week in any capacity is the goal. Most deals happen in side meetings at hotels, not at the conference itself. Being in SF that week at any event counts.
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="badge badge-gold">January 2027</span>
+            <span class="badge badge-muted">San Francisco</span>
+          </div>
+        </div>
+
+        <div class="card-dark">
+          <div class="play-num" style="color:rgba(184,149,58,.2);">12</div>
+          <div class="play-title" style="color:#fff;">PE Relationship Building — Platform Play</div>
+          <div style="font-size:12px;color:var(--muted-dark);line-height:1.6;margin-bottom:16px;">
+            Target: EQT's Eric Liu and Ethan Waxman (healthcare PE), CD&R's Richard Schnall, Warburg's healthcare team. Don't pitch for money yet — pitch for a relationship. Attend the same conferences. Connect through advisors. The goal is that when Halcyon hits $2M–5M EBITDA in a specialty niche, these people already know the company. Bolt-on acquisitions get done by people who made a mental note 18 months earlier.
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="badge badge-gold">Long game</span>
+            <span class="badge badge-muted">Compound daily</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ GREY AREA ═══════════════════════════ -->
+<section class="sec-deep compliance-bg">
+  <div class="wrap">
+    <span class="section-label">Section 04B — Advanced Tactics</span>
+    <div class="gold-divider"></div>
+    <h2 class="mb8">The Grey Zone</h2>
+    <p style="max-width: 680px; margin-bottom: 40px; color: var(--muted-dark);">These are legal. All of them. Some are aggressive. All are used by companies larger than Halcyon every day. Know what you're doing and do it with intention.</p>
+
+    <div class="g3 mb32">
+
+      <div class="grey-card">
+        <div class="grey-title">Pay-to-Play Conference Sponsorships That Buy Editorial</div>
+        <div class="grey-body">
+          Becker's, Modern Healthcare, HFMA, and RevCycleIntelligence all have sponsored content programs. A "contributed article" by Naitik Joshi on behavioral health billing appears in Becker's under your name — it is a sponsored placement but reads as editorial. $3K–$10K per placement. It generates inbound leads and PR credit. Do not confuse this with journalism — it's advertising with a byline. Effective.
+        </div>
+      </div>
+
+      <div class="grey-card">
+        <div class="grey-title">Physician Group Referral Fee Structures</div>
+        <div class="grey-body">
+          Healthcare Anti-Kickback Statute prohibits kickbacks <em>for referrals of federal healthcare program patients</em>. But paying a finder's fee to a practice manager, hospital consultant, or healthcare attorney who refers a private-pay or commercial-only practice is legal if structured correctly. Get healthcare counsel to draft a compliant referral agreement. Build a referral network of healthcare consultants, attorneys, and accountants who work with physician groups.
+        </div>
+      </div>
+
+      <div class="grey-card">
+        <div class="grey-title">Advisory Board as a Sales Channel</div>
+        <div class="grey-body">
+          A hospital CFO on your advisory board will refer peers — that's the real ROI, not the advice. Structure advisory agreements with specific deliverables: 2 introductions per quarter to their network. This is standard practice. Compensate fairly (0.1%–0.15% equity or $2K/month). The referral network of one hospital CFO is worth more than any marketing campaign.
+        </div>
+      </div>
+
+      <div class="grey-card">
+        <div class="grey-title">LinkedIn Thought Leadership as Direct Sales</div>
+        <div class="grey-body">
+          Revenue cycle directors, hospital CFOs, and practice administrators are on LinkedIn. A consistent publishing cadence (2× per week) on RCM-specific topics — denial rates, coding changes, payer policy updates — builds an audience of exact buyers. At 5,000 followers in this niche, inbound leads start coming. This is not social media marketing. It's a direct-response channel that compounds. No one in this space is doing it well.
+        </div>
+      </div>
+
+      <div class="grey-card">
+        <div class="grey-title">Public Comment Submissions to CMS</div>
+        <div class="grey-body">
+          CMS publishes proposed rules and requests for information. Submitting substantive public comments — under Halcyon's name — puts the company on record with CMS staff and gets the name into the federal register. CMS staff read these. Consultants and lobbyists who monitor CMS rulemaking see Halcyon's name. It's free, it builds regulatory credibility, and it signals that Halcyon is an operator, not just a vendor.
+        </div>
+      </div>
+
+      <div class="grey-card">
+        <div class="grey-title">State Medicaid Advisory Committee Participation</div>
+        <div class="grey-body">
+          Every state with Medicaid managed care runs advisory committees that are open to the public. Showing up consistently — as a billing company commenting on provider experience, claims processing timelines, and denial rates — gets Halcyon known by state HHS staff. State procurement decisions are made by people. Being a known, credible voice in a state's Medicaid advisory process is a direct path to vendor registration and eventual contract consideration.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout-dark">
+      <strong>The frame on all of this:</strong> None of these tactics are secrets. The PE-backed giants do all of them with bigger budgets. Your advantage is speed and authenticity — you can move faster, be more specific, and own a niche they can't focus on because their overhead requires $100M+ clients. Use that.
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CONFERENCE CALENDAR ═══════════════════════════ -->
+<section id="calendar" class="sec-parch">
+  <div class="wrap">
+    <span class="section-label">Section 05</span>
+    <div class="gold-divider" style="background:var(--gold-500);"></div>
+    <h2 class="mb8">Where the Deals Get Made</h2>
+    <p style="max-width: 680px; margin-bottom: 48px;">The conference calendar for the next 12 months. Priority-ranked for Halcyon's specific situation.</p>
+
+    <div class="g3 mb32">
+
+      <div class="conf-card">
+        <div class="conf-date">June 22–25, 2026</div>
+        <div class="conf-name">HFMA Annual Conference</div>
+        <div class="conf-loc">Colorado Convention Center · Denver, CO</div>
+        <div class="conf-body">Hospital CFOs, revenue cycle directors, healthcare finance executives. 70+ sessions. Open registration. <strong style="color:#fff;">This is Halcyon's primary target.</strong> The audience is the exact buyer for RCM services. Exhibit + attend. No invite required.</div>
+        <span class="conf-prio badge badge-gold">Priority 1 — Go</span>
+      </div>
+
+      <div class="conf-card">
+        <div class="conf-date">September 2026 · TBD</div>
+        <div class="conf-name">Becker's Health IT + RCM Annual Meeting</div>
+        <div class="conf-loc">Chicago, IL</div>
+        <div class="conf-body">The only major conference specifically focused on RCM. Hospital executives, health IT leaders, revenue cycle VPs. Speaking contact: awarner@beckershealthcare.com. Being on this stage is a credibility signal that reaches every prospect and PE firm simultaneously.</div>
+        <span class="conf-prio badge badge-gold">Priority 1 — Speak</span>
+      </div>
+
+      <div class="conf-card">
+        <div class="conf-date">Fall 2026 · TBD</div>
+        <div class="conf-name">HBMA Annual Conference</div>
+        <div class="conf-loc">TBD</div>
+        <div class="conf-body">HBMA is the trade association for billing companies. This is your professional home. Legislative advocacy content ("Washington Update"). Networking with peers and potential referral partners. If you're an HBMA member, this conference is where relationships with the association leadership get built.</div>
+        <span class="conf-prio badge badge-dark">Priority 2 — Network</span>
+      </div>
+
+      <div class="conf-card">
+        <div class="conf-date">March 2027 · TBD</div>
+        <div class="conf-name">HIMSS Global Health Conference</div>
+        <div class="conf-loc">Las Vegas, NV (Venetian/Caesars)</div>
+        <div class="conf-body">30,000+ attendees across 70+ countries. Hospital CIOs, health IT leaders, policymakers. $1,795–$2,145 registration. Key for technology and EHR-adjacent partnerships. Tom Leary (VP Gov't Relations, HIMSS) is former Clinton administration Pentagon appointee — a government connection node inside HIMSS leadership.</div>
+        <span class="conf-prio badge badge-dark">Priority 2 — Exhibit</span>
+      </div>
+
+      <div class="conf-card">
+        <div class="conf-date">January 2027 (Week of 12th)</div>
+        <div class="conf-name">JP Morgan Healthcare Conference Week</div>
+        <div class="conf-loc">San Francisco, CA</div>
+        <div class="conf-body">JPM main conference is invite-only (JPMorgan banker relationship required). RESI Conference runs concurrently — 1,000+ attendees, 700+ early-stage investors, open registration. Getting to SF that week in any capacity is the goal. Satellite events at hotels are where most deals actually happen. Year 1 target: RESI + satellite dinners.</div>
+        <span class="conf-prio badge badge-dark">Priority 2 — RESI Track</span>
+      </div>
+
+      <div class="conf-card">
+        <div class="conf-date">October 2026 · TBD</div>
+        <div class="conf-name">MGMA Annual Conference</div>
+        <div class="conf-loc">TBD</div>
+        <div class="conf-body">Physician practice administrators — MGMA's 60,000+ members. Corporate members get priority booth access. This is direct buyer pipeline. The MGMA annual conference is where an MGMA Corporate Member listing converts to face-to-face relationships with decision-makers at multi-physician practices nationwide.</div>
+        <span class="conf-prio badge badge-dark">Priority 2 — Exhibit</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ TIMELINE ═══════════════════════════ -->
+<section class="sec-dark">
+  <div class="wrap">
+    <span class="section-label">Section 06</span>
+    <div class="gold-divider"></div>
+    <h2 class="mb8">The Year-End Roadmap</h2>
+    <p style="max-width: 680px; margin-bottom: 48px; color: var(--muted-dark);">Month by month. What gets done when, and what it unlocks next.</p>
+
+    <div class="two-col">
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-month">May 2026 — Now</div>
+          <div class="tl-title">Foundation</div>
+          <div class="tl-body">HBMA membership application submitted. MGMA Corporate Membership enrolled. SAM.gov registration complete. State Medicaid portals registered (FL, NY, OH, IL). LinkedIn publishing cadence started: 2× per week on RCM topics. First advisory board conversations initiated (LinkedIn outreach to former CMS officials).</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-month">June 2026</div>
+          <div class="tl-title">First SBIR Application + HFMA Conference</div>
+          <div class="tl-body">HHS SBIR Phase I application submitted (June 23 deadline). Halcyon team attends HFMA Annual Conference, Denver. Booth if budget allows; at minimum attend as registrants and work every session. Becker's speaking proposal submitted for September conference. Begin OIG compliance accreditation documentation.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-month">July 2026</div>
+          <div class="tl-title">Advisory Board Locked + First Client</div>
+          <div class="tl-body">At least one former government official (CMS/HHS) confirmed as advisor. First client engagement signed — even if small, establishes revenue. Specialty niche decision finalized (behavioral health is the recommendation). Becker's up-and-comers self-nomination submitted. Begin drafting HFMA bylined article.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-month">August 2026</div>
+          <div class="tl-title">Second SBIR Filing + Waystar Outreach</div>
+          <div class="tl-body">Second SBIR solicitation window (August 19). Formal outreach to Waystar's partner program. HBMA OIG accreditation documentation complete. Publish first bylined article in HFMA's Healthcare Financial Management. CMS public comment submission on any open proposed rule affecting billing.</div>
+        </div>
+
+      </div>
+
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-month">September 2026</div>
+          <div class="tl-title">Becker's Conference + Niche Authority</div>
+          <div class="tl-body">Becker's Health IT + RCM Annual Meeting, Chicago. Speaking slot if confirmed; exhibit and network regardless. By this point: HBMA member, MGMA Corporate Member, OIG accreditation in progress, advisory board with government name, first client revenue, published article, and Becker's up-and-comers nomination in. The story is credible and compounding.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-month">October 2026</div>
+          <div class="tl-title">MGMA Conference + PE Outreach</div>
+          <div class="tl-body">MGMA Annual Conference — exhibit as Corporate Member. First PE relationship-building outreach. Not pitching for investment — building name recognition. Attending satellite events. By now Halcyon has: revenue, multiple credentials, advisory board, trade publication presence, conference visibility. The story is real. Start quiet introductions through advisors to healthcare PE analysts.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-month">November–December 2026</div>
+          <div class="tl-title">Year-End Assessment + January Prep</div>
+          <div class="tl-body">Review metrics against PE interest criteria: recurring revenue contracts, EBITDA margin, client concentration. Prepare for JPM week January 2027. Register for RESI Conference. Build list of healthcare PE analysts to connect with during SF week. Halcyon should have: HBMA + MGMA credentials, OIG accreditation, federal grant application in process, 3+ client relationships, advisory board, trade media presence.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-month">January 2027</div>
+          <div class="tl-title">JPM Week — San Francisco</div>
+          <div class="tl-body">RESI Conference. Satellite events. This is Halcyon's first real PE-network-facing moment. By this point every PE firm that covers healthcare RCM should have at minimum heard the company name from at least one of our advisors or conference contacts. The goal is not a deal — the goal is being known by the right people before you need them.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ EXIT PATH ═══════════════════════════ -->
+<section id="exit" class="sec-light">
+  <div class="wrap">
+    <span class="section-label">Section 07 — The Long Game</span>
+    <div class="gold-divider" style="background:var(--gold-500);"></div>
+    <h2 class="mb8">What PE Firms Are Buying</h2>
+    <p style="max-width: 680px; margin-bottom: 48px;">The acquisition multiples are real. The criteria are specific. Build toward these metrics from day one and the exit finds you.</p>
+
+    <div class="g2 mb40">
+      <div>
+        <h3 class="mb24" style="color:var(--navy-900);">Valuation Multiples by Size</h3>
+        <table>
+          <thead><tr><th>Company Scale</th><th>Typical Multiple</th><th>Benchmark Transaction</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Sub-$1M EBITDA</strong></td>
+              <td><span style="color:#ef4444;font-weight:700;">3–6× EBITDA</span></td>
+              <td>Regional billing companies</td>
+            </tr>
+            <tr>
+              <td><strong>$1M–$10M EBITDA</strong></td>
+              <td><span style="color:#f97316;font-weight:700;">6–10× EBITDA</span></td>
+              <td>Specialty billing companies, platform bolt-ons</td>
+            </tr>
+            <tr>
+              <td><strong>$10M–$100M EBITDA (tech-enabled)</strong></td>
+              <td><span style="color:var(--gold-600);font-weight:700;">10–17× EBITDA</span></td>
+              <td>GeBBS: $850M at 17× with $50M EBITDA</td>
+            </tr>
+            <tr>
+              <td><strong>$100M+ EBITDA (AI-native platform)</strong></td>
+              <td><span style="color:#10b981;font-weight:700;">14–30× EBITDA</span></td>
+              <td>R1: 14.3× · Acclara: ~29× · CloudMed: $4.1B</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout-gold mt24">
+          <strong>The GeBBS lesson:</strong> $850M at 17× EBITDA with only $50M EBITDA. You do not need to be enormous. GeBBS was acquired at a premium because it had: recurring revenue, offshore delivery efficiency, diversified US client base, and a clear AI/automation roadmap. The profile matters more than the size.
+        </div>
+      </div>
+
+      <div>
+        <h3 class="mb24" style="color:var(--navy-900);">What PE Actually Looks For</h3>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+
+          <div class="card-light">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+              <span class="dot dot-green"></span>
+              <span style="font-size:13px;font-weight:800;color:var(--navy-900);">Recurring, Predictable Revenue</span>
+            </div>
+            <p class="text-sm">Multi-year contracts or % of collections. PE firms underwrite cash flows — unpredictable revenue kills multiples. Your % of collections model is already structured correctly.</p>
+          </div>
+
+          <div class="card-light">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+              <span class="dot dot-green"></span>
+              <span style="font-size:13px;font-weight:800;color:var(--navy-900);">Low Customer Concentration</span>
+            </div>
+            <p class="text-sm">No single client &gt;20% of revenue. PE firms fear customer concentration. Build a diversified book from the start — even if clients are smaller.</p>
+          </div>
+
+          <div class="card-light">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+              <span class="dot dot-gold"></span>
+              <span style="font-size:13px;font-weight:800;color:var(--navy-900);">Defensible Niche</span>
+            </div>
+            <p class="text-sm">Specialty RCM (behavioral health, radiology, oncology) commands premium multiples. Francisco Partners backed Zotec specifically because specialty is harder to replicate. Own a niche before a larger firm does.</p>
+          </div>
+
+          <div class="card-light">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+              <span class="dot dot-gold"></span>
+              <span style="font-size:13px;font-weight:800;color:var(--navy-900);">20–30%+ EBITDA Margins</span>
+            </div>
+            <p class="text-sm">Tech-enabled RCM companies hit 20–30%+. Pure services companies get 10–15%. The Halcyon model (small team + technology layer) should target 25%+ as it scales. This is what separates a 10× multiple from a 5× multiple.</p>
+          </div>
+
+          <div class="card-light">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+              <span class="dot dot-gold"></span>
+              <span style="font-size:13px;font-weight:800;color:var(--navy-900);">The "Rule of 40"</span>
+            </div>
+            <p class="text-sm">Revenue growth rate + EBITDA margin ≥ 40%. Used as the standard benchmark for tech-enabled services. At 30% growth + 20% margin = 50. Hit Rule of 40 and you're in the conversation.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <h3 class="mb20" style="color:var(--navy-900);">The Platform Bolt-On Pattern — Your Most Likely Exit Path</h3>
+    <p style="margin-bottom:28px;max-width:760px;">R1, Ensemble, and FinThrive are PE-backed platforms that regularly acquire smaller companies to add specialty verticals, geographic markets, and technology capabilities. A Halcyon that owns behavioral health billing in a specific region is more valuable to R1 as a bolt-on than to a PE firm as a standalone investment. The bolt-on exit is faster and often more favorable.</p>
+
+    <div class="g4">
+      <div class="card-light">
+        <h3 class="mb8" style="font-size:12px;">R1 RCM (TowerBrook + CD&R)</h3>
+        <p class="text-sm">Actively growing through acquisition post-take-private. CloudMed ($4.1B), Acclara ($675M), Revint already in portfolio. Behavioral health or specialty billing in a new geography is a logical bolt-on.</p>
+      </div>
+      <div class="card-light">
+        <h3 class="mb8" style="font-size:12px;">Ensemble Health (Warburg + Berkshire)</h3>
+        <p class="text-sm">300+ hospital clients. Hospital systems' physician groups are the natural overflow — a physician specialty billing company fills a gap Ensemble can't efficiently serve.</p>
+      </div>
+      <div class="card-light">
+        <h3 class="mb8" style="font-size:12px;">FinThrive (Clearlake)</h3>
+        <p class="text-sm">3,200+ providers, refinanced $155M Nov 2024 specifically for "accelerated growth." Middle-market acquirer most likely to look at a sub-$10M EBITDA specialty billing company.</p>
+      </div>
+      <div class="card-light">
+        <h3 class="mb8" style="font-size:12px;">Athenahealth (Veritas + Elliott)</h3>
+        <p class="text-sm">Exploring IPO/sale. If Athenahealth IPOs, it will need to show growth in new verticals. A strong behavioral health billing partner inside their ecosystem could be acquired as part of pre-IPO story building.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════ STATE MAP ═══════════════════════════ -->
+<section class="sec-dark">
+  <div class="wrap">
+    <span class="section-label">Section 08</span>
+    <div class="gold-divider"></div>
+    <h2 class="mb8">State-Level Opportunities</h2>
+    <p style="max-width: 680px; margin-bottom: 40px; color: var(--muted-dark);">Federal access takes time. State-level relationships are faster and more accessible for a pre-revenue company. These are the 8 highest-opportunity states ranked for Halcyon.</p>
+
+    <div style="overflow-x:auto;">
+      <table class="td-dark">
+        <thead>
+          <tr>
+            <th>State</th>
+            <th>Medicaid Expansion</th>
+            <th>2024–2026 Key Development</th>
+            <th>RCM Opportunity</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong style="color:#fff;">Florida</strong></td>
+            <td><span class="badge badge-red">Not expanded</span></td>
+            <td>AHCA awarded $143B, 6-year managed care contracts to 5 health plans (Oct 2024–Dec 2030). Largest managed care contract vehicle in Florida history.</td>
+            <td>Massive downstream billing demand from new MCO networks. Highest Medicare volume state due to elderly population. Republican political environment favors private-sector solutions.</td>
+            <td><span class="badge badge-gold">Highest</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:#fff;">New York</strong></td>
+            <td><span class="badge badge-green">Expanded</span></td>
+            <td>$212M CMS Rural Health Transformation funding (2026). Medicaid Eligibility Modernization launched Sept 2025. Statewide Facility Transformation includes Health IT grants.</td>
+            <td>Highest Medicaid enrollment in US. Active IT modernization = RCM vendor opportunities. NY grants portal (health.ny.gov/funding) has active solicitations.</td>
+            <td><span class="badge badge-gold">Highest</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:#fff;">Ohio</strong></td>
+            <td><span class="badge badge-green">Expanded</span></td>
+            <td>2025 RFI on Medicaid work requirement compliance technology. EDI/Fiscal Intermediary modernization launched Feb 2023.</td>
+            <td>Active IT infrastructure upgrades = vendor procurement opportunities. Work requirement complexity creates RCM-adjacent demand.</td>
+            <td><span class="badge badge-dark">High</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:#fff;">Illinois</strong></td>
+            <td><span class="badge badge-green">Expanded</span></td>
+            <td>DHFS re-procuring managed care contracts for after Dec 2025 expiry. New MCO networks = new billing relationships.</td>
+            <td>Contract transition creates demand for billing expertise at new-to-market plans and their provider networks.</td>
+            <td><span class="badge badge-dark">High</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:#fff;">Texas</strong></td>
+            <td><span class="badge badge-red">Not expanded</span></td>
+            <td>HHSC implemented new STAR+PLUS managed care contracts Sept 2024 (7 MCOs, 3 new to program). Largest number of uninsured Americans.</td>
+            <td>Despite non-expansion: enormous volume in Dallas-FW and Houston. Texas Hospital Association and Texas Medical Association are major access points.</td>
+            <td><span class="badge badge-dark">High</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:#fff;">Georgia</strong></td>
+            <td><span class="badge badge-gold">Partial (Pathways)</span></td>
+            <td>DCH issued Medicaid managed care RFP Sept 2023. Partial expansion via work requirement waiver creates administrative complexity.</td>
+            <td>Atlanta metro is a growing healthcare market. Complexity of partial expansion requires RCM sophistication. Lower competition density than NY/FL.</td>
+            <td><span class="badge badge-muted">Medium</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:#fff;">Pennsylvania</strong></td>
+            <td><span class="badge badge-green">Expanded</span></td>
+            <td>UPMC, Jefferson Health, Penn Medicine, Geisinger — all major RCM innovators. Large Medicaid enrollment.</td>
+            <td>Major integrated health systems create spillover physician group billing demand. UPMC is one of the largest integrated systems in the US and a major RCM purchaser.</td>
+            <td><span class="badge badge-muted">Medium</span></td>
+          </tr>
+          <tr>
+            <td><strong style="color:#fff;">Arizona</strong></td>
+            <td><span class="badge badge-green">Expanded</span></td>
+            <td>AHCCCS is a long-standing managed care state. Growing Phoenix metro.</td>
+            <td>Phoenix metro growth creates significant outpatient and specialty practice billing demand. Established managed care relationships = predictable payer environment.</td>
+            <td><span class="badge badge-muted">Medium</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ BANKING RELATIONSHIPS ═══════════════════════════ -->
+<section class="sec-parch">
+  <div class="wrap">
+    <span class="section-label">Section 09</span>
+    <div class="gold-divider" style="background:var(--gold-500);"></div>
+    <h2 class="mb8">Banking Relationships</h2>
+    <p style="max-width: 680px; margin-bottom: 40px;">The banks that finance and advise every deal in this space. Know who they are before you need them.</p>
+
+    <div class="g3 mb32">
+
+      <div class="card-light">
+        <h3 class="mb8" style="font-size:12px;">JPMorgan Chase</h3>
+        <p class="text-sm mb8">Lead book-runner, Waystar IPO ($968M). Waystar board includes Heidi Miller (former JPMorgan International CEO). Annual JP Morgan Healthcare Conference in January. #1 or #2 healthcare M&A advisor by deal count and value annually.</p>
+        <p class="text-sm"><strong>Halcyon access point:</strong> Waystar partner relationship → Heidi Miller board connection → JPM Healthcare Conference orbit.</p>
+      </div>
+
+      <div class="card-light">
+        <h3 class="mb8" style="font-size:12px;">Goldman Sachs</h3>
+        <p class="text-sm mb8">Co-lead book-runner, Waystar IPO. Goldman Alternatives owns stake in Omega Healthcare. #1 or #2 global M&A advisor by deal value.</p>
+        <p class="text-sm"><strong>Halcyon access point:</strong> At scale (post $5M EBITDA), Goldman's healthcare banking coverage group becomes relevant. Pre-scale: follow their healthcare research publications.</p>
+      </div>
+
+      <div class="card-light">
+        <h3 class="mb8" style="font-size:12px;">Houlihan Lokey</h3>
+        <p class="text-sm mb8">Consistently leads North America M&A by deal volume (not just value). Strong in middle-market healthcare services. This is the bank most likely to advise on a $50M–$500M RCM transaction.</p>
+        <p class="text-sm"><strong>Halcyon access point:</strong> Middle-market RCM acquisition most likely to go through Houlihan. Build a relationship with their healthcare services group early.</p>
+      </div>
+
+      <div class="card-light">
+        <h3 class="mb8" style="font-size:12px;">Raymond James</h3>
+        <p class="text-sm mb8">Co-manager, Waystar IPO. Active in healthcare services and health IT M&A for middle-market transactions. Regional bank presence with healthcare focus.</p>
+        <p class="text-sm"><strong>Halcyon access point:</strong> More accessible than bulge brackets at early stage. Their healthcare banking team is reachable through HFMA and Becker's conference networks.</p>
+      </div>
+
+      <div class="card-light">
+        <h3 class="mb8" style="font-size:12px;">Centerview Partners</h3>
+        <p class="text-sm mb8">Boutique advisory firm. Healthcare M&A revenues up 155% since 2019. Known for complex, large healthcare strategic transactions. Advises on deals the bulge brackets can't do quietly.</p>
+        <p class="text-sm"><strong>Halcyon access point:</strong> Long-term target when you're exploring strategic alternatives at $10M+ EBITDA.</p>
+      </div>
+
+      <div class="card-light">
+        <h3 class="mb8" style="font-size:12px;">First Citizens Bank (SVB Successor)</h3>
+        <p class="text-sm mb8">Acquired SVB's healthcare lending book after March 2023 collapse. Now operates as "First Citizens Healthcare." SVB was the primary lender to health tech and RCM startups — First Citizens maintained those relationships.</p>
+        <p class="text-sm"><strong>Halcyon access point:</strong> Venture debt and credit facilities for growth stage. More accessible than bulge brackets for sub-$10M revenue companies.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ TEN SURPRISES ═══════════════════════════ -->
+<section class="sec-deep compliance-bg">
+  <div class="wrap">
+    <span class="section-label">Section 10 — Raw Intelligence</span>
+    <div class="gold-divider"></div>
+    <h2 class="mb8">10 High-Leverage Findings</h2>
+    <p style="max-width: 680px; margin-bottom: 48px; color: var(--muted-dark);">The things that are non-obvious, surprising, or change how you should think about the next 12 months.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--navy-700);">
+
+      <div style="padding:28px 32px;border-right:1px solid var(--navy-700);border-bottom:1px solid var(--navy-700);">
+        <div class="step-num">Finding 01</div>
+        <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:8px;">EQT Controls Both Layers</div>
+        <p class="text-sm">EQT owns Waystar (clearinghouse software, 29%) AND GeBBS (offshore BPO, $850M). They control the technology layer and the delivery layer of RCM simultaneously. No other PE firm has this dual position. This makes EQT the single most strategically important firm in the industry — and Waystar the most important channel partner for Halcyon to pursue.</p>
+      </div>
+
+      <div style="padding:28px 32px;border-bottom:1px solid var(--navy-700);">
+        <div class="step-num">Finding 02</div>
+        <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:8px;">Conifer Losing $143B Is Your Market</div>
+        <p class="text-sm">CommonSpirit is ending its $143B RCM outsourcing contract with Conifer to insource. When the largest outsourced hospital RCM relationships revert in-house, the market shifts toward modular, technology-enabled components. A Halcyon that owns AI-powered denial management or prior auth for a specialty is not threatened by this — it's what replaces Conifer-style full-service outsourcing.</p>
+      </div>
+
+      <div style="padding:28px 32px;border-right:1px solid var(--navy-700);border-bottom:1px solid var(--navy-700);">
+        <div class="step-num">Finding 03</div>
+        <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:8px;">The HBMA-OIG Accreditation Is Underused</div>
+        <p class="text-sm">HBMA's company-level compliance accreditation is co-developed with HHS's Office of Inspector General. Hospital procurement departments increasingly require compliance evidence before signing. This accreditation is the one credential that makes risk-averse hospital administrators say yes — and almost no small billing company has bothered to get it. It's yours to own.</p>
+      </div>
+
+      <div style="padding:28px 32px;border-bottom:1px solid var(--navy-700);">
+        <div class="step-num">Finding 04</div>
+        <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:8px;">Seema Verma Is the Network</div>
+        <p class="text-sm">Former CMS Administrator, now EVP at Oracle Health. Her network spans every hospital CFO, every state Medicaid director, and every senior CMS official in the country. She has been at TPG, Cressey & Co, Lumeris, Wellsky — she is comfortable advising startups. Getting an introduction to her network (not necessarily to her directly) is the single highest-value government-sector relationship move available.</p>
+      </div>
+
+      <div style="padding:28px 32px;border-right:1px solid var(--navy-700);border-bottom:1px solid var(--navy-700);">
+        <div class="step-num">Finding 05</div>
+        <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:8px;">GeBBS at 17× With Only $50M EBITDA</div>
+        <p class="text-sm">GeBBS was acquired at a premium multiple with a relatively modest EBITDA. The premium came from profile: recurring revenue, offshore delivery efficiency, AI/automation roadmap, diversified US client base. You don't need to be big to get a big multiple. You need the right profile. Build toward the profile from day one, not the size.</p>
+      </div>
+
+      <div style="padding:28px 32px;border-bottom:1px solid var(--navy-700);">
+        <div class="step-num">Finding 06</div>
+        <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:8px;">ICG's $1.2B Secondaries Bet Validates RCM</div>
+        <p class="text-sm">Intermediate Capital Group invested $1.2B as a secondaries co-investor in the TowerBrook/CD&R R1 RCM take-private. Secondaries funds don't make speculative bets — they underwrite cash flows. ICG's participation signals that RCM is now viewed as core healthcare infrastructure with predictable, durable cash flows. This is the strongest possible institutional validation of the sector.</p>
+      </div>
+
+      <div style="padding:28px 32px;border-right:1px solid var(--navy-700);border-bottom:1px solid var(--navy-700);">
+        <div class="step-num">Finding 07</div>
+        <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:8px;">TowerBrook Has Ascension Health Access</div>
+        <p class="text-sm">TowerBrook co-sponsors the ATHO fund (Ascension TowerBrook Healthcare Opportunities) with Ascension Health Alliance — one of the largest US Catholic health systems. This is a direct backdoor from TowerBrook PE into a massive hospital buyer of RCM services. If Halcyon can get into TowerBrook's orbit (through conferences, advisors, or eventual bolt-on), Ascension Health becomes a reachable enterprise client.</p>
+      </div>
+
+      <div style="padding:28px 32px;border-bottom:1px solid var(--navy-700);">
+        <div class="step-num">Finding 08</div>
+        <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:8px;">Veritas Capital Has Government Contractor DNA</div>
+        <p class="text-sm">Veritas is fundamentally a defense and government contractor PE firm. CEO Musallam's 10× Wash100 Award is a government contracting recognition. Their ownership of Athenahealth is a crossover play — but it means Athenahealth has access to VA, DoD, and federal health system contracts that a pure commercial PE firm wouldn't. The VA healthcare system is an underexplored RCM market.</p>
+      </div>
+
+      <div style="padding:28px 32px;border-right:1px solid var(--navy-700);">
+        <div class="step-num">Finding 09</div>
+        <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:8px;">KKR Is Betting on AI-Native RCM</div>
+        <p class="text-sm">KKR invested in Infinx Services (AI-driven prior auth, eligibility verification, claims — May 2024) while co-owning Cotiviti ($11B analytics platform). This is a clear signal: KKR's thesis is AI-native workflow automation alongside large-scale analytics. If Halcyon builds even a modest AI-assisted component (prior auth automation, eligibility checking) it positions as a KKR-thesis-aligned asset.</p>
+      </div>
+
+      <div style="padding:28px 32px;">
+        <div class="step-num">Finding 10</div>
+        <div style="font-size:14px;font-weight:800;color:#fff;margin-bottom:8px;">SBIR Reauthorization Timing Is Perfect</div>
+        <p class="text-sm">SBIR/STTR was reauthorized April 13, 2026 after a 5-month funding freeze. $4B+ in annual government innovation funding is back online. First post-reauthorization solicitations open now. An early application — before the backlog builds — has a better probability than an application filed 12 months from now after everyone else also noticed the reauthorization. Move fast.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+<footer>
+  <div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="width:20px;height:20px;background:var(--gold-500);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:#fff;">H</div>
+        <span>Halcyon Medical Billing</span>
+      </div>
+      <div>Strategic Intelligence · Prepared May 2026 · Internal Use Only</div>
+      <div>halcyonmedicalbilling.com</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
